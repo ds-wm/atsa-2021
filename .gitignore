@@ -1,0 +1,11 @@
+# macos files
+.DS_Store
+
+# R compilations
+.Rproj.user
+.RData
+.Ruserdata
+*.Rproj
+
+# Avoid this cantankerous infection
+desktop.ini
