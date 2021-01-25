@@ -7,9 +7,12 @@ For each block, submit your in-class exercises to the GitHub repository as two p
 
 All exercises are due on or before the exam due date for a given block.
 Use your GitHub username and block number to name your files, for example: block 1 exercises should be titled: `dt-woods_b1.R` and `dt-woods_b1.Rhistory`.
-To save your work history, run the following line of code at the end of your session.
+To save your work history, run the following line(s) of code at the end of your session.
 
 ```R
+# Set working directory (change path appropriately); optional
+setwd("~")
+
 # Save history file
 savehistory("dt-woods-b1.Rhistory")
 ```
@@ -21,6 +24,32 @@ If you run multiple sessions to solve the exercises, itemize them alphabetically
 * `dt-woods-b1c.Rhistory`
 
 You may then concatenate these individual files into a single history document.
+
+```R
+# Set working directory (change path appropriately); optional
+setwd("~")
+
+# Find all Rhistory files (change path appropriately)
+filenames <- list.files(pattern = "\\.Rhistory$")
+
+# Read first history file
+d <- read.table(filenames[1], sep="\n", fill=FALSE, strip.white = TRUE)
+
+# Concatenate with remaining history files
+for (f in filenames[-1]) {
+  dd <- read.table(f, sep="\n", fill = FALSE, strip.white = TRUE)
+  d <- rbind(d, dd)
+}
+
+# Write out new concatenated history file
+write.table(
+  d, 
+  file = "dt-woods-b1.Rhistory", 
+  row.name = FALSE, 
+  col.names = FALSE, 
+  quote = FALSE
+)
+```
 
 Please submit only your own work.
 
