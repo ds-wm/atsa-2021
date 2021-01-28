@@ -7,7 +7,7 @@ __Table 1.__ Note-Taking Schedule. First come first serve.
 | Block | Due Date        | Note-takers |
 | :---: | :-------------- | :---------  |
 | 1     | 1 March @ 9 AM  | 1.          |
-|       |                 | 2.          |
+|       |                 | 2. David Huang         |
 |       |                 | 3.          |
 |       |                 | 4.          |
 |       |                 | 5.          |
