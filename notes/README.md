@@ -22,7 +22,7 @@ __Table 1.__ Note-Taking Schedule. First come first serve.
 |       |                 | 6.          |
 |       |                 | 7.          |
 |       |                 | 8.          |
-| 3     | 5 May @ 9 AM    | 1.          |
+| 3     | 5 May @ 9 AM    | 1.Justin C  |
 |       |                 | 2.          |
 |       |                 | 3.          |
 |       |                 | 4.          |
