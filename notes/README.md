@@ -16,7 +16,7 @@ __Table 1.__ Note-Taking Schedule. First come first serve.
 |       |                 | 8.          |
 | 2     | 31 March @ 9 AM | 1.          |
 |       |                 | 2.          |
-|       |                 | 3.          |
+|       |                 | 3.Rini Gupta          |
 |       |                 | 4.          |
 |       |                 | 5.          |
 |       |                 | 6.          |
