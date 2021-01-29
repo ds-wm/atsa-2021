@@ -15,7 +15,7 @@ __Table 1.__ Note-Taking Schedule. First come first serve.
 |       |                 | 7.          |
 |       |                 | 8.          |
 | 2     | 31 March @ 9 AM | 1.Joe Barry          |
-|       |                 | 2.          |
+|       |                 | 2. Andrew Caietti         |
 |       |                 | 3.Rini Gupta          |
 |       |                 | 4.          |
 |       |                 | 5.          |
