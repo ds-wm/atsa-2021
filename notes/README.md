@@ -23,7 +23,7 @@ __Table 1.__ Note-Taking Schedule. First come first serve.
 |       |                 | 7.          |
 |       |                 | 8.          |
 | 3     | 5 May @ 9 AM    | 1.Justin C  |
-|       |                 | 2.Julian Hayes|
+|       |                 | 2. Julian Hayes|
 |       |                 | 3.          |
 |       |                 | 4.          |
 |       |                 | 5.          |
