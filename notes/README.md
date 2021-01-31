@@ -8,7 +8,7 @@ __Table 1.__ Note-Taking Schedule. First come first serve.
 | :---: | :-------------- | :---------  |
 | 1     | 1 March @ 9 AM  | 1. Matthew Cheng         |
 |       |                 | 2. David Huang         |
-|       |                 | 3.          |
+|       |                 | 3. Conrad Ning        |
 |       |                 | 4.          |
 |       |                 | 5.          |
 |       |                 | 6.          |
