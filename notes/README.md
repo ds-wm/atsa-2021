@@ -18,7 +18,7 @@ __Table 1.__ Note-Taking Schedule. First come first serve.
 |       |                 | 2. Andrew Caietti         |
 |       |                 | 3.Rini Gupta          |
 |       |                 | 4.Jacinta Das|
-|       |                 | 5.          |
+|       |                 | 5. Kelton Berry          |
 |       |                 | 6.          |
 |       |                 | 7.          |
 |       |                 | 8.          |
