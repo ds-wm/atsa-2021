@@ -24,7 +24,7 @@ __Table 1.__ Note-Taking Schedule. First come first serve.
 |       |                 | 8.          |
 | 3     | 5 May @ 9 AM    | 1.Justin C  |
 |       |                 | 2. Julian Hayes|
-|       |                 | 3.          |
+|       |                 | 3. John Hennin         |
 |       |                 | 4.          |
 |       |                 | 5.          |
 |       |                 | 6.          |
