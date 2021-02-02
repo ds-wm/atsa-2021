@@ -19,7 +19,7 @@ __Table 1.__ Note-Taking Schedule. First come first serve.
 |       |                 | 3.Rini Gupta          |
 |       |                 | 4.Jacinta Das         |
 |       |                 | 5. Kelton Berry       |
-|       |                 | 6.          |
+|       |                 | 6. Kimya Shirazi      |
 |       |                 | 7.          |
 |       |                 | 8.          |
 | 3     | 5 May @ 9 AM    | 1.Justin C  |
