@@ -10,8 +10,8 @@ __Table 1.__ Note-Taking Schedule. First come first serve.
 |       |                 | 2. David Huang        |
 |       |                 | 3. Conrad Ning        |
 |       |                 | 4. Connor Sughrue     |
-|       |                 | 5.          |
-|       |                 | 6.          |
+|       |                 | 5. Monica Alicea         |
+|       |                 | 6. Sterling Ransone         |
 |       |                 | 7.          |
 |       |                 | 8.          |
 | 2     | 31 March @ 9 AM | 1.Joe Barry           |
