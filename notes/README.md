@@ -21,7 +21,7 @@ __Table 1.__ Note-Taking Schedule. First come first serve.
 |       |                 | 5. Kelton Berry       |
 |       |                 | 6. Kimya Shirazi      |
 |       |                 | 7.Mayada Hassan       |
-|       |                 | 8.Monica Alicea         |
+|       |                 | 8. Matt McCormack     |
 | 3     | 5 May @ 9 AM    | 1.Justin C  |
 |       |                 | 2. Julian Hayes|
 |       |                 | 3. John Hennin         |
