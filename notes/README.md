@@ -12,7 +12,7 @@ __Table 1.__ Note-Taking Schedule. First come first serve.
 |       |                 | 4. Connor Sughrue     |
 |       |                 | 5. Monica Alicea         |
 |       |                 | 6. Sterling Ransone         |
-|       |                 | 7.          |
+|       |                 | 7. Asha Silva         |
 |       |                 | 8.          |
 | 2     | 31 March @ 9 AM | 1.Joe Barry           |
 |       |                 | 2. Andrew Caietti     |
