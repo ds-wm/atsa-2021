@@ -46,23 +46,33 @@ calc.my.means <- function(y) {
   }
   my.harm.mean <- n/my.sum
   cat("Harmonic Mean: ", my.harm.mean,'\n')
+  return(c(my.arith.mean, my.geom.mean, my.harm.mean))
 }
 calc.my.means(y)
 
-temp.sum <- 0
-i <- 1
-n <- length(y)
-my.mean <- sum(y)/n
-while (i < n+1) {
-  temp.sum <- temp.sum + ((y[i] - my.mean)**2)
-  i <- i+1
+calc.var <- function(y){
+  temp.sum <- 0
+  i <- 1
+  n <- length(y)
+  my.mean <- sum(y)/n
+  while (i < n+1) {
+    temp.sum <- temp.sum + ((y[i] - my.mean)**2)
+    i <- i+1
+  }
+  my.var <- temp.sum/(n-1)
+  cat("Variance: ", my.var, '\n')
+  return(my.var)
 }
 
-my.var <- temp.sum/(n-1)
-cat("Variance: ", my.var, '\n')
+calc.stdev <- function(my.var){
+  my.stdev <- my.var ** (1/2)
+  cat("Standard Dev: ", my.stdev, '\n')
+  return(my.stdev)
+}
 
-my.stdev <- my.var ** (1/2)
-cat("Standard Dev: ", my.stdev, '\n')
-
-my.err <- (my.var/n) ** (1/2)
-cat("Standard Error: ", my.err, '\n')
+calc.stderr <- function(my.var){
+  n <- length(y)
+  my.err <- (my.var/n) ** (1/2)
+  cat("Standard Error: ", my.err, '\n')
+  return(my.err)
+}
