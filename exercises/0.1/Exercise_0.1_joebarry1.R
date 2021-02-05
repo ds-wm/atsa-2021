@@ -1,0 +1,84 @@
+y <- c(1, 2.5, 4, 5.5, 7, 8.5, 10, 11.5, 13, 14.5)
+arith_mean <- function(y) {
+cumulsum <- 0
+for (i in y) {
+cumulsum <- cumulsum + i
+return(cumulsum)
+}
+}
+arith_mean(y)
+y <- c(1, 2.5, 4, 5.5, 7, 8.5, 10, 11.5, 13, 14.5)
+arith_mean <- function(y) {
+cumulsum <- 0
+for (i in y) {
+cumulsum <- cumulsum + i
+}
+return(cumulsum)
+}
+arith_mean(y)
+source('~/DATA 330/example_joebarry1.R')
+y <- c(1, 2.5, 4, 5.5, 7, 8.5, 10, 11.5, 13, 14.5)
+arith_mean <- function(y) {
+cumulsum <- 0
+for (i in y) {
+cumulsum <- cumulsum + i
+}
+return(cumulsum/length(y))
+}
+arith_mean(y)
+mean(y)
+geo_mean <- function(y) {
+cumulprod <- 1
+for (i in y) {
+cumulprod <- cumulprod * i
+}
+return(cumulprod**(1/length(y)))
+}
+geo_mean(y)
+harmo_mean <- function(y) {
+denom <- 0
+for (i in y) {
+denom <- denom <- 1/i
+}
+return(length(y)/denom)
+}
+harmo_mean(y)
+harmo_mean <- function(y) {
+denom <- 0
+for (i in y) {
+denom <- denom + 1/i
+}
+return(length(y)/denom)
+}
+harmo_mean(y)
+harmonic.mean(y)
+variance <- function(y) {
+avg <- arith_mean(y)
+cumulsum <- 0
+for (i in y) {
+cumulsum <- cumulsum + (i-avg)**2
+}
+return(cumulsum/length(y))
+}
+variance(y)
+var(y)
+variance <- function(y) {
+avg <- arith_mean(y)
+cumulsum <- 0
+for (i in y) {
+cumulsum <- cumulsum + (i-avg)**2
+}
+return(cumulsum/(length(y)-1))
+}
+variance(y)
+var(y)
+stddev <- function(y) {
+return(variance(y)**(1/2))
+}
+stddev(y)
+sd(y)
+stderr <- function(y) {
+return(stddev(y)/sqrt(length(y)))
+}
+stderr(y)
+savehistory("~/DATA 330/Exercise_0.1_joebarry1.R")
