@@ -1,0 +1,38 @@
+#Part 1
+y <- c(1,	2.5,	4,	5.5,	7,	8.5,	10,	11.5,	13,	14.5)
+> a_mean <- function(k) {
+  +     a_sum <- 0
+  +     for (j in k) {
+    +         a_sum <- a_sum + j
+    +     }
+  +     return(a_sum/length(k))
+  + }
+> g_mean <- function(k) {
+  + g_product <- 1
+  + for (j in k) {
+    + g_product <- g_product*j
+    + }
+  + return(g_product**(1/length(k)))
+  + }
+
+> h_mean <- function(k) {
+  + h_sum <- 0
+  + for (j in k) {
+    + h_sum <- h_sum + (1/j)
+    + }
+  + return(1/(h_sum/length(k)))
+  + }
+
+#Part 2
+variance <- function(k) {
+  + v_sum <- 0
+  + for (j in k) {
+    + v_sum <- v_sum + ((j-a_mean(k))**2)
+    + }
+  + return(v_sum)
+  + }
+
+#Part 3
+s_dev <- function(k) {
+  + dev <- (variance(k))**(1/2)
+  + }
