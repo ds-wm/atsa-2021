@@ -65,7 +65,7 @@ standardError <- function(vector, k){
 
 #################################################################
 
-test_vector = c(1, 2.5, 4, 5.5, 7, 8.5, 10, 11.5, 13, 14.5)
+test_vector <- c(1, 2.5, 4, 5.5, 7, 8.5, 10, 11.5, 13, 14.5)
 
 cat('my arithmetic mean: ', arithmeticMean(test_vector), '\n')
 cat('built in arithmetic mean: ', mean(test_vector), '\n\n')
