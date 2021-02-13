@@ -8,12 +8,12 @@
 # arithmetic mean
 arithmeticMean <- function(vector){
   
-  cumulative.sum = 0
-  length = 0
+  cumulative.sum <- 0
+  length <- 0
   
   for (val in vector){
-    cumulative.sum = cumulative.sum + val
-    length = length + 1
+    cumulative.sum <- cumulative.sum + val
+    length <- length + 1
   }
   return(cumulative.sum / length)
 }
@@ -21,12 +21,12 @@ arithmeticMean <- function(vector){
 # geometric mean
 geometricMean <- function(vector){
   
-  cumulative.product = 1
-  length = 0
+  cumulative.product <- 1
+  length <- 0
   
   for (val in vector){
-    cumulative.product = cumulative.product * val
-    length = length + 1
+    cumulative.product <- cumulative.product * val
+    length <- length + 1
   }
   return(cumulative.product ^ (1 / length))
 }
@@ -34,12 +34,12 @@ geometricMean <- function(vector){
 # harmonic mean
 harmonicMean <- function(vector){
   
-  denominator = 0
-  length = 0
+  denominator <- 0
+  length <- 0
   
   for (val in vector){
-    denominator = denominator + (1 / val)
-    length = length + 1
+    denominator <- denominator + (1 / val)
+    length <- length + 1
   }
   return(length / denominator)
 }
