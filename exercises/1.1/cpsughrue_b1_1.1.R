@@ -33,7 +33,7 @@ value.table <- data.frame(time, Y1, Y2, u)
 
 # output
 
-# time  Y1(t)  Y2(t)  u
+# time  Y1     Y2     u
 # --------------------------
 # 0.000 0.000  1.000  0.500
 # 0.785 0.707  0.707  0.707
