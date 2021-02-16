@@ -26,7 +26,7 @@ __Table 1.__ Note-Taking Schedule. First come first serve.
 |       |                 | 2. Julian Hayes|
 |       |                 | 3. John Hennin         |
 |       |                 | 4. Peter Woo      |
-|       |                 | 5.          |
+|       |                 | 5. Katherine Lannen          |
 |       |                 | 6.          |
 |       |                 | 7.          |
 |       |                 | 8.          |
