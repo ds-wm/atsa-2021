@@ -2,7 +2,7 @@
 
 Lam, H.C.Y.; Haines, A.; McGregor, G.; Chan, E.Y.Y.; Hajat, S. Time-Series Study of Associations between Rates of People Affected by Disasters and the El Niño Southern Oscillation (ENSO) Cycle. Int. J. Environ. Res. Public Health 2019, 16, 3146. https://doi.org/10.3390/ijerph16173146
 
-## Group 1
+## [Group 1](https://docs.google.com/document/d/1k9vGSugRPZHaS-j90zLMu1uquXJ3Gp75AdPp85sFnYo/edit?usp=sharing)
 - Connor
 - Conrad
 - John
@@ -10,7 +10,7 @@ Lam, H.C.Y.; Haines, A.; McGregor, G.; Chan, E.Y.Y.; Hajat, S. Time-Series Study
 - Peter
 - Rini
 
-## Group 2
+## [Group 2](https://docs.google.com/document/d/1jBn5W_IXswGetag6YOUL_KV8G4h41q6mDQ0Tl2_DV1c/edit?usp=sharing)
 - Alex
 - David
 - Julian
