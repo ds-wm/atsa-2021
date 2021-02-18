@@ -10,9 +10,9 @@ Calculating the sample means and sample autocorrelations.
 1. Plot the time series and the periodogram for Figure 1.10a of Woodward et al. (`fig1.10a`). Note that the sampling rate for the x-axis is in 1/10ths.  What are the three dominant frequencies of this dataset?
 1. The time series in Figure 1.10a (Woodward et al.) can be expressed as the following:
 
-    ```
-    X(t) = \cos(2\pi t f_1) + 1.5 \cos(2\pi t f_2 + 1) + 2 \cos(2 \pi t f_3 + 2.5)
-    ```
+    
+    X(t) = cos(2&pi; t f<sub>1</sub>) + 1.5 cos(2&pi; t f<sub>2</sub> + 1) + 2 cos(2 &pi; t f<sub>3</sub> + 2.5)
+    
 
     where f<sub>1</sub>, f<sub>2</sub>, and f<sub>3</sub> are the three dominant frequencies (in order from lowest to highest) found in the previous question.
     Replace the frequencies you found in the equation above and recreate using R the Figure 1.10a using values for t &in; (0, 100) (e.g., `x <- 0:1000/10`).
