@@ -41,5 +41,5 @@ See [oni.data](https://psl.noaa.gov/data/correlation/oni.data) for complete time
 
 ### meiv2.data
 Multi-variate ENSO Index (MEI) version 2.
-See the [meiv2.data](https://psl.noaa.gov/enso/mei/data/meiv2.data) for complete time series.
+See the [meiv2.data](https://psl.noaa.gov/enso/mei/data/meiv2.data) and [mei.ext](https://psl.noaa.gov/enso/mei.ext/table.ext.html) for complete time series.
 
