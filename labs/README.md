@@ -31,3 +31,15 @@ If they meet the criteria above, they receive a check.
 Late labs, incomplete labs, or labs that fall short of the expectations outlined above will not receive a check.
 
 You are free to collaborate on lab assignments, but ultimately it should reflect your thoughts, methods, and conclusions.
+
+# Files
+
+### ONI_data.csv
+Tabularized Oceanic Ni&ntilde;o Index (ONI) from NOAA.
+_Note the tabular data are truncated to one decimal point._
+See [oni.data](https://psl.noaa.gov/data/correlation/oni.data) for complete time series.
+
+### meiv2.data
+Multi-variate ENSO Index (MEI) version 2.
+See the [meiv2.data](https://psl.noaa.gov/enso/mei/data/meiv2.data) for complete time series.
+
