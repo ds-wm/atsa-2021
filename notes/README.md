@@ -27,6 +27,6 @@ __Table 1.__ Note-Taking Schedule. First come first serve.
 |       |                 | 3. John Hennin         |
 |       |                 | 4. Peter Woo      |
 |       |                 | 5. Katherine Lannen          |
-|       |                 | 6.          |
+|       |                 | 6. Ray Shen         |
 |       |                 | 7.          |
 |       |                 | 8.          |
