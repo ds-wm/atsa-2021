@@ -16,8 +16,9 @@ There are three main reasons why we care about Time Series in Data Science. One,
   - Variety
   - Veracity (Truth)  
 
-**Pieces of notes from the lecture slides**
+**Note pieces from the lecture slides**
   - There's a popular belief that all data is a mixture of parametric structures and stochastic noise. When the sample space of the stochastic process is time, that is time series data. 
+  - Focus on the "hows" and "whys" and not the results to explain what we depict
 
 ### Useful codes for RStudio and Google Colab
 
@@ -32,7 +33,40 @@ library("tswge")
 ```
 
 ## February 04, 2021
+[Google Collab](https://colab.research.google.com/drive/1OSNx-28tf384VOuS71_n5tCIrqc_UfmK?usp=sharing)
+### Progress: Lesson 0
+**Google Colab is a Jupyter Notebook using R**
+```
+sessionInfo()
+```
+**Look up the function of the package in R**
+```
+help("package_name")
+```
 
+### Some functions in R
+The table below lists some of them.
+
+| Operation | Meaning |
+| :-------- | :------ |
+| max(x) | maximum value in $x$ |
+| min(x) | minimum value in $x$ |
+| sum(x) | total of all the values in $x$ |
+| mean(x) | arithmetic average of the values in $x$ |
+| median(x) | median value in $x$ |
+| range(x) | vector of $\min(x)$ and $\max(x)$ |
+| var(x) | sample variance of $x$ |
+| cor(x, y) | correlation between vectors $x$ and $y$ |
+| sort(x) | a sorted version of $x$ |
+| rank(x) | vector of the ranks of the values in $x$ |
+| order(x) | an integer vector containing the permutation to sort x into ascending order |
+| quantile(x) | vector containing the minimum, lower quartile, median, upper quartile, and maximum of $x$ |
+| cumsum(x) | vector containing the sum of all of the elements up to that point |
+| cumprod(x) | vector containing the product of all of the elements up to that point |
+| cummax(x) | vector of non-decreasing numbers that are the cumulative maxima of the values in $x$ up to that point |
+| cummin(x) | vector of non-increasing numbers which are the cumulative minima of the values in $x$ up to that point |
+| pmax(x, y, z) | vector, of length equal to the longest of $x$, $y$ or $z$, containing the maximum of $x$, $y$ or $z$ for the $i$th position in each |
+| pmin(x, y, z) | vector, of length equal to the longest of $x$, $y$ or $z$, containing the minimum of $x$, $y$ or $z$ for the $i$th position in each |
 
 
 ## February 09, 2021
