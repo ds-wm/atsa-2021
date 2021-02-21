@@ -49,24 +49,24 @@ The table below lists some of them.
 
 | Operation | Meaning |
 | :-------- | :------ |
-| max(x) | maximum value in $x$ |
-| min(x) | minimum value in $x$ |
-| sum(x) | total of all the values in $x$ |
-| mean(x) | arithmetic average of the values in $x$ |
-| median(x) | median value in $x$ |
-| range(x) | vector of $\min(x)$ and $\max(x)$ |
-| var(x) | sample variance of $x$ |
-| cor(x, y) | correlation between vectors $x$ and $y$ |
-| sort(x) | a sorted version of $x$ |
-| rank(x) | vector of the ranks of the values in $x$ |
+| max(x) | maximum value in x |
+| min(x) | minimum value in x |
+| sum(x) | total of all the values in x |
+| mean(x) | arithmetic average of the values in x |
+| median(x) | median value in x |
+| range(x) | vector of min(x) and max(x) |
+| var(x) | sample variance of x |
+| cor(x, y) | correlation between vectors x and y |
+| sort(x) | a sorted version of x |
+| rank(x) | vector of the ranks of the values in x |
 | order(x) | an integer vector containing the permutation to sort x into ascending order |
-| quantile(x) | vector containing the minimum, lower quartile, median, upper quartile, and maximum of $x$ |
+| quantile(x) | vector containing the minimum, lower quartile, median, upper quartile, and maximum of x |
 | cumsum(x) | vector containing the sum of all of the elements up to that point |
 | cumprod(x) | vector containing the product of all of the elements up to that point |
-| cummax(x) | vector of non-decreasing numbers that are the cumulative maxima of the values in $x$ up to that point |
-| cummin(x) | vector of non-increasing numbers which are the cumulative minima of the values in $x$ up to that point |
-| pmax(x, y, z) | vector, of length equal to the longest of $x$, $y$ or $z$, containing the maximum of $x$, $y$ or $z$ for the $i$th position in each |
-| pmin(x, y, z) | vector, of length equal to the longest of $x$, $y$ or $z$, containing the minimum of $x$, $y$ or $z$ for the $i$th position in each |
+| cummax(x) | vector of non-decreasing numbers that are the cumulative maxima of the values in x up to that point |
+| cummin(x) | vector of non-increasing numbers which are the cumulative minima of the values in x up to that point |
+| pmax(x, y, z) | vector, of length equal to the longest of x, y or z, containing the maximum of x, y or z for the ith position in each |
+| pmin(x, y, z) | vector, of length equal to the longest of x, y or z, containing the minimum of x, y or z for the ith position in each |
 
 
 ## February 09, 2021
