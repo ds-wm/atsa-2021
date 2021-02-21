@@ -6,6 +6,7 @@
 
 ## February 02, 2021
 [Slides](https://ds-wm.github.io/course/atsa/lectures/intro-to-ts/index.html#/applied-time-series-analysis)
+
 ##The Four V's of Big Data##
   - Volume
   - Velocity
