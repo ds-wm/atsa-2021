@@ -19,12 +19,17 @@ There are three main reasons why we care about Time Series in Data Science. One,
 **Pieces of notes from the lecture slides**
   - There's a popular belief that all data is a mixture of parametric structures and stochastic noise. When the sample space of the stochastic process is time, that is time series data. 
 
-#### How to save Rhistory File
+### Useful codes for RStudio and Google Colab
 
+How to save Rhistory File
 ```
 savehistory(file = "filename.Rhistory")
 ```
-
+Install packages and load data from the textbook
+```
+install.packages("tswge")
+library("tswge")
+```
 
 ## February 04, 2021
 
