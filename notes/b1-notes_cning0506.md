@@ -34,7 +34,7 @@ library("tswge")
 
 ## February 04, 2021
 [Google Collab](https://colab.research.google.com/drive/1OSNx-28tf384VOuS71_n5tCIrqc_UfmK?usp=sharing)
-### Progress: Lesson 0
+### Progress: Lesson 0, Exercise 0
 **Google Colab is a Jupyter Notebook using R**
 ```
 sessionInfo()
@@ -68,6 +68,18 @@ The table below lists some of them.
 | pmax(x, y, z) | vector, of length equal to the longest of x, y or z, containing the maximum of x, y or z for the ith position in each |
 | pmin(x, y, z) | vector, of length equal to the longest of x, y or z, containing the minimum of x, y or z for the ith position in each |
 
+### Mean
+  - Arithmetic Mean : The sum of numbers divided by the count of numbers and the most common method for calculating the mean.
+  - Geometric Mean : The  n -th root of the product of numbers. For processes that change multiplicatively rather than additively.
+  - Harmonic Mean : The reciprocal of the average of the reciprocals. For processes that change rates
+
+### Other Key Terms
+  - Variance
+  - Standard Deviation (Built-in Function available)
+  ```
+  sd( )
+  ```
+  - Standard Error
 
 ## February 09, 2021
 
