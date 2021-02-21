@@ -1,6 +1,7 @@
 ## Note-Taking for Block 1 - Introduction to Time Series and R
 
-Written by Conrad Ning \n
+Written by Conrad Ning 
+
 Last edited: 2021-02-21
 
 ### February 02, 2021
