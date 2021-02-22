@@ -99,9 +99,9 @@ The table below lists some of them.
   ```
   γ(t1,t2)=E{[X(t1)−μ(t1)][X(t2)−μ(t2)]}
   ```
-  - **Autocorrelation** of a time series, which is given by the following expression,
+  - **Autocorrelation** of a time series, which is given by the following expression, where  σ  is the standard deviation of the ensemble at a given t .
   ```
-  ρ(t1,t2)=γ(t1,t2)σ(t1)σ(t2)
+  ρ(t1,t2)=γ(t1,t2)/σ(t1)σ(t2)
   ```
 
   
