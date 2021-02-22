@@ -96,8 +96,15 @@ The table below lists some of them.
   - The **ordinate** is the vertical axis.
   - The  **abscissa** is the horizontal axis.
   - Of particular interest in time series analysis is the **covariance** between  X(t1)  and  X(t2)  for values  t1,t2∈T . Because this covariance is within the same time series, it is called  **autocovariance** and is given by the following expression.  
-                 γ(t1,t2)=E{[X(t1)−μ(t1)][X(t2)−μ(t2)]}
-  - 
+  ```
+  γ(t1,t2)=E{[X(t1)−μ(t1)][X(t2)−μ(t2)]}
+  ```
+  - **Autocorrelation** of a time series, which is given by the following expression,
+  ```
+  ρ(t1,t2)=γ(t1,t2)σ(t1)σ(t2)
+  ```
+
+  
 
 ## February 11, 2021
 
