@@ -84,7 +84,7 @@ The table below lists some of them.
 ## February 09, 2021
 ### Progress: Lesson 0, Lesson 1.1, Exercise 1.1
 
-### Fill in the blank for Lesson 1.1 (The missing word is in bold text)
+### Fill in the blank for Lesson 1.1 (The missing words are bolded)
   - **Random Variable** (Y) is a function defined on a sample space,  Ω , whose range is the real numbers,  IR . 
   - An **observation** of a random variable,  y=Y(ω)  for a given  ω∈Ω , is also a real number.
   - A  **stochastic** process is a collection of random variables  {Y(ω);ω∈Ω}  where all random variables are defined on the same sample space.
