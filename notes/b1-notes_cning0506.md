@@ -84,9 +84,14 @@ The table below lists some of them.
 ## February 09, 2021
 ### Progress: Lesson 0, Lesson 1.1, Exercise 1.1
 
-### Fill in the blank for Lesson 1.1
-  - Random Variable (Y): It is a function defined on a sample space,  Ω , whose range is the real numbers,  IR . 
-  -  An  observation––––––––––––  of a random variable,  y=Y(ω)  for a given  ω∈Ω , is also a real number.
+### Fill in the blank for Lesson 1.1 (The missing word is in bold text)
+  - **Random Variable** (Y) is a function defined on a sample space,  Ω , whose range is the real numbers,  IR . 
+  - An **observation** of a random variable,  y=Y(ω)  for a given  ω∈Ω , is also a real number.
+  - A  **stochastic** process is a collection of random variables  {Y(ω);ω∈Ω}  where all random variables are defined on the same sample space.
+  - When this shared sample space represents  **time**,  T , then the stochastic process---which can now be written as  X(t);t∈T ---is referred to as a **time series**.
+  - Note that the sample space,  T , whose range is the real numbers, may be represented as either continuous, for example  T=(−∞,∞) , or  **discrete**.
+  - A **realization** of a time series,  x(t);t∈T , is the set of values that result from the occurrence of some observed event.
+  - The collection of all possible realizations,  {x(t)} , is called the **ensemble**.
 
 ## February 11, 2021
 
