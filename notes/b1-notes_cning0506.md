@@ -34,7 +34,7 @@ library("tswge")
 
 ## February 04, 2021
 [Google Collab](https://colab.research.google.com/drive/1OSNx-28tf384VOuS71_n5tCIrqc_UfmK?usp=sharing)
-### Progress: Lesson 0, Exercise 0
+### Progress: Lesson 0, Exercise 0.1
 **Google Colab is a Jupyter Notebook using R**
 ```
 sessionInfo()
@@ -82,7 +82,11 @@ The table below lists some of them.
   - Standard Error
 
 ## February 09, 2021
+### Progress: Lesson 0, Lesson 1.1, Exercise 1.1
 
+### Fill in the blank for Lesson 1.1
+  - Random Variable (Y): It is a function defined on a sample space,  Ω , whose range is the real numbers,  IR . 
+  -  An  observation––––––––––––  of a random variable,  y=Y(ω)  for a given  ω∈Ω , is also a real number.
 
 ## February 11, 2021
 
