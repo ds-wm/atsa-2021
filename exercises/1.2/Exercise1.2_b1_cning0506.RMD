@@ -20,6 +20,7 @@ data("ss08")
 
 plot.ts(ss08)
 plotts.wge(ss08)
+ss.data <- plotts.sample.wge(ss08)
 ```
 
 ## Question 2 - Calculate the average of TS realization 
