@@ -28,5 +28,5 @@ __Table 1.__ Note-Taking Schedule. First come first serve.
 |       |                 | 4. Peter Woo      |
 |       |                 | 5. Katherine Lannen          |
 |       |                 | 6. Ray Shen         |
-|       |                 | 7.          |
+|       |                 | 7. Keagan DeLong         |
 |       |                 | 8.          |
