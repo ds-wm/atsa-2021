@@ -1,0 +1,98 @@
+---
+title: "cning0506_b1_1.2.R"
+author: "Conrad Ning"
+date: "2/18/2021"
+output: html_document
+---
+
+
+
+# ATSA Exercise 1.2
+# Feb 18 2021
+
+library("tswge")
+
+## Question 1 - "base plot" in R and the "plotts.wge"
+
+### Load the dataset
+```{r pressure, echo=FALSE}
+data("ss08")
+
+plot.ts(ss08)
+plotts.wge(ss08)
+```
+
+## Question 2 - Calculate the average of TS realization 
+```{r pressure, echo=FALSE}
+mean(ss08)
+```
+
+## Output
+## [1] 52.24385
+
+## Question 3 - Dataset "Hadley" and plot the auto-correlation and auto-covariance 
+```{r pressure, echo=FALSE}
+data("hadley")
+acf(hadley, type = "correlation")
+acf(hadley, type = "covariance")
+```
+
+# Question 4 - Equations 
+$$
+\hat{\gamma_{0}}= \frac{1}{n}\sum_{t = 1}^{n}{(X_{t} - \bar{X}_t)}- ({X}_t-\bar{X})
+$$
+$$
+\hat{\gamma_{1}}=\frac{1}{n}\sum_{t = 1}^{n-1}{(X_{t} - \bar{X}_t)}- ({X}_{t+1}-\bar{X})
+$$
+$$
+\hat{\rho_{0}}=\frac{\gamma_{0}}{\gamma_{0}} = 1
+$$
+$$
+\hat{\rho_{1}} =\frac{\gamma_{1}}{\gamma_{0}}
+$$
+
+
+# Question 5 - Plot the time series and the periodogram for Fig 1.10a 
+```{r pressure, echo=FALSE}
+data("fig1.10a")
+plot.ts(fig1.10a)
+pfig1.10a <- period.wge(fig1.10a,dbcalc = TRUE, plot=TRUE)
+plot(1:1000/10, fig1.10a, type = "l", xlab = "Time")
+```
+# Three dominant frequencies 
+#pfig1.10a$pgram
+
+```{r pressure, echo=FALSE}
+par.f1.10a <- parzen.wge(fig1.10a, trunc = 75)
+
+length(fig1.10a)
+which.max(pfig1.10a$pgram)
+pfig1.10a$freq[15]  #0.015 (First dominant freq)
+
+which.max(pfig1.10a$pgram[0:14])
+pfig1.10a$freq[10] # 0.01 (Second dominant freq)
+
+which.max(pfig1.10a$pgram[0:9])
+pfig1.10a$freq[3]  # 0.03 (Third dominant freq)
+#pfig1.10a         # Double-check the three dominant frequencies 
+
+```
+
+# Question 6 
+
+```{r pressure, echo=FALSE}
+Xt <- (cos(2*pi*.003*t) + 1.5*cos(2*pi*.01*t + 1) + 2*cos(2*pi*.015 *t + 2.5))
+t <- 0:1000/10
+plot(Xt)
+plot.ts(Xt)
+plot.ts(fig1.10a)
+```
+
+
+
+
+
+
+
+
+
