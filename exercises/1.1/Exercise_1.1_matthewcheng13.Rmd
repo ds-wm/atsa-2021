@@ -1,0 +1,53 @@
+---
+title: "Exercise_1.1_matthewcheng13"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Matthew Cheng
+# Exercise 1.1
+
+# Question 1
+
+```{r}
+t <- c(0,pi/4, pi/2,3*pi/4,pi)
+Y1t <- sin(t)
+Y2t <- sin(t + pi/2)
+EYt <- (Y1t/2) + (Y2t/2)
+cat("Y1(t): ",Y1t)
+cat("\nY2(t): ",Y2t)
+cat("\nE(Y(t)): ",EYt)
+```
+
+| t     | $Y_{1}(t)$ | $Y_{2}(t)$  | $\mu_t$   |
+|-------|-------|--------|-------|
+| 0     | 0     | 1      | 0.5   |
+| $\frac{\pi}{4}$  | 0.707 | 0.707  | 0.707 |
+| $\frac{\pi}{2}$  | 1     | 0      | 0.5   |
+| $\frac{3\pi}{4}$ | 0.707 | -0.707 | 0     |
+| $\pi$    | 0     | -1     | -0.5  |
+
+# Question 2
+
+Since this realization oscillates between -1 and 1 from time 0 to 100, the mean of the realization is 0 (the average of -1 and 1).
+
+# Question 3
+
+The ensemble mean is the mean of all possible realizations at one specific given time, whereas the mean of a given realization is the mean of all values of time, t, for the realization. The ensemble mean is calculated along the ordinate, or vertical axis, and the mean of a given realization is calculated along the abscissa, or horizontal axis.
+
+# Question 4
+
+```{r}
+t <- c(0:100)
+t <- t*.25
+
+Yt1 <- sin(t)
+Yt2 <- sin(t + .5*pi)
+
+plot(t,Yt1,ylim = c(-1.1,1.25), type = "l", col = "red", lwd = 1, lty = 1, xlab = "Time", ylab = NA)
+lines(t,Yt2,ylim=c(-1.1,1.25),type = "l", col = "blue", lwd = 1, lty = 2)
+legend("top",inset=0.01,col=c("red","blue"),lty=c(1,2),lwd=c(1,1),legend = c(expression(sin(t)),expression(sin(t+pi/2))),bg="white",box.col = "white",horiz = TRUE)
+```
