@@ -1,0 +1,148 @@
+---
+title: "Exercise 1.2"
+author: "Joe Barry"
+date: "February 20, 2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Question 1
+
+First, we have to install our necessary library, and load the data.
+
+```{r}
+library("tswge")
+data(ss08)
+```
+
+Here is the base plot from R:
+
+```{r}
+plot(ss08, type = 'l')
+```
+
+And here is the plot using our textbook function:
+
+```{r}
+plotts.wge(ss08)
+```
+
+
+### Question 2
+
+```{r}
+mean(ss08)
+```
+
+The mean of our data is $52.24385$.
+
+
+### Question 3
+
+Let's load Hadley.
+
+```{r}
+data(hadley)
+```
+
+Now, here are the plots.
+
+```{r}
+acf(hadley, type = "correlation")
+```
+
+```{r}
+acf(hadley, type = "covariance")
+```
+
+
+### Question 4
+
+Here is our autocovariance for $h = 0$: $$\hat \gamma_0 = \frac{1}{n} \sum_{t=1}^{n} (X_t - \mu) (X_{t} - \mu)$$
+
+And for $h = 1$: $$\hat \gamma_1 = \frac{1}{n} \sum_{t=1}^{n-1} (X_t - \mu) (X_{t + 1} - \mu)$$
+
+Now, here is our autocorrelation function for $h = 0$: $$\hat \rho_0 = \frac{\hat \gamma_0}{\hat \gamma_0}$$
+
+Note that this will always be 1.
+
+Lastly, autocorrelation for $h = 1$: $$\hat \rho_1 = \frac{\hat \gamma_1}{\hat \gamma_0}$$
+
+Now, to compute them, starting with autocorrelations $\rho_0$ and $\rho_1$:
+
+```{r}
+acf(hadley, lag.max = 1, plot = FALSE)
+```
+
+Now we've confirmed that $\hat \rho_0 = 1$ (as expected), and $\hat \rho_1 = .882$.
+
+```{r}
+acf(hadley, lag.max = 1, type = 'covariance', plot = FALSE)
+```
+
+We've found that $\hat \gamma_0 = .0667$ and $\hat \gamma_1 = .0588$.
+
+
+### Question 5
+
+First, let's load and plot the data:
+
+```{r}
+data(fig1.10a)
+plot.ts(fig1.10a)
+```
+
+And now the periodogram, which we will need to extend the range of to plot them all:
+
+```{r}
+period.wge(fig1.10a, dbcalc = T, plot = TRUE)
+period <- period.wge(fig1.10a, dbcalc = T, plot = TRUE)
+```
+
+We can see the three frequencies in this graph, but we can isolate the specific values.
+
+```{r}
+which.max(period$pgram)
+period$freq[15]
+```
+
+Our first frequency is .015. We can find the next two by indexing for the values smaller than this, as we can see that the largest is the last of our peaks.
+
+```{r}
+which.max(period$pgram[0:14])
+period$freq[10]
+```
+
+Second value is .1; repeating again:
+
+```{r}
+which.max(period$pgram[0:9])
+period$freq[3]
+```
+
+So our principal frequencies are $f = [.003, .01, .015]$.
+
+Put into the equation given, we have: $$X(t) = \cos(2\pi .003 t ) + 1.5 \cos(2\pi .01 t + 1) + 2 \cos(2 \pi .015 t + 2.5)$$
+
+Put into code; accounting for the times being cut into tenths:
+
+```{r}
+t <- 0:1000/10
+Xt <- cos(2*pi*.03*t) + 1.5*cos(2*pi*.1*t + 1) + 2*cos(2*pi*.15*t + 2.5)
+```
+
+Now let's plot our equation to get the original graph:
+
+```{r}
+plot.ts(Xt)
+```
+
+
+
+
+
+
+
