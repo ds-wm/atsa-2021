@@ -151,13 +151,22 @@ Using R and manipulating data by plotting both speed and elevation against time 
   - **Periodogram** : This is based on the squared correlation between the time series and the sine/cosine waves of frequency, f , and displays exactly the same information as the autocovariance function.
 
 ## February 16, 2021
-### Progress: Exercise 1.2, Lesson 1.2.4, Lab 1 (Paper 1 Discussion)
+### Progress: Exercise 1.2, Data Challenge 1.2, Lesson 1.2.4, Lab 1 (Paper 1 Discussion)
+[Link to Original Paper](https://doi.org/10.3390/ijerph16173146)
 
 ## February 18, 2021
 ### Progress: Lab 1 (Group Discussion/Presentation), Lab 1 Data Source discussion
+[Disccussion Paper 1](https://github.com/ds-wm/atsa-2021/tree/main/discussions/1)
+
 
 ## February 23, 2021
 ### Progress: Lesson 1.2.5 + 1.2.6, Exam 1 Question Overview, Lab 1 Overview
+[Lab 1 Material](https://github.com/ds-wm/atsa-2021/tree/main/labs)
+[Standards for Submitted Work](https://ds-wm.github.io/course/atsa/syllabus/index.html#Standards__Policies)
+**Check Blackboard for Exam 1 Questions**
+
+### Missing Vocabulary Terms for Lesson 1.2 - 1.2.4 (The missing words are bolded)
+  - **First-Order autoregressive regression (AR1)** 
 
 ## February 25, 2021
 ### Progress: 
