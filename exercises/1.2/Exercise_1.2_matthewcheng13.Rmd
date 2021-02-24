@@ -1,0 +1,131 @@
+---
+title: "Exercise_1.2"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library("tswge")
+```
+
+## Matthew Cheng
+# Exercise 1.2
+
+# Question 1
+Load the dataset ss08 and visualize it. Try both the base plot in R and the plotts.wge function provided by the textbook.
+
+Loading the dataset:
+```{r}
+data("ss08")
+```
+
+Base plot in R:
+```{r}
+plot(ss08,type = 'l')
+```
+
+Textbook function plot:
+```{r}
+plotts.wge(ss08)
+```
+
+# Question 2
+Calculate the average of this time series realization using the mean function.
+
+```{r}
+mean(ss08)
+```
+
+#Question 3
+Load the dataset hadley and plot the sample autocorrelations and sample autocovariances using the acf function
+
+Loading the dataset:
+```{r}
+data("hadley")
+```
+
+Plotting sample autocorrelations:
+```{r}
+acf(hadley,type="correlation")
+```
+
+Plotting sample autocovariances:
+```{r}
+acf(hadley,type="covariance")
+```
+
+#Question 4
+Write the equations for ^γ0, ^γ1, ^ρ0 and ^ρ1 and compute them using R (note the hats, ^, are to represent the estimators).
+
+Autocovariance:
+$\hat \gamma_0 = \frac{1}{n} \sum_{t=1}^{n} (X_t - \mu) (X_{t} - \mu)$
+$\hat \gamma_1 = \frac{1}{n} \sum_{t=1}^{n-1} (X_t - \mu) (X_{t + 1} - \mu)$
+
+Autocorrelation (since $\gamma_0 = \sigma^{2}$):
+$\hat \rho_0 = \frac{\hat \gamma_0} {\hat \gamma_0}$
+$\hat \rho_1 = \frac{\hat \gamma_1}{\hat \gamma_0}$
+
+```{r}
+acf(hadley, lag.max = 1, plot = FALSE)
+```
+
+So, $\hat \rho_0 = 1.000$ and $\hat \rho_1 = 0.882$.
+
+```{r}
+acf(hadley, lag.max = 1, type="covariance", plot = FALSE)
+```
+
+$\hat \gamma_0 = 0.0667$ and $\hat \gamma_1 = 0.0588$
+
+#Question 5
+Plot the time series and the periodogram for Figure 1.10a of Woodward et al. (fig1.10a). Note that the sampling rate for the x-axis is in 1/10ths. What are the three dominant frequencies of this dataset?
+
+Loading the dataset:
+```{r}
+data("fig1.10a")
+```
+
+Plotting the time series:
+```{r}
+plot.ts(fig1.10a)
+```
+Plotting the periodogram:
+```{r}
+period <- period.wge(fig1.10a, dbcalc = T, plot = TRUE)
+```
+Finding the three dominant frequencies:
+```{r}
+which.max(period$pgram)
+period$freq[15]
+```
+Since this was the max value, from the graph we know that we must now look at values smaller than 15 for the other two frequencies:
+```{r}
+which.max(period$pgram[0:14])
+period$freq[10]
+```
+Looking at smaller values once again:
+```{r}
+which.max(period$pgram[0:9])
+period$freq[3]
+```
+Therefore, the dominant frequencies are .003, .01, and .015.
+
+#Question 6
+The time series in Figure 1.10a (Woodward et al.) can be expressed as the following:
+
+X(t) = cos(2π t f1) + 1.5 cos(2π t f2 + 1) + 2 cos(2 π t f3 + 2.5)
+
+where f1, f2, and f3 are the three dominant frequencies (in order from lowest to highest) found in the previous question. Replace the frequencies you found in the equation above and recreate using R the Figure 1.10a using values for t ∈ (0, 100) (e.g., x <- 0:1000/10).
+
+Rewriting the equation:
+$X(t) = cos(.006π t) + 1.5 cos(.02π t + 1) + 2 cos(.03 π t + 2.5)$
+
+Recreating the figure using R:
+```{r}
+t <- 0:1000/10
+X.t <- cos(.006*pi*t) + 1.5*cos(.02*pi*t + 1) + 2*cos(.03*pi*t + 2.5)
+plot.ts(X.t)
+```
