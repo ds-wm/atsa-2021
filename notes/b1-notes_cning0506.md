@@ -165,7 +165,7 @@ Using R and manipulating data by plotting both speed and elevation against time 
 [Standards for Submitted Work](https://ds-wm.github.io/course/atsa/syllabus/index.html#Standards__Policies)
 **Check Blackboard for Exam 1 Questions**
 
-### Missing Vocabulary Terms for Lesson 1.2 - 1.2.4 (The missing words are bolded)
+### Missing Vocabulary Terms for Lesson 1.2.5 - 1.2.6 (The missing words are bolded)
   - **First-Order autoregressive regression (AR1)** 
 
 ## February 25, 2021
