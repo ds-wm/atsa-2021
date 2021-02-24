@@ -127,12 +127,12 @@ plot(
 ```
 
 ## February 11, 2021
-### Progress: Data Challenge 1.1, Lesson 1.2.1- Lesson 1.2.4
+### Progress: Data Challenge 1.1, Lesson 1.2- Lesson 1.2.4
 
 ### Data Challenge 1.1
 Using R and manipulating data by plotting both speed and elevation against time in this [.gpx](https://raw.githubusercontent.com/ds-wm/ds-wm.github.io/master/course/atsa/data/back-to-the-garden.gpx) dataset.
 
-### Missing Vocabulary Terms for Lesson 1.2 (The missing words are bolded)
+### Missing Vocabulary Terms for Lesson 1.2 - 1.2.4 (The missing words are bolded)
   - **Stationarity** :  The state of "statistical equilibriuim" (i.e., the basic behavior of a stationary time series does not change in time)
   - **Ergodic**: A time series where ensemble averages are consistent with those from a single realization are called ergodic processes.
   - **Strictly stationary** : The following must be true, (1)for any  t1,t2∈T , the distributions of  X(t1 ) and  X(t2)  must also be the same; (2)all bivariate distributions  {X(t),X(t+h)}  must be the same for all values of  h
@@ -143,6 +143,13 @@ Using R and manipulating data by plotting both speed and elevation against time 
     - γ(h) is a semi-definite process (i.e., it's positive or zero for all scalar multiples)
   - **Cauchy-Schwartz inequality**: |γ(h)|≤γ(0)  for all  h
   - **Sample autocorrelation function** : A purely random time series, where the data are identically distributed (i.e., the data are balanced on the time series)
+  - **Sample autocorrelation function** : ρ^h=γ^h/γ^0
+  - **Time Domain** : The realizations, mean, variance, and autocorrelations of time series. These are all aspects of a time domain analysis of time series.
+  - **Frequency Domain**
+  - **Aperiodic** : We define a function  g(t)  as periodic with period (or cycle length) p>0  if there exists a p such that  g(t)=g(t+kp) for all  t and integers k. A function g(t) is said to be aperiodic if no such p exists.
+  - **Spectral Density** : When we determine the frequency or cyclic content of data, the relevant information in the autocorrelation is more readily conveyed through the Fourier transform of the autocorrelation, called the spectral density.
+  - **Periodogram** : This is based on the squared correlation between the time series and the sine/cosine waves of frequency, f , and displays exactly the same information as the autocovariance function.
+
 ## February 16, 2021
 
 
