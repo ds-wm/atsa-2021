@@ -81,6 +81,8 @@ The table below lists some of them.
   ```
   - Standard Error
 ### Missing Vocabulary Terms for Lesson 0 (The missing words are bolded)
+  - **Runtime** 
+  - **Kernel** : The kernel is providing us with some basic computation software.
   - **Sum of the Squares** : The variance of a sample is measured as a function of "the sum of the squares of the difference between the data and the arithmetic mean." 
   - **Degree of Freedom** : Variance is defined as the ratio of the sum of the squares to the degree of freedom.
 
