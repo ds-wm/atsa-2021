@@ -80,11 +80,15 @@ The table below lists some of them.
   sd( )
   ```
   - Standard Error
+### Missing Vocabulary Terms for Lesson 0 (The missing words are bolded)
+  - **Sum of the Squares** : The variance of a sample is measured as a function of "the sum of the squares of the difference between the data and the arithmetic mean." 
+  - **Degree of Freedom** : Variance is defined as the ratio of the sum of the squares to the degree of freedom.
+
 
 ## February 09, 2021
 ### Progress: Lesson 0, Lesson 1.1, Exercise 1.1
 
-### Fill in the blank for Lesson 1.1 (The missing words are bolded)
+### Missing Vocabulary Terms for Lesson 1.1 (The missing words are bolded)
   - **Random Variable** (Y) is a function defined on a sample space,  Ω , whose range is the real numbers,  IR . 
   - An **observation** of a random variable,  y=Y(ω)  for a given  ω∈Ω , is also a real number.
   - A  **stochastic** process is a collection of random variables  {Y(ω);ω∈Ω}  where all random variables are defined on the same sample space.
@@ -104,11 +108,41 @@ The table below lists some of them.
   ρ(t1,t2)=γ(t1,t2)/σ(t1)σ(t2)
   ```
 
-  
+### An example for plotting in R
+
+```
+plot(
+  t,                            # x values
+  Yt1,                          # y values
+  main = "Example Time Series", # Title
+  sub = NA,                     #subtitle
+  ylim = c(-1.1, 1.25),         # limit to plot in y-axis (ymin,ymax) 
+  type = "l",                   # type line 'l', 'p', 'o'
+  col = "red",                  # color code
+  lwd = 1,                      # line width 
+  lty = 1,                      # line types
+  xlab = "xlabel_name",         # x-axis label
+  ylab = NA                     # y-axis label
+  )
+```
 
 ## February 11, 2021
+### Progress: Data Challenge 1.1, Lesson 1.2.1- Lesson 1.2.4
 
+### Data Challenge 1.1
+Using R and manipulating data by plotting both speed and elevation against time in this [.gpx](https://raw.githubusercontent.com/ds-wm/ds-wm.github.io/master/course/atsa/data/back-to-the-garden.gpx) dataset.
 
+### Missing Vocabulary Terms for Lesson 1.2 (The missing words are bolded)
+  - **Stationarity** :  The state of "statistical equilibriuim" (i.e., the basic behavior of a stationary time series does not change in time)
+  - **Ergodic**: A time series where ensemble averages are consistent with those from a single realization are called ergodic processes.
+  - **Strictly stationary** : The following must be true, (1)for any  t1,t2∈T , the distributions of  X(t1 ) and  X(t2)  must also be the same; (2)all bivariate distributions  {X(t),X(t+h)}  must be the same for all values of  h
+  - **Covariance Stationarity (Weak Stationarity)**: The following must be true, 
+    - E[X(t)]=μ  and is constant for all values of t 
+    - Var[X(t)]=σ2<∞ (i.e., is finite for all t)
+    - γ(t1,t2) depends only on t2−t1
+    - γ(h) is a semi-definite process (i.e., it's positive or zero for all scalar multiples)
+  - **Cauchy-Schwartz inequality**: |γ(h)|≤γ(0)  for all  h
+  - **Sample autocorrelation function** : A purely random time series, where the data are identically distributed (i.e., the data are balanced on the time series)
 ## February 16, 2021
 
 
