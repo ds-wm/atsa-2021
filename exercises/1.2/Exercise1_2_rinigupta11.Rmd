@@ -1,0 +1,78 @@
+---
+title: "Exercise1.2"
+author: "Rini Gupta"
+date: "2/23/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 1 
+Load and plot the data. 
+
+``` {r}
+library("tswge")
+data(ss08)
+plot(ss08, type = 'l')
+plotts.wge(ss08)
+```
+
+## Question 2 
+Find the mean.
+```{r}
+mean(ss08)
+```
+
+## Question 3 
+Load data and find the covariance/correlation 
+
+```{r}
+data(hadley)
+acf(hadley, type = 'correlation')
+acf(hadley, type = 'covariance')
+```
+
+## Question 4 
+$$
+\hat \gamma_0 = \frac{1}{n} \sum_{t=1}^{n} (X_t - \mu) (X_{t} - \mu) 
+$$
+$$\hat \gamma_1 = \frac{1}{n} \sum_{t=1}^{n-|1|} (X_t - \mu) (X_{t + |1|} - \mu)
+$$
+$$
+\hat \rho_0 = \frac{\hat \gamma_o}{\hat \gamma_0} = 1
+$$
+$$
+\hat \rho_1 = \frac{\hat \gamma_1}{\hat \gamma_0}
+$$
+
+Computing these values using R 
+```{r}
+acf(hadley, lag.max=1, plot=FALSE, type = 'covariance')
+acf(hadley, lag.max=1, plot = FALSE, type = 'correlation')
+
+```
+## Question 5 
+The three dominant frequencies are .03, .1, and .15. 
+```{r}
+data(fig1.10a)
+plot(1:1000/10, fig1.10a, type = 'l')
+spectrum(fig1.10a)
+p.f10a <- period.wge(fig1.10a, dbcalc = FALSE, plot = TRUE)
+index = 1
+values <- p.f10a$pgram > 30
+for (val in values) {
+  if(val == TRUE) { print(10*p.f10a$freq[index]) } 
+  index = index + 1
+}
+```
+## Question 6 
+Trying to recreate the plot. *Note*: I think that the smallest value should actually be 0.025 but the data I read in appears to be truncated.   
+
+```{r}
+t <- 0:1000/10
+equation <- cos(2*pi*(.03)*t) + 1.5*cos(2*pi*.1*t+1)+2*cos(2*pi*.15*t+2.5)
+plot(equation, type = 'l')
+```
+
