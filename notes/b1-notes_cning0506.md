@@ -171,4 +171,7 @@ Using R and manipulating data by plotting both speed and elevation against time 
   - **First-Order autoregressive regression (AR1)** 
 
 ## February 25, 2021
-### Progress: 
+### Progress: Going over all the exercises, data challenges, and deadlines. Lab and Exam Exercise. 
+For Block 1 Note takers, the notes are due on **March 1st (Monday) 9:00 AM**
+For **Exams, Exercises, Labs** are due on **March 3rd (Wednesday) 9:00 AM**
+Submit everything on [Github](https://github.com/ds-wm/atsa-2021), except the **Exam** (on BlackBoard).
