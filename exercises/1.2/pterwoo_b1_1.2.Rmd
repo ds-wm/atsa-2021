@@ -1,0 +1,92 @@
+---
+title: "pterwoo_b1_1.2.Rmd"
+author: "Peter Woo"
+date: "2/26/2021"
+output: html_document
+---
+
+## Question 1 
+First, Load the tswge library
+```{r}
+library('tswge')
+```
+
+Then, plot the data using the built-in and tswge functions
+```{r}
+data(ss08)
+plot(ss08, type = 'l')
+plotts.wge(ss08)
+```
+
+## Question 2 
+To find the mean using the mean() function, 
+```{r}
+mean(ss08)
+```
+
+## Question 3
+Load the hadley dataset
+```{r}
+data(hadley)
+```
+
+Plot the sample autocorrelations and autocovariance
+```{r}
+acf(hadley, type = 'correlation')
+acf(hadley, type = 'covariance')
+```
+
+## Question 4
+$$\hat \gamma_0 = \frac{1}{n} \sum_{t=1}^{n} (X_t - \mu) (X_{t+1} - \mu)$$
+
+$$\hat \gamma_1 = \frac{1}{n} \sum_{t=1}^{n-1} (X_t - \mu) (X_{t} - \mu)$$ 
+$$\hat \rho_0 = \frac{\hat \gamma_0}{\hat \gamma_0}$$
+$$\hat \rho_1 = \frac{\hat \gamma_1}{\hat \gamma_0}$$
+To calculate them, in order:
+
+```{r}
+acf(hadley, lag_max = 1, type = 'correlation', plot = FALSE)
+acf(hadley, lag_max = 1, type = 'covariance', plot = FALSE)
+```
+
+## Question 5 
+plot the time series and periodogram:
+```{r}
+data(fig1.10a)
+plotts.sample.wge(fig1.10a)
+```
+
+The plot shows that the three dominant frequencies all lie within a very small window. 
+To calculate the exact values:
+```{r}
+prdgram <- period.wge(fig1.10a, dbcalc = TRUE, plot = FALSE)$pgram
+period.wge(fig1.10a, dbcalc = TRUE, plot = FALSE)$freq[which.max(prdgram)]* 10
+#0.15 
+
+prdgram <- prdgram[-which.max(prdgram)]
+period.wge(fig1.10a, dbcalc = TRUE, plot = FALSE)$freq[which.max(prdgram)]* 10
+#0.1
+
+prdgram <- prdgram[-which.max(prdgram)]
+period.wge(fig1.10a, dbcalc = TRUE, plot = FALSE)$freq[which.max(prdgram)]* 10
+#0.03
+```
+The 3 dominant frequencies are 0.15, 0.1, and 0.03
+
+## Question 6
+```{r}
+f1 <- 0.03
+f2 <- 0.1
+f3 <- 0.15
+t <- 0:1000/10
+Xt <- cos(2*pi*t*f1)+(1.5*cos((2*pi*t*f2)+1)) + (2*cos((2*pi*t*f3)+2.5))
+plotts.wge(Xt)
+```
+
+
+
+
+
+
+
+
