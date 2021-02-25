@@ -92,6 +92,7 @@ The table below lists some of them.
 
 ### Missing Vocabulary Terms for Lesson 1.1 (The missing words are bolded)
   - **Random Variable** (Y) is a function defined on a sample space,  Ω , whose range is the real numbers,  IR . 
+  - **Real Numbers**
   - An **observation** of a random variable,  y=Y(ω)  for a given  ω∈Ω , is also a real number.
   - A  **stochastic** process is a collection of random variables  {Y(ω);ω∈Ω}  where all random variables are defined on the same sample space.
   - When this shared sample space represents  **time**,  T , then the stochastic process---which can now be written as  X(t);t∈T ---is referred to as a **time series**.
