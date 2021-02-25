@@ -155,8 +155,8 @@ Using R and manipulating data by plotting both speed and elevation against time 
 ## February 16, 2021
 ### Progress: Exercise 1.2, Data Challenge 1.2, Lesson 1.2.4, Lab 1 (Paper 1 Discussion)
 [Link to Original Paper](https://doi.org/10.3390/ijerph16173146)
-**Data Challenge 1.2**
 
+### Data Challenge 1.2
 Read in the `kingkong` dataset and recreate Figure 1.12 from Woodward et al (2017) textbook.
 When plotting the time, be careful to note the frequency at which the data were collected (i.e., 8k Hz). 
 
