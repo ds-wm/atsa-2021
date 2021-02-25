@@ -42,6 +42,9 @@ calc.my.means <- function(y){
 
 calc.my.means(y)
 
+cat("\n Arithmetic mean (R version): ", mean(y))
+cat("\n There is no built in function for geometric and harmonic means for comparison")
+
 # Part 2: Variance
 i <- 1
 n <- length(y)
@@ -52,11 +55,14 @@ while (i<n+1){
 }
 my.var <- my.sum/(n-1)
 cat("\n Variance: ", my.var)
+cat("\n Variance (R version): ", var(y))
 
 # Part 3: Standard Deviation
 my.std_dev <- my.var^(1/2)
 cat("\n Standard Deviation: ", my.std_dev)
+cat("\n Standard Deviation (R version): ", sd(y))
 
 # Part 4: Standard Error
 my.std_err <- (my.var/n)^(1/2)
 cat("\n Standard Error: ", my.std_err)
+cat("\n No R version for standard error")
