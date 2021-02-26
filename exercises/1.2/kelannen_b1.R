@@ -1,0 +1,85 @@
+# Exercises 1.2:
+#install.packages("tswge")
+library("tswge")
+
+# Question 1: Load the dataset ss08 and visualize it. Try both the base plot 
+#             in R and the plotts.wge function provided by the textbook
+data("ss08")
+
+# base plot
+plot(ss08, type = "l")
+
+# plotts.wge 
+plotts.wge(ss08)
+
+
+# Question 2: Calculate the average of this time series realization using the 
+#             mean function
+cat("Mean: ", mean(ss08))
+
+
+# Question 3: Load the dataset hadley and plot the sample autocorrelations and 
+#             sample autocovariances using the acf function
+data(hadley)
+
+# Plot the sample autocorrelations
+acf(hadley, type = "covariance")
+
+# Plot the sample autocovariances
+acf(hadley, type = "correlation")
+
+
+# Question 4: Write the equations for ^y0, ^y1, ^p0 and ^p1 and compute them 
+#             using R (note the hats, ^, are to represent the estimators)
+
+# ^y0 = (1/n) * \sum_{t = 1}^{n} ((X_t - \bar{X}_t) - (X_t - \bar{X}))
+# ^y1 = (1/n) * \sum_{t = 1}^{n - 1} ((X_t - \bar{X}_t) - (X_{t+1} - \bar{X}))
+# ^p0 = ^y0 / ^y0
+# ^p1 = ^y1 / ^y1
+
+y <- acf(hadley, lag.max=1, plot=FALSE, type = 'covariance')
+p <- acf(hadley, lag.max=1, plot=FALSE, type = 'correlation')
+
+cat("^y0: ", y$acf[1], "\n")
+cat("^y1: ", y$acf[2], "\n")
+cat("^p0: ", p$acf[1], "\n")
+cat("^p1: ", p$acf[2], "\n")
+
+
+# Question 5: Plot the time series and the periodogram for Figure 1.10a of 
+#             Woodward et al. (fig1.10a). Note that the sampling rate for the 
+#             x axis is in 1/10ths. What are the three dominant frequencies of 
+#             this dataset?
+data(fig1.10a)
+plot(1:1000/10, fig1.10a, type = "l")
+
+pf10a <- period.wge(fig1.10a, dbcalc = TRUE, plot = TRUE)
+
+if1 = which.max(pf10a$pgram)
+freq_1 = pf10a$freq[if1] * 10
+
+if2 = which.max(pf10a$pgram[0:(if1-1)])
+freq_2 = pf10a$freq[if2] * 10
+
+if3 = which.max(pf10a$pgram[0:(if2-1)])
+freq_3 = pf10a$freq[if3] * 10
+
+cat("The three dominant frequencies are: ",freq_1,", ",freq_2,", ",freq_3,"\n")
+
+
+# Question 6: The time series in Figure 1.10a (Woodward et al.) can be 
+#             expressed as the following:
+#             X(t) = cos(2pi*t*f1) + 1.5 cos(2pi*t*f2 + 1) + 2 cos(2pi*t*f3 + 2.5)
+#             where f1, f2, and f3 are the three dominant frequencies (in order 
+#             from lowest to highest) found in the previous question. Replace 
+#             the frequencies you found in the equation above and recreate 
+#             using R the Figure 1.10a using values for t in (0, 100) 
+#             (e.g., x <- 0:1000/10).
+
+t <- 0:1000/10
+Xt <- cos(2*pi*freq_3*t) + 1.5*cos(2*pi*freq_2*t+1)+2*cos(2*pi*freq_1*t+2.5)
+plot.ts(Xt)
+plot.ts(fig1.10a)
+
+
+savehistory(file = "kelannen_b1.Rhistory")
