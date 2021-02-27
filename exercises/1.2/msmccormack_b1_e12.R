@@ -1,0 +1,63 @@
+#Exercise 1.2
+setwd('C:/Users/mmcco/DATA330/exercises')
+#install.packages("tswge")
+library('tswge')
+
+#Question 1: load data, and visualize
+
+data(ss08)
+#Base plot in R
+plot(ss08)
+#plotts.wge function
+plotts.wge(ss08)
+
+#Question 2: find the avg of the time series realization
+#mean of the realization
+mean(ss08)
+
+#3: Load "hadley" data set and plot sample autocorrelations/autocovariances
+data(hadley)
+acf(hadley, type='covariance')
+acf(hadley, type='correlation')
+
+#4: equations for ^??0, ^??1, ^??0 and ^??1 and compute (equations in latex)
+# $$
+# \hat \gamma_0 = (1/n) \sum_{t = 1}^{n} (X_t - \mu)(X_t - \mu)
+# $$
+# $$
+# \hat \gamma_1 = (1/n) \sum_{t = 1}^{n-1} (X_t - \mu)(X_{t+1} - \mu)
+# $$
+#$$
+#\hat \rho_1 = 1
+#$$
+#$$
+#  \hat \rho_1 = \hat \gamma_1 / \hat \gamma_0
+#$$
+
+acf(hadley, lag.max = 1, plot = FALSE)
+
+acf(hadley, lag.max = 1, type = 'covariance', plot = FALSE)
+
+#5: plot time series/periodogram for fig1.10a, what are the dominant frequencies?
+data('fig1.10a')
+plotts.wge(fig1.10a)
+periodo <- period.wge(fig1.10a)
+
+max_1 <- which.max(periodo$pgram)
+frequency_1 <- 10*periodo$freq[max_1]
+frequency_1
+
+max_2 <- which.max(periodo$pgram[0:(max_1-1)])
+frequency_2 <- 10*periodo$freq[max_2]
+frequency_2
+
+max_3 <- which.max(periodo$pgram[0:(max_2-1)])
+frequency_3 <- 10*periodo$freq[max_3]
+frequency_3
+
+#6: Replace the frequencies you found in the equation above and recreate using R 
+#the Figure 1.10a using values for t ??? (0, 100)
+x <- 0:1000/10
+x_t <- cos(2*pi*frequency_3*t) + 1.5*cos(2*pi*frequency_2*x+1)+2*cos(2*pi*frequency_1*x+2.5)
+plot.ts(x_t)
+plot.ts(fig1.10a)
