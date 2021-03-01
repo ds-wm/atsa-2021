@@ -3,8 +3,7 @@ Written by Monica Alicea
 Last edited: 2021-02-28
 
 ## Feb. 2-4, 2020
-### Lesson 0 
-**Introduction to Time Series**  
+### Lesson 0: Introduction to Time Series
 Why do we care about time series in data science?  
 1. We define data science as the field that finds patterns in data  
 2. A time series is a special type of data  
@@ -89,30 +88,24 @@ You can also use these vector functions in R:
 
 ### Lesson 0.5: Stats Primer
 There are three ways to calculate mean:
-1. Arithmetic mean, \bar y
- - The sum of numbers divided by the count of numbers, given by $\frac{\sum_{i=1}^{n} y(x_i)}{n}$
+1. Arithmetic mean, <img src="https://render.githubusercontent.com/render/math?math=\bar y">
+ - The sum of numbers divided by the count of numbers, given by <img src="https://render.githubusercontent.com/render/math?math=\frac{\sum_{i=1}^{n} y(x_i)}{n}">
  - The most common method for calculating the mean
-2. Geometric mean, $\hat y$
- - The $n$-th root of the product of numbers, given by $\sqrt[n]{\prod_{i=1}^{n} y(x_i)}$
+2. Geometric mean, <img src="https://render.githubusercontent.com/render/math?math=\hat y">
+ - The $n$-th root of the product of numbers, given by <img src="https://render.githubusercontent.com/render/math?math=\sqrt[n]{\prod_{i=1}^{n} y(x_i)}">
  - For processes that change multiplicatively rather than additively
-3. Harmonic mean, $\tilde y$
- - The reciprocal of the average of the reciprocals, given by $\frac{n}{\sum_{i=1}^{n} (1/y(x_i))}$
+3. Harmonic mean, <img src="https://render.githubusercontent.com/render/math?math=\tilde y">
+ - The reciprocal of the average of the reciprocals, given by <img src="https://render.githubusercontent.com/render/math?math=\frac{n}{\sum_{i=1}^{n} (1/y(x_i))}">
  - For processes that change rates
 
 Variance is a measure of variability. The variance of a sample is measured as: 
-$$
-{\rm variance,}\, \sigma^2 = \frac{\sum_{i=1}^{n} [y(x_i) - \bar y]^2}{n - k}
-$$
+<img src="https://render.githubusercontent.com/render/math?math={\rm variance,}\, \sigma^2 = \frac{\sum_{i=1}^{n} [y(x_i) - \bar y]^2}{n - k}">
 
 Standard deviation is the square root of the variance:
-$$
-\sigma = \sqrt{\sigma^2}
-$$
+<img src="https://render.githubusercontent.com/render/math?math=\sigma = \sqrt{\sigma^2}">
 
 Standard error demonstrates the unreliability of a process. It is measured about the process mean:
-$$
-{\rm s.e.}_{\bar y} = \sqrt{\frac{\sigma^2}{n}}
-$$
+<img src="https://render.githubusercontent.com/render/math?math={\rm s.e.}_{\bar y} = \sqrt{\frac{\sigma^2}{n}}">
 
 Missing vocabulary:  
   * **Sum of Squares**: The measure of the variance of a sample.** 
@@ -123,18 +116,18 @@ Missing vocabulary:
 Missing vocabulary:  
   * **Random (variable)**: A function defined on a sample space, $\Omega$.
   * **Real numbers**: Non-imaginary numbers.
-  * **Observation** (of a random variable): $y=Y(\omega)$ for a given $\omega \in \Omega$. It is a real number.
-  * **Stochastic (process)**: A collection of random variables $\{Y(\omega); \omega \in \Omega \}$ where all random variables are defined on the same sample space.
+  * **Observation** (of a random variable): <img src="https://render.githubusercontent.com/render/math?math=y=Y(\omega)$ for a given $\omega \in \Omega">. It is a real number.
+  * **Stochastic (process)**: A collection of random variables <img src="https://render.githubusercontent.com/render/math?math=\{Y(\omega); \omega \in \Omega \}"> where all random variables are defined on the same sample space.
   * **Time**: A possible measure of a sample space. 
   * **Ensemble**: The name of a stochastic process in which the shared sample space represents time. 
   * **Continuous**: Numbers that are measured across a time interval.
   * **Discrete**: Finite numbers that are determined by counting. 
   * **Realization** (of a time series): The set of values that result from the occurrence of some observed event.
-  * **Ensemble**: The collection of all possible realizations, $\{ x(t) \}$.
+  * **Ensemble**: The collection of all possible realizations, <img src="https://render.githubusercontent.com/render/math?math=\{ x(t) \}">.
   * **Expected value**: The ensemble mean for a stochastic process.
   * **Ordinate**: The vertical axis.
   * **Abscissa**: The horizontal axis. 
-  * **Covariance**: Joint variability of two random variables,$X(t_1)$ and $X(t_2)$ for values $t_1, t_2 \in T$.
+  * **Covariance**: Joint variability of two random variables,X(t_1) and X(t_2) for values t_1, t_2 in T.
   * **Autocovariance**: When the covariance is within the same time series.
   * **Autocorrelation**: A correlation coefficient when the correlation is between two values of the same variable.
 
@@ -142,19 +135,17 @@ Missing vocabulary:
 Missing vocabulary:  
   * **Stationarity**: The basic behavior of a stationary time series that does not change in time.
   * **Ergodic** (processes): A time series where ensemble averages are consistent with those from a single realization
-  * **Strict stationarity**: when for any $t_1, t_2 \in T$, the distributions of $X(t_1$) and $X(t_2)$ must also be the same, and all bivariate distributions $\{X(t), X(t+h)\}$ must be the same for all values of $h$. 
-  * **Covariance stationarity**: When $E[X(t)] = \mu$ and is constant for all values of $t$, $\mathrm{Var}[X(t)] = \sigma^2 < \infty$ (i.e., is finite for all $t$), $\gamma(t_1, t_2)$ depends only on $t_2  - t_1$, and $\gamma(h)$ is a semi-definite process (i.e., it's positive or zero for all scalar multiples).
+  * **Strict stationarity**: when for any t_1, t_2 in T, the distributions of $X(t_1$) and $X(t_2)$ must also be the same, and all bivariate distributions <img src="https://render.githubusercontent.com/render/math?math=\{X(t), X(t+h)\}"> must be the same for all values of h. 
+  * **Covariance stationarity**: When <img src="https://render.githubusercontent.com/render/math?math=E[X(t)] = \mu"> and is constant for all values of t, <img src="https://render.githubusercontent.com/render/math?math=\mathrm{Var}[X(t)] = \sigma^2 < \infty"> (i.e., is finite for all t), <img src="https://render.githubusercontent.com/render/math?math=\gamma(t_1, t_2)"> depends only on t_2  - t_1, and <img src="https://render.githubusercontent.com/render/math?math=\gamma(h)"> is a semi-definite process (i.e., it's positive or zero for all scalar multiples).
 
 
 ### Lesson 1.2.1: Estimate of the mean  
 The sample mean for a single realization is calculated by: 
-$$
-\bar x = \frac{1}{n} \sum_{t=1}^{n} x_t
-$$
+<img src="https://render.githubusercontent.com/render/math?math=\bar x = \frac{1}{n} \sum_{t=1}^{n} x_t">
 
 ### Lesson 1.2.2: Estimate of the autocovariance function  
 Missing vocabulary:    
-  * **Cauchy-Shwartz inequity**: $|\gamma(h)| \le \gamma(0)$ for all $h$.
+  * **Cauchy-Shwartz inequity**: <img src="https://render.githubusercontent.com/render/math?math=|\gamma(h)| \le \gamma(0)">, for all h.
   * **Sample autocovariance function**: The estimate of the autocovariance function from a single realization that best preserves the overall pattern of the autocovariance function. 
 
 ### Lesson 1.2.3: Estimate of the autocorrelation function   
