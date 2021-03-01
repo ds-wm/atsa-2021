@@ -3,6 +3,7 @@
 #### GoogleColab Link for notes: https://colab.research.google.com/drive/1tSuPduID16wYuqxAx_toHsf1FCdEs3QR?usp=sharing
 Formulas are easier to read in the GoogleColab version
 ### Basics
+
 Why is Time Series Important?
 
 1. Data Science is a field designed to find patterns within data.
