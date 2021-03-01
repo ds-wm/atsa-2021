@@ -42,49 +42,49 @@ To figure out package function use: ```help("package_name")```
 To use R as a calculator, use the following functions:
 | Function | Meaning |
 | :------- | :------ |
-| log(x) | log to base $e$ of $x$ |
-| exp(x) | antilog of $x$, (i.e. $e^x$) |
-| log(x, n) | log to base $n$ of $x$ |
-| log10(x) | log to base 10 of $x$ |
-| sqrt(x) | square root of $x$ |
-| factorial(x) | $x!$ |
-| choose(n,x) | binomial coefficients $n!/(x! (n-x)!)$ |
-| gamma(x) | $\Gamma(x)$, for real $x (x-1)!$, for integer x |
-| lgamma(x) | natural log of $\Gamma(x)$ |
-| floor(x) | greatest integer $< x$ |
-| ceiling(x) | smallest integer $> x$ |
-| trunc(x) | closest integer to $x$ between $x$ and 0 |
-| round(x, digits=0) | round the value of $x$ to an integer |
-| signif(x, digits=6) | give $x$ to six digits in scientific notation |
-| runif(n) | generates $n$ random numbers between 0 and 1 in uniform distribution |
-| cos(x) | cosine of $x$ in radians |
-| sin(x) | sine of $x$ in radians |
-| tan(x) | tangent of $x$ in radians |
+| log(x) | log to base e of x |
+| exp(x) | antilog of x, (i.e. <img src="https://render.githubusercontent.com/render/math?math=e^x">) |
+| log(x, n) | log to base n of x |
+| log10(x) | log to base 10 of x |
+| sqrt(x) | square root of x |
+| factorial(x) | x! |
+| choose(n,x) | binomial coefficients <img src="https://render.githubusercontent.com/render/math?math=n!/(x! (n-x)!)"> |
+| gamma(x) | <img src="https://render.githubusercontent.com/render/math?math=\Gamma(x)">, for real <img src="https://render.githubusercontent.com/render/math?math=x (x-1)!">, for integer x |
+| lgamma(x) | natural log of <img src="https://render.githubusercontent.com/render/math?math=\Gamma(x)"> |
+| floor(x) | greatest integer < x |
+| ceiling(x) | smallest integer > x |
+| trunc(x) | closest integer to x between x and 0 |
+| round(x, digits=0) | round the value of x to an integer |
+| signif(x, digits=6) | give x to six digits in scientific notation |
+| runif(n) | generates n random numbers between 0 and 1 in uniform distribution |
+| cos(x) | cosine of x in radians |
+| sin(x) | sine of x in radians |
+| tan(x) | tangent of x in radians |
 | acos(x); asin(x); atan(x) | inverse trigonometric transformations of real or complex numbers |
 | acosh(x); asinh(x); atanh(x) | inverse hyperbolic trigonometric transformations of real or complex numbers |
-| abs(x) | the absolute value of $x$ ignoring the minus sign if there is one |
+| abs(x) | the absolute value of x ignoring the minus sign if there is one |
 
 You can also use these vector functions in R:
 | Operation | Meaning |
 | :-------- | :------ |
-| max(x) | maximum value in $x$ |
-| min(x) | minimum value in $x$ |
-| sum(x) | total of all the values in $x$ |
-| mean(x) | arithmetic average of the values in $x$ |
-| median(x) | median value in $x$ |
-| range(x) | vector of $\min(x)$ and $\max(x)$ |
-| var(x) | sample variance of $x$ |
-| cor(x, y) | correlation between vectors $x$ and $y$ |
-| sort(x) | a sorted version of $x$ |
-| rank(x) | vector of the ranks of the values in $x$ |
+| max(x) | maximum value in x |
+| min(x) | minimum value in x |
+| sum(x) | total of all the values in x |
+| mean(x) | arithmetic average of the values in x |
+| median(x) | median value in x |
+| range(x) | vector of <img src="https://render.githubusercontent.com/render/math?math=\min(x)"> and <img src="https://render.githubusercontent.com/render/math?math=\max(x)"> |
+| var(x) | sample variance of x |
+| cor(x, y) | correlation between vectors x and y |
+| sort(x) | a sorted version of x |
+| rank(x) | vector of the ranks of the values in x |
 | order(x) | an integer vector containing the permutation to sort x into ascending order |
-| quantile(x) | vector containing the minimum, lower quartile, median, upper quartile, and maximum of $x$ |
+| quantile(x) | vector containing the minimum, lower quartile, median, upper quartile, and maximum of x |
 | cumsum(x) | vector containing the sum of all of the elements up to that point |
 | cumprod(x) | vector containing the product of all of the elements up to that point |
-| cummax(x) | vector of non-decreasing numbers that are the cumulative maxima of the values in $x$ up to that point |
-| cummin(x) | vector of non-increasing numbers which are the cumulative minima of the values in $x$ up to that point |
-| pmax(x, y, z) | vector, of length equal to the longest of $x$, $y$ or $z$, containing the maximum of $x$, $y$ or $z$ for the $i$th position in each |
-| pmin(x, y, z) | vector, of length equal to the longest of $x$, $y$ or $z$, containing the minimum of $x$, $y$ or $z$ for the $i$th position in each |
+| cummax(x) | vector of non-decreasing numbers that are the cumulative maxima of the values in x up to that point |
+| cummin(x) | vector of non-increasing numbers which are the cumulative minima of the values in x up to that point |
+| pmax(x, y, z) | vector, of length equal to the longest of x, y or z, containing the maximum of x, y or z for the ith position in each |
+| pmin(x, y, z) | vector, of length equal to the longest of x, y or z, containing the minimum of x, y or z for the ith position in each |
 
 ### Lesson 0.5: Stats Primer
 There are three ways to calculate mean:
@@ -166,8 +166,14 @@ Missing vocabulary:
 
 ## Feb. 23-25, 2020    
 ### Lesson 1.2.5: Simulated data  
+Using the spectral density, we can determine the periodic nature of the realization. 
+   * Where the spectral density has a peak, 1 over that frequency demonstrates the period of the realization. 
+      * For example, if the spectral density shows a peak at f=0, then there is little to no periodic behavior in the realization.
+      * If the spectral density shows a peak at f=0.09, then there is a period at p= 1/.09 = 11.1.
+
 Missing vocabulary:  
   * **AR(1)**: The first order autoregressive process is the process of using observations from the immediate preceding time step as an input to a regressive model that predicts the value of the next time step. 
 
 ### Lesson 1.2.6: Real data  
 Studying the periodic nature of data by comparing the realization, sample autocorrelation, periodogram, and parzen window graphs. 
+*See notes for examples*
