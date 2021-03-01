@@ -118,7 +118,7 @@ Examples of <img src="https://render.githubusercontent.com/render/math?math=g(t)
 
 ![Figure 1.11 Woodward et al. (2007)](https://drive.google.com/uc?export=view&id=1V6CR44Bx4vASnHiGlUVRan_mmqb3qOhF)
 
-When we determine the frequency or cyclic content of data, the relevant information in the autocorrelation is more readily conveyed through the Fourier transform of the autocorrelation, called the <img src="https://render.githubusercontent.com/render/math?math=\underline{\qquad}">, rather than through the autocorrelation itself.
+When we determine the frequency or cyclic content of data, the relevant information in the autocorrelation is more readily conveyed through the Fourier transform of the autocorrelation, called the <img src="https://render.githubusercontent.com/render/math?math=spectrum">, rather than through the autocorrelation itself.
 
 The spectrum and the autocovariance functions are Fourier transform pairs (i.e., they contain equivalent information about the process).
 The autocovariance conveys this information in the time domain while the spectrum expresses the equivalent information in the frequency domain.
