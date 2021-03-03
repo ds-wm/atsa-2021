@@ -56,7 +56,7 @@ sample.autocovariance <- function(ts.data, lag){
   product <- t.deviation * h.deviation
   summation <- sum(product)
   
-  return((1 / n) * summation)
+  return(summation / n)
 }
 
 sample.autocorrelation <- function(ts.data, lag){
