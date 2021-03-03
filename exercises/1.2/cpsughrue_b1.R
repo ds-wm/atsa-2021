@@ -93,7 +93,7 @@ p1.10a <- period.wge(fig1.10a)
 
 # plots
 plotts.wge(fig1.10a)
-plotts.wge(p1.10a$pgram)
+period.wge(fig1.10a)
 
 # three domain frequencies
 max1 <- which.max(p1.10a$pgram)
