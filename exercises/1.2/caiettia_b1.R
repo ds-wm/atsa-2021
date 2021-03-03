@@ -30,28 +30,15 @@ acf(hadley, type = 'correlation') # same is observed for correlation as well
 
 # Question 1.2.4
 
-gamma.hat <- function(x,h){
-  n <- length(x)
-  temp.sum <- 0 
-  for (i in 1:(n-h)){
-    a <- (x[i]-mean(x))
-    b <- (x[i+h]-mean(x))
-    temp.sum <- temp.sum + a*b
-  }
-  temp.sum
-  gam.hat <- temp.sum*(1/n)
-  return(gam.hat)
-} 
+# \gamma_0^{\hat} = \frac{1}{n} \cdot \sum_{i=1}^{n}(X_i - \mu_i)(X_i - \mu_t)
+# \gamma_1^{\hat} = \frac{1}{n} \cdot \sum_{i=1}^{n-1}(X_i - \mu_i)(X_{i+1}-\mu_t)
+# \rho_0 = \frac{\gamma_0^{\hat}}{\delta^2}
+# \rho_1 = \frac{\gamma_1^{\hat}}{\delta^2}
 
-auto.corr <- function(gam.hat, x){
-  ac <- gam.hat/var(x)
-  return(ac)
-}
 
-cat('Gamma Hat 0 : ', gamma.hat(hadley,0), '\n')
-cat('Autocorrelation for 0 : ', auto.corr(gamma.hat(hadley,0), hadley), '\n')
-cat('Gamma Hat 1 : ', gamma.hat(hadley,1), '\n')
-cat('Autocorrelation for 1 : ', auto.corr(gamma.hat(hadley,1), hadley), '\n')
+cat('Gamma Hats : ',acf(hadley, lag.max=1, plot = FALSE, type ='covariance'), '\n')
+cat('Autocorrelations: ', acf(hadley, lag.max=1, plot = FALSE, type ='correlation'), '\n')
+
 
 
 # Question 1.2.5
