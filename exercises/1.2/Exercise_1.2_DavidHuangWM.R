@@ -22,8 +22,8 @@ acf(hadley, type="covariance")
 
 cat("I guess I will proceed to use LaTeX to write the equations, as it is hard to write them out without using LaTeX on the keyboard. Please render them using some sort of LaTeX renderer that can render the hat character.")
 # autocovariance
-# $\hat\gamma_0=\frac{1}{n}\sum_{t=1}^{n}(X_t-\bar{X}_t)(X_{t}-\bar{X}_t)$\\
-# $\hat\gamma_1=\frac{1}{n}\sum_{t=1}^{n-1}(X_t-\bar{X}_t)(X_{t+1}-\bar{X}_t)$\\
+# $\hat\gamma_0=\frac{1}{n}\sum_{t=1}^n(X_t-\bar X_t)(X_t-\bar X_t)$\\
+# $\hat\gamma_1=\frac{1}{n}\sum_{t=1}^{n-1}(X_t-\bar X_t)(X_{t+1}-\bar X_t)$\\
 # autocorrelation
 # $\hat\rho_0=\frac{\hat\gamma_0}{\hat\gamma_0}$\\
 # $\hat\rho_0=\frac{\hat\gamma_1}{\hat\gamma_0}$\\
