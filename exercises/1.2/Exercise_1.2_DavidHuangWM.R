@@ -66,4 +66,3 @@ Xt = cos(2*pi*t*dom1) + 1.5*cos(2*pi*t*dom2 + 1) + 2*cos(2*pi*t*dom3 + 2.5)
 # now plot
 plot(Xt, type = "l")
 
-
