@@ -26,7 +26,7 @@ cat("I guess I will proceed to use LaTeX to write the equations, as it is hard t
 # $\hat\gamma_1=\frac{1}{n}\sum_{t=1}^{n-1}(X_t-\bar X_t)(X_{t+1}-\bar X_t)$\\
 # autocorrelation
 # $\hat\rho_0=\frac{\hat\gamma_0}{\hat\gamma_0}$\\
-# $\hat\rho_0=\frac{\hat\gamma_1}{\hat\gamma_0}$\\
+# $\hat\rho_1=\frac{\hat\gamma_1}{\hat\gamma_0}$\\
 # these cannot be printed as \h will cause an error and not print
 
 y <- acf(hadley, lag.max = 1, plot = FALSE, type = "covariance")
