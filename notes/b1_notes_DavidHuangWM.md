@@ -8,7 +8,85 @@ Here are some notes that I took that include relevant information pertaining to 
 My notes don't use pandoc. I used my own personal code to render LaTeX. Hope it works. Looks clean to me!
 Here's the following:
 
-## 1. Introduction to Time Series
+## General R Introductions
+
+Let's see what version of R we are running.
+A quick way of accessing this information is to call the `sessionInfo` function.
+
+To do access the runtime, we use code cells (in opposition of the text cells used to type this content).
+
+You can create a code cell by hovering your mouse between two cells and clicking "+ Code" or clicking the "+ Code" in the menu bar above.
+There are also shortcut keys.
+Check them out in "Tools" `-->` "Keyboard shortcuts" in the menu above.
+
+One benefit of the cloud-based environment is that there are several packages (i.e., libraries that extend the base R language) already installed and waiting for us to use.
+
+To see the list of installed packages, the aptly named `installed.packages` function is available.
+
+For any packages that exist, you may add them to your runtime by calling them by name with the `library` function.
+
+Try adding some libraries to this runtime.
+
+You can see the version of this package by running the `sessionInfo` function again.
+
+Rather than call it again below, go back to your earlier code cell and re-run it there.
+Notice that the runtime counter increments each time a cell is executed.
+
+We can actually also use R as a calculator, with many functions that we would need as shown below:
+
+You can use R as a calculator, including any of R's built-in functions, see the table below.
+
+| Function | Meaning |
+| :------- | :------ |
+| log(x) | log to base $e$ of $x$ |
+| exp(x) | antilog of $x$, (i.e. $e^x$) |
+| log(x, n) | log to base $n$ of $x$ |
+| log10(x) | log to base 10 of $x$ |
+| sqrt(x) | square root of $x$ |
+| factorial(x) | $x!$ |
+| choose(n,x) | binomial coefficients $n!/(x! (n-x)!)$ |
+| gamma(x) | $\Gamma(x)$, for real $x (x-1)!$, for integer x |
+| lgamma(x) | natural log of $\Gamma(x)$ |
+| floor(x) | greatest integer $< x$ |
+| ceiling(x) | smallest integer $> x$ |
+| trunc(x) | closest integer to $x$ between $x$ and 0 |
+| round(x, digits=0) | round the value of $x$ to an integer |
+| signif(x, digits=6) | give $x$ to six digits in scientific notation |
+| runif(n) | generates $n$ random numbers between 0 and 1 in uniform distribution |
+| cos(x) | cosine of $x$ in radians |
+| sin(x) | sine of $x$ in radians |
+| tan(x) | tangent of $x$ in radians |
+| acos(x); asin(x); atan(x) | inverse trigonometric transformations of real or complex numbers |
+| acosh(x); asinh(x); atanh(x) | inverse hyperbolic trigonometric transformations of real or complex numbers |
+| abs(x) | the absolute value of $x$ ignoring the minus sign if there is one |
+
+There are also vector functions that are useful in R. Some are listed below: 
+
+There are several vector function available in R.
+The table below lists some of them.
+
+| Operation | Meaning |
+| :-------- | :------ |
+| max(x) | maximum value in $x$ |
+| min(x) | minimum value in $x$ |
+| sum(x) | total of all the values in $x$ |
+| mean(x) | arithmetic average of the values in $x$ |
+| median(x) | median value in $x$ |
+| range(x) | vector of $\min(x)$ and $\max(x)$ |
+| var(x) | sample variance of $x$ |
+| cor(x, y) | correlation between vectors $x$ and $y$ |
+| sort(x) | a sorted version of $x$ |
+| rank(x) | vector of the ranks of the values in $x$ |
+| order(x) | an integer vector containing the permutation to sort x into ascending order |
+| quantile(x) | vector containing the minimum, lower quartile, median, upper quartile, and maximum of $x$ |
+| cumsum(x) | vector containing the sum of all of the elements up to that point |
+| cumprod(x) | vector containing the product of all of the elements up to that point |
+| cummax(x) | vector of non-decreasing numbers that are the cumulative maxima of the values in $x$ up to that point |
+| cummin(x) | vector of non-increasing numbers which are the cumulative minima of the values in $x$ up to that point |
+| pmax(x, y, z) | vector, of length equal to the longest of $x$, $y$ or $z$, containing the maximum of $x$, $y$ or $z$ for the $i$th position in each |
+| pmin(x, y, z) | vector, of length equal to the longest of $x$, $y$ or $z$, containing the minimum of $x$, $y$ or $z$ for the $i$th position in each |
+
+## 1. An Introduction to _Time Series_
 
 ### 1.1 Background
 A random variable, <img src="https://render.githubusercontent.com/render/math?math=Y">, is a function defined on a sample space, <img src="https://render.githubusercontent.com/render/math?math=\Omega">, whose range is the real numbers, <img src="https://render.githubusercontent.com/render/math?math={\rm I\!R}">.
