@@ -38,27 +38,27 @@ You can use R as a calculator, including any of R's built-in functions, see the 
 
 | Function | Meaning |
 | :------- | :------ |
-| log(x) | log to base $e$ of $x$ |
-| exp(x) | antilog of $x$, (i.e. $e^x$) |
-| log(x, n) | log to base $n$ of $x$ |
-| log10(x) | log to base 10 of $x$ |
-| sqrt(x) | square root of $x$ |
-| factorial(x) | $x!$ |
-| choose(n,x) | binomial coefficients $n!/(x! (n-x)!)$ |
-| gamma(x) | $\Gamma(x)$, for real $x (x-1)!$, for integer x |
-| lgamma(x) | natural log of $\Gamma(x)$ |
-| floor(x) | greatest integer $< x$ |
-| ceiling(x) | smallest integer $> x$ |
-| trunc(x) | closest integer to $x$ between $x$ and 0 |
-| round(x, digits=0) | round the value of $x$ to an integer |
-| signif(x, digits=6) | give $x$ to six digits in scientific notation |
-| runif(n) | generates $n$ random numbers between 0 and 1 in uniform distribution |
-| cos(x) | cosine of $x$ in radians |
-| sin(x) | sine of $x$ in radians |
-| tan(x) | tangent of $x$ in radians |
+| log(x) | log to base <img src="https://render.githubusercontent.com/render/math?math=e"> of <img src="https://render.githubusercontent.com/render/math?math=x"> |
+| exp(x) | antilog of <img src="https://render.githubusercontent.com/render/math?math=x">, (i.e. <img src="https://render.githubusercontent.com/render/math?math=e^x">) |
+| log(x, n) | log to base <img src="https://render.githubusercontent.com/render/math?math=n"> of <img src="https://render.githubusercontent.com/render/math?math=x"> |
+| log10(x) | log to base 10 of <img src="https://render.githubusercontent.com/render/math?math=x"> |
+| sqrt(x) | square root of <img src="https://render.githubusercontent.com/render/math?math=x"> |
+| factorial(x) | <img src="https://render.githubusercontent.com/render/math?math=x!"> |
+| choose(n,x) | binomial coefficients <img src="https://render.githubusercontent.com/render/math?math=n!/(x! (n-x)!)"> |
+| gamma(x) | <img src="https://render.githubusercontent.com/render/math?math=\Gamma(x)">, for real <img src="https://render.githubusercontent.com/render/math?math=x (x-1)!">, for integer x |
+| lgamma(x) | natural log of <img src="https://render.githubusercontent.com/render/math?math=\Gamma(x)"> |
+| floor(x) | greatest integer <img src="https://render.githubusercontent.com/render/math?math=< x"> |
+| ceiling(x) | smallest integer <img src="https://render.githubusercontent.com/render/math?math=> x"> |
+| trunc(x) | closest integer to <img src="https://render.githubusercontent.com/render/math?math=x"> between <img src="https://render.githubusercontent.com/render/math?math=x"> and 0 |
+| round(x, digits=0) | round the value of <img src="https://render.githubusercontent.com/render/math?math=x"> to an integer |
+| signif(x, digits=6) | give <img src="https://render.githubusercontent.com/render/math?math=x"> to six digits in scientific notation |
+| runif(n) | generates <img src="https://render.githubusercontent.com/render/math?math=n"> random numbers between 0 and 1 in uniform distribution |
+| cos(x) | cosine of <img src="https://render.githubusercontent.com/render/math?math=x"> in radians |
+| sin(x) | sine of <img src="https://render.githubusercontent.com/render/math?math=x"> in radians |
+| tan(x) | tangent of <img src="https://render.githubusercontent.com/render/math?math=x"> in radians |
 | acos(x); asin(x); atan(x) | inverse trigonometric transformations of real or complex numbers |
 | acosh(x); asinh(x); atanh(x) | inverse hyperbolic trigonometric transformations of real or complex numbers |
-| abs(x) | the absolute value of $x$ ignoring the minus sign if there is one |
+| abs(x) | the absolute value of <img src="https://render.githubusercontent.com/render/math?math=x"> ignoring the minus sign if there is one |
 
 There are also vector functions that are useful in R. Some are listed below: 
 
@@ -67,24 +67,24 @@ The table below lists some of them.
 
 | Operation | Meaning |
 | :-------- | :------ |
-| max(x) | maximum value in $x$ |
-| min(x) | minimum value in $x$ |
-| sum(x) | total of all the values in $x$ |
-| mean(x) | arithmetic average of the values in $x$ |
-| median(x) | median value in $x$ |
-| range(x) | vector of $\min(x)$ and $\max(x)$ |
-| var(x) | sample variance of $x$ |
-| cor(x, y) | correlation between vectors $x$ and $y$ |
-| sort(x) | a sorted version of $x$ |
-| rank(x) | vector of the ranks of the values in $x$ |
+| max(x) | maximum value in <img src="https://render.githubusercontent.com/render/math?math=x"> |
+| min(x) | minimum value in <img src="https://render.githubusercontent.com/render/math?math=x"> |
+| sum(x) | total of all the values in <img src="https://render.githubusercontent.com/render/math?math=x"> |
+| mean(x) | arithmetic average of the values in <img src="https://render.githubusercontent.com/render/math?math=x"> |
+| median(x) | median value in <img src="https://render.githubusercontent.com/render/math?math=x"> |
+| range(x) | vector of <img src="https://render.githubusercontent.com/render/math?math=\min(x)"> and <img src="https://render.githubusercontent.com/render/math?math=\max(x)"> |
+| var(x) | sample variance of <img src="https://render.githubusercontent.com/render/math?math=x"> |
+| cor(x, y) | correlation between vectors <img src="https://render.githubusercontent.com/render/math?math=x"> and <img src="https://render.githubusercontent.com/render/math?math=y"> |
+| sort(x) | a sorted version of <img src="https://render.githubusercontent.com/render/math?math=x"> |
+| rank(x) | vector of the ranks of the values in <img src="https://render.githubusercontent.com/render/math?math=x"> |
 | order(x) | an integer vector containing the permutation to sort x into ascending order |
-| quantile(x) | vector containing the minimum, lower quartile, median, upper quartile, and maximum of $x$ |
+| quantile(x) | vector containing the minimum, lower quartile, median, upper quartile, and maximum of <img src="https://render.githubusercontent.com/render/math?math=x"> |
 | cumsum(x) | vector containing the sum of all of the elements up to that point |
 | cumprod(x) | vector containing the product of all of the elements up to that point |
-| cummax(x) | vector of non-decreasing numbers that are the cumulative maxima of the values in $x$ up to that point |
-| cummin(x) | vector of non-increasing numbers which are the cumulative minima of the values in $x$ up to that point |
-| pmax(x, y, z) | vector, of length equal to the longest of $x$, $y$ or $z$, containing the maximum of $x$, $y$ or $z$ for the $i$th position in each |
-| pmin(x, y, z) | vector, of length equal to the longest of $x$, $y$ or $z$, containing the minimum of $x$, $y$ or $z$ for the $i$th position in each |
+| cummax(x) | vector of non-decreasing numbers that are the cumulative maxima of the values in <img src="https://render.githubusercontent.com/render/math?math=x"> up to that point |
+| cummin(x) | vector of non-increasing numbers which are the cumulative minima of the values in <img src="https://render.githubusercontent.com/render/math?math=x"> up to that point |
+| pmax(x, y, z) | vector, of length equal to the longest of <img src="https://render.githubusercontent.com/render/math?math=x">, <img src="https://render.githubusercontent.com/render/math?math=y"> or <img src="https://render.githubusercontent.com/render/math?math=z">, containing the maximum of <img src="https://render.githubusercontent.com/render/math?math=x">, <img src="https://render.githubusercontent.com/render/math?math=y"> or <img src="https://render.githubusercontent.com/render/math?math=z"> for the <img src="https://render.githubusercontent.com/render/math?math=i">th position in each |
+| pmin(x, y, z) | vector, of length equal to the longest of <img src="https://render.githubusercontent.com/render/math?math=x">, <img src="https://render.githubusercontent.com/render/math?math=y"> or <img src="https://render.githubusercontent.com/render/math?math=z">, containing the minimum of <img src="https://render.githubusercontent.com/render/math?math=x">, <img src="https://render.githubusercontent.com/render/math?math=y"> or <img src="https://render.githubusercontent.com/render/math?math=z"> for the <img src="https://render.githubusercontent.com/render/math?math=i">th position in each |
 
 ## 1. An Introduction to _Time Series_
 
@@ -214,11 +214,9 @@ with the restriction that <img src="https://render.githubusercontent.com/render/
 #### 1.2.5 Simulated Data
 Consider this process:
 
-$$
-X_t = 0.9 X_{t-1} + a_t
-$$
+<img src="https://render.githubusercontent.com/render/math?math=X_t = 0.9 X_{t-1} + a_t">
 
-This is a first-order autoregressive process, or AR(1), where the dependent variable, $X_t$, is equal to 0.9 times its previous value plus some Gaussian white noise, $a_t$, with zero mean and unit variance.
+This is a first-order autoregressive process, or AR(1), where the dependent variable, <img src="https://render.githubusercontent.com/render/math?math=X_t">, is equal to 0.9 times its previous value plus some Gaussian white noise, <img src="https://render.githubusercontent.com/render/math?math=a_t">, with zero mean and unit variance.
 
 ```R
 fig1.18 <- plotts.true.wge(n=250, phi=0.9, lag.max = 30)
@@ -226,15 +224,13 @@ fig1.18 <- plotts.true.wge(n=250, phi=0.9, lag.max = 30)
 
 Notice the rapid oscillations in the realization, but overall it has a wandering type of behavior with no obvious periodic tendency.
 
-We see from the autocorrelations that there is a high correlation when the lag, $k$, is small, but this correlation exponentially dampens to zero.
+We see from the autocorrelations that there is a high correlation when the lag, <img src="https://render.githubusercontent.com/render/math?math=k">, is small, but this correlation exponentially dampens to zero.
 
-We see in the spectral density a peak at $f=0$, which indicates little to no periodic behavior.
+We see in the spectral density a peak at <img src="https://render.githubusercontent.com/render/math?math=f=0">, which indicates little to no periodic behavior.
 
 Consider this AR(1) process:
 
-$$
-X_t = -0.9 X_{t-1} + a_t
-$$
+<img src="https://render.githubusercontent.com/render/math?math=X_t = -0.9 X_{t-1} + a_t">
 
 ```R
 fig1.19 <- plotts.true.wge(n=250, phi=-0.9)
@@ -242,13 +238,11 @@ fig1.19 <- plotts.true.wge(n=250, phi=-0.9)
 
 Here we can see from the autocorrelations that they are dampen in an oscillating pattern exponentially toward zero (caused by the negative correlation with the previous time value).
 
-In the spectral density graph, we see a peak at $f = 0.5$, which indicates a high frequency oscillation as we see in the data.
+In the spectral density graph, we see a peak at <img src="https://render.githubusercontent.com/render/math?math=f = 0.5">, which indicates a high frequency oscillation as we see in the data.
 
 Now let's take a look at an AR(2) model with a period of about 10 units:
 
-$$
-X_t = 1.6 X_{t-1} - 0.95 X_{t-2} + a_t
-$$
+<img src="https://render.githubusercontent.com/render/math?math=X_t = 1.6 X_{t-1} - 0.95 X_{t-2} + a_t">
 
 ```R
 fig1.20 <- plotts.true.wge(n=250, phi=c(1.6, -0.95))
@@ -257,14 +251,12 @@ fig1.20 <- plotts.true.wge(n=250, phi=c(1.6, -0.95))
 Here again we see the oscillating dampening autocorrelation function, albeit more sinusoidal in nature than in the previous example.
 We see that there is a period of about 10 from the sinusoidal autocorrelation plot, but it's still difficult to pinpoint the exact period from this because the cycles appear to be slightly different lengths.
 
-The spectral density shows a peak at about $f = 0.09$, indicating a periodic behavoir with a period of about $p$ = 1/0.09 = 11.1.
+The spectral density shows a peak at about <img src="https://render.githubusercontent.com/render/math?math=f = 0.09">, indicating a periodic behavoir with a period of about <img src="https://render.githubusercontent.com/render/math?math=p"> = 1/0.09 = 11.1.
 Notice that there is still frequency information to the left and right of the peak, indicating contributions from nearby frequencies.
 
 Let's look at an AR(4) model with a low frequency of about 30 and a higher frequency of about 3.
 
-$$
-X_t = 0.85 X_{t-1} + 0.03 X_{t-2} + 0.745 X_{t-3} -0.828 X_{t-4} + a_t
-$$
+<img src="https://render.githubusercontent.com/render/math?math=X_t = 0.85 X_{t-1} + 0.03 X_{t-2} + 0.745 X_{t-3} -0.828 X_{t-4} + a_t">
 
 ```R
 fig1.21 <- plotts.true.wge(n=250, phi=c(0.85, 0.03, 0.745, -0.828), lag.max=70)
@@ -272,17 +264,15 @@ fig1.21 <- plotts.true.wge(n=250, phi=c(0.85, 0.03, 0.745, -0.828), lag.max=70)
 
 Again in the autocorrelation we can see evidence of the lower frequency from the sinusoidal oscillations; however, there is little evidence of a higher frequency.
 
-The spectral density clearly shows two frequencies in the data: one at $f = 0.04$ and one at $f = 0.34$.
+The spectral density clearly shows two frequencies in the data: one at <img src="https://render.githubusercontent.com/render/math?math=f = 0.04"> and one at <img src="https://render.githubusercontent.com/render/math?math=f = 0.34">.
 
 This highlights how spectrum can detect the presence of cycles in data that are otherwise hidden in the autocorrelation even though both equations mathematically contain the same information.
 
 **Finally**, let example white noise:
 
-$$
-X_t = a_t
-$$
+<img src="https://render.githubusercontent.com/render/math?math=X_t = a_t">
 
-Here the autocorrelation function is zero for all lags except $k=0$ where the autocorrelation is 1 and the spectrum is zero for all frequencies.
+Here the autocorrelation function is zero for all lags except <img src="https://render.githubusercontent.com/render/math?math=k=0"> where the autocorrelation is 1 and the spectrum is zero for all frequencies.
 
 ```R
 # Simulate white noise
@@ -312,8 +302,8 @@ ss.data <- plotts.sample.wge(ss08)
 ```
 
 The sunspot data reveal a pseudo-periodic nature, where there is an indication of a period somewhere between 9 and 11 years.
-In the spectral density, we notice a reasonably sharp peak at approximately $f$ = 0.09 indicating a predominant period of about 11 years in the data.
-It is also interesting to note that there is also a peak at $f$ = 0 indicating possibly a longer period or aperiodic behavior.
+In the spectral density, we notice a reasonably sharp peak at approximately <img src="https://render.githubusercontent.com/render/math?math=f"> = 0.09 indicating a predominant period of about 11 years in the data.
+It is also interesting to note that there is also a peak at <img src="https://render.githubusercontent.com/render/math?math=f"> = 0 indicating possibly a longer period or aperiodic behavior.
 
 **Global temperature data** (`hadley`)
 
@@ -331,7 +321,7 @@ There is also considerable year to year variability but no apparent cyclic behav
 We see that the autocorrelations for the lower lags are positive indicating that, for example, there is substantial positive correlation between this year's and next year's annual temperatures.
 
 The smoothed sprectrum also suggests the lack of periodic behavior. 
-The peak at $f$ = 0 suggests either a very long period or aperiodic behavior.
+The peak at <img src="https://render.githubusercontent.com/render/math?math=f"> = 0 suggests either a very long period or aperiodic behavior.
 The smaller peaks in the spectral estimator may or may not be meaningful.
 
 **Airline data** (`airlog`)
@@ -349,11 +339,11 @@ An inspection of the data shows the heavier summer travel, a 12 month annual pat
 Note that the 12 month cycle does not appear to be sinusoidal but rather tends to "copy" the pattern of the previous year.
 
 Note the high power at zero indicating the strong trend (aperiodic) component in the data. 
-In addition, the high power at $f$ = 1/12 and at the harmonics of 1/12, that is, $f$ = $i$/12 for $i$ = 2, 3, ..., 6 are quite apparent.
+In addition, the high power at <img src="https://render.githubusercontent.com/render/math?math=f"> = 1/12 and at the harmonics of 1/12, that is, <img src="https://render.githubusercontent.com/render/math?math=f"> = <img src="https://render.githubusercontent.com/render/math?math=i">/12 for <img src="https://render.githubusercontent.com/render/math?math=i"> = 2, 3, ..., 6 are quite apparent.
 
 **Bat echolocation signal** (`noctula`)
 
-Below are 96 observations taken from a echolocation signal of a Nyctalus noctula hunting bat sampled at $4 \times 10^{-5}$ s intervals. 
+Below are 96 observations taken from a echolocation signal of a Nyctalus noctula hunting bat sampled at <img src="https://render.githubusercontent.com/render/math?math=4 \times 10^{-5}"> s intervals. 
 At first glance, the signal appears to be periodic with behavior somewhat similar to the sunspot data.
 
 ```R
@@ -361,8 +351,7 @@ data(noctula)
 noc.data <- plotts.sample.wge(noctula, lag.max = 50)
 ```
 
-The sample autocorrelations seem unusual, since there is no strong cyclic behavior and examination of the spectral estimate shows no sharp peak; in fact, there is a wide band of frequencies between $f$ = 0.15 and $f$ = 0.35 associated with a broad "peak" (also called a spread spectra).
+The sample autocorrelations seem unusual, since there is no strong cyclic behavior and examination of the spectral estimate shows no sharp peak; in fact, there is a wide band of frequencies between <img src="https://render.githubusercontent.com/render/math?math=f"> = 0.15 and <img src="https://render.githubusercontent.com/render/math?math=f"> = 0.35 associated with a broad "peak" (also called a spread spectra).
 
 It appears that the frequency behavior is changing with time. 
 More specifically, the cycle lengths tend to lengthen (frequencies decrease) in time and, consequently, it appears that the data may not be stationary.
-
