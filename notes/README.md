@@ -10,18 +10,15 @@ __Table 1.__ Note-Taking Schedule. First come first serve.
 |       |                 | 2. David Huang        |
 |       |                 | 3. Conrad Ning        |
 |       |                 | 4. Monica Alicea     |
-|       |                 | 5. Sterling Ransone         |
-|       |                 | 6. Asha Silva         |
-|       |                 | 7. Alex Monaghan         |
-|       |                 | 8.       |
+|       |                 | 5. Asha Silva         |
+|       |                 | 6. Alex Monaghan         |
 | 2     | 31 March @ 9 AM | 1. Joe Barry           |
 |       |                 | 2. Andrew Caietti     |
 |       |                 | 3. Rini Gupta          |
 |       |                 | 4. Jacinta Das         |
 |       |                 | 5. Kelton Berry       |
 |       |                 | 6. Kimya Shirazi      |
-|       |                 | 7. Mayada Hassan       |
-|       |                 | 8. Matt McCormack     |
+|       |                 | 7. Matt McCormack     |
 | 3     | 5 May @ 9 AM    | 1. Justin C  |
 |       |                 | 2. Julian Hayes|
 |       |                 | 3. John Hennin         |
