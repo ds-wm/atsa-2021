@@ -132,3 +132,159 @@ and the spectral density may be expressed as:
 <img src="https://render.githubusercontent.com/render/math?math=S_x(f) = 1 + 2 \sum_{k=1}^{\infty} \rho_k \cos(2 \pi fk)">
 
 with the restriction that <img src="https://render.githubusercontent.com/render/math?math=|f| \le 0.5">.
+
+#### 1.2.5 Simulated Data
+Consider this process:
+
+$$
+X_t = 0.9 X_{t-1} + a_t
+$$
+
+This is a first-order autoregressive process, or AR(1), where the dependent variable, $X_t$, is equal to 0.9 times its previous value plus some Gaussian white noise, $a_t$, with zero mean and unit variance.
+
+```R
+fig1.18 <- plotts.true.wge(n=250, phi=0.9, lag.max = 30)
+```
+
+Notice the rapid oscillations in the realization, but overall it has a wandering type of behavior with no obvious periodic tendency.
+
+We see from the autocorrelations that there is a high correlation when the lag, $k$, is small, but this correlation exponentially dampens to zero.
+
+We see in the spectral density a peak at $f=0$, which indicates little to no periodic behavior.
+
+Consider this AR(1) process:
+
+$$
+X_t = -0.9 X_{t-1} + a_t
+$$
+
+```R
+fig1.19 <- plotts.true.wge(n=250, phi=-0.9)
+```
+
+Here we can see from the autocorrelations that they are dampen in an oscillating pattern exponentially toward zero (caused by the negative correlation with the previous time value).
+
+In the spectral density graph, we see a peak at $f = 0.5$, which indicates a high frequency oscillation as we see in the data.
+
+Now let's take a look at an AR(2) model with a period of about 10 units:
+
+$$
+X_t = 1.6 X_{t-1} - 0.95 X_{t-2} + a_t
+$$
+
+```R
+fig1.20 <- plotts.true.wge(n=250, phi=c(1.6, -0.95))
+```
+
+Here again we see the oscillating dampening autocorrelation function, albeit more sinusoidal in nature than in the previous example.
+We see that there is a period of about 10 from the sinusoidal autocorrelation plot, but it's still difficult to pinpoint the exact period from this because the cycles appear to be slightly different lengths.
+
+The spectral density shows a peak at about $f = 0.09$, indicating a periodic behavoir with a period of about $p$ = 1/0.09 = 11.1.
+Notice that there is still frequency information to the left and right of the peak, indicating contributions from nearby frequencies.
+
+Let's look at an AR(4) model with a low frequency of about 30 and a higher frequency of about 3.
+
+$$
+X_t = 0.85 X_{t-1} + 0.03 X_{t-2} + 0.745 X_{t-3} -0.828 X_{t-4} + a_t
+$$
+
+```R
+fig1.21 <- plotts.true.wge(n=250, phi=c(0.85, 0.03, 0.745, -0.828), lag.max=70)
+```
+
+Again in the autocorrelation we can see evidence of the lower frequency from the sinusoidal oscillations; however, there is little evidence of a higher frequency.
+
+The spectral density clearly shows two frequencies in the data: one at $f = 0.04$ and one at $f = 0.34$.
+
+This highlights how spectrum can detect the presence of cycles in data that are otherwise hidden in the autocorrelation even though both equations mathematically contain the same information.
+
+**Finally**, let example white noise:
+
+$$
+X_t = a_t
+$$
+
+Here the autocorrelation function is zero for all lags except $k=0$ where the autocorrelation is 1 and the spectrum is zero for all frequencies.
+
+```R
+# Simulate white noise
+wn <- arima.sim(model = list(order=c(0,0,0)), n = 250)
+plot.ts(wn)
+
+par(mfrow = c(2,1))
+spectrum(wn)
+acf(wn)
+```
+
+#### 1.2.6 Real Data
+
+**Sunspot data (`ss08`)**
+
+One of the most intriguing time series data sets is that of sunspot data.
+Sunspots are areas of solar explosions or extreme atmospheric disturbances on the sun. 
+Sunspots have created much interest among the scientific community partially because of the fact that they seem to have some effect here on Earth. 
+For example, high sunspot activity tends to cause interference with radio communication and to be associated with higher ultraviolet light intensity and northern light activity. 
+Other studies have attempted to relate sunspot activity to precipitation, global warming, etc., with less than conclusive results. 
+In 1848, the Swiss astronomer Rudolf Wolf introduced a method of enumerating daily sunspot activity, and monthly data using his method are available since 1749. 
+See Waldmeier (1961) and various Internet sites.
+
+```R
+data(ss08)
+ss.data <- plotts.sample.wge(ss08)
+```
+
+The sunspot data reveal a pseudo-periodic nature, where there is an indication of a period somewhere between 9 and 11 years.
+In the spectral density, we notice a reasonably sharp peak at approximately $f$ = 0.09 indicating a predominant period of about 11 years in the data.
+It is also interesting to note that there is also a peak at $f$ = 0 indicating possibly a longer period or aperiodic behavior.
+
+**Global temperature data** (`hadley`)
+
+The concern over global warming has attracted a great deal of attention over the past 25 years. 
+Of interest are data sets that provide a measure of the average annual temperature. 
+One such data set was collected in England by the Climatic Research Unit at the University of East Anglia in conjunction with the Met Office Hadley Centre.
+
+```R
+data(hadley)
+had.data <- plotts.sample.wge(hadley, lag.max = 80)
+```
+
+In the data set, it is clear that there has been a rise in temperatures over this period. 
+There is also considerable year to year variability but no apparent cyclic behavior.
+We see that the autocorrelations for the lower lags are positive indicating that, for example, there is substantial positive correlation between this year's and next year's annual temperatures.
+
+The smoothed sprectrum also suggests the lack of periodic behavior. 
+The peak at $f$ = 0 suggests either a very long period or aperiodic behavior.
+The smaller peaks in the spectral estimator may or may not be meaningful.
+
+**Airline data** (`airlog`)
+
+The following is a graph of the natural logarithms of monthly total numbers (in thousands) of passengers in international air travel for 1949&ndash;1960.
+This series is examined by Box et al. (2008) and in earlier editions of that text and is often analyzed as a classical example of a seasonal time series. 
+A strong seasonal pattern is expected due to the seasonal nature of air travel, for example, heavier travel in the summer months and in November and December.
+
+```R
+data(airlog)
+air.data <- plotts.sample.wge(airlog, lag.max = 80, trunc = 90)
+```
+
+An inspection of the data shows the heavier summer travel, a 12 month annual pattern, and an apparent upward trend. 
+Note that the 12 month cycle does not appear to be sinusoidal but rather tends to "copy" the pattern of the previous year.
+
+Note the high power at zero indicating the strong trend (aperiodic) component in the data. 
+In addition, the high power at $f$ = 1/12 and at the harmonics of 1/12, that is, $f$ = $i$/12 for $i$ = 2, 3, ..., 6 are quite apparent.
+
+**Bat echolocation signal** (`noctula`)
+
+Below are 96 observations taken from a echolocation signal of a Nyctalus noctula hunting bat sampled at $4 \times 10^{-5}$ s intervals. 
+At first glance, the signal appears to be periodic with behavior somewhat similar to the sunspot data.
+
+```R
+data(noctula)
+noc.data <- plotts.sample.wge(noctula, lag.max = 50)
+```
+
+The sample autocorrelations seem unusual, since there is no strong cyclic behavior and examination of the spectral estimate shows no sharp peak; in fact, there is a wide band of frequencies between $f$ = 0.15 and $f$ = 0.35 associated with a broad "peak" (also called a spread spectra).
+
+It appears that the frequency behavior is changing with time. 
+More specifically, the cycle lengths tend to lengthen (frequencies decrease) in time and, consequently, it appears that the data may not be stationary.
+
