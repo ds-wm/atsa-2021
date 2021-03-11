@@ -13,6 +13,6 @@ Be sure to add your name to the author by line in the comments at the top of you
         * a duplicate-free time-sorted dataset
 
      For consistency across all scripts and computing platforms, access the data files from the URLs provided.
-    1. Aggregate (using arithmetic means) the two individual time series into 15-minute, 60-minute, 12-hour, and 24-hour averages (i.e., create eight total versions of the original data).
+    1. Aggregate (using arithmetic means) the two individual time series (based on the twelve realizations) into 15-minute, 60-minute, 12-hour, and 24-hour ensemble averages (i.e., create eight total versions of the original data).
     1. Calculate the correlation coefficient (Pearson's R), the coefficient of determination (r-squared), and root-mean-squared error (RMSE) for each of the four time aggregations of ADC0, ADC1, and ADC2 (converted to physical units) comparing the original versus duplicate-free data.
     1. Create three plots&mdash;one for each sensor (ADC0, ADC1, ADC2)&mdash;showing the original time-aggregated data plotted against the duplicate free data. Include the metrics in the plot.
