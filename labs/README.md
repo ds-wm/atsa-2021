@@ -32,6 +32,11 @@ Late labs, incomplete labs, or labs that fall short of the expectations outlined
 
 You are free to collaborate on lab assignments, but ultimately it should reflect your thoughts, methods, and conclusions.
 
+## Things to avoid
+
+- Try not to print out 100x's of lines of data in your lab methods. It's better to show data summaries and just the head of a dataframe. If you want all values to show up, please consider moving the print statment to a supplemental section after your references.
+- Try to avoid personal pronouns (e.g., "I" and "me" and "we") and use general third-person speech (e.g., "This report examines x, y and z")
+
 # Files
 
 ### ONI_data.csv
