@@ -1,4 +1,4 @@
-# Instructions 
+# Instructions
 
 Labs should be completed using the R kernel in [Google Colab](https://colab.to/r); it is free to use with a Google account, such as the account associated with your W&M email.
 Labs should include relevant text blocks to introduce topics, explain methods, display images/graphics, and link to resources.
@@ -34,17 +34,10 @@ You are free to collaborate on lab assignments, but ultimately it should reflect
 
 ## Things to avoid
 
-- Try not to print out 100x's of lines of data in your lab methods. It's better to show data summaries and just the head of a dataframe. If you want all values to show up, please consider moving the print statment to a supplemental section after your references.
+- Try not to print out 100x's of lines of data in your lab methods. It's better to show data summaries and just the head of a dataframe. If you want all values to show up, please consider moving the print statement to a supplemental section after your references.
 - Try to avoid personal pronouns (e.g., "I" and "me" and "we") and use general third-person speech (e.g., "This report examines x, y and z")
 
-# Files
+# Files and Folders
 
-### ONI_data.csv
-Tabularized Oceanic Ni&ntilde;o Index (ONI) from NOAA.
-_Note the tabular data are truncated to one decimal point._
-See [oni.data](https://psl.noaa.gov/data/correlation/oni.data) for complete time series.
-
-### meiv2.data
-Multi-variate ENSO Index (MEI) version 2.
-See the [meiv2.data](https://psl.noaa.gov/enso/mei/data/meiv2.data) and [mei.ext](https://psl.noaa.gov/enso/mei.ext/table.ext.html) for complete time series.
-
+### lab1
+This folder is for uploading (or pushing) your Lab 1 notebook.
