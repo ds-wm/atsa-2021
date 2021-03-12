@@ -37,6 +37,10 @@ You are free to collaborate on lab assignments, but ultimately it should reflect
 - Try not to print out 100x's of lines of data in your lab methods. It's better to show data summaries and just the head of a dataframe. If you want all values to show up, please consider moving the print statement to a supplemental section after your references.
 - Try to avoid personal pronouns (e.g., "I" and "me" and "we") and use general third-person speech (e.g., "This report examines x, y and z")
 
+## Things to remember
+
+- If you read in data, it's a good idea to show it (e.g., `head(df)`) and provide a summary (e.g., `summary(df)`).
+
 # Files and Folders
 
 ### lab1
