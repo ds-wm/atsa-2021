@@ -41,6 +41,7 @@ You are free to collaborate on lab assignments, but ultimately it should reflect
 ## Things to remember
 
 - If you read in data, it's a good idea to show it (e.g., `head(df)`) and provide a summary (e.g., `summary(df)`).
+- Numbering your lab sections as well as numbering your figures helps with referencing in your conclusions and discussions.
 
 # Files and Folders
 
