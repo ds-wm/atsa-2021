@@ -36,6 +36,7 @@ You are free to collaborate on lab assignments, but ultimately it should reflect
 
 - Try not to print out 100x's of lines of data in your lab methods. It's better to show data summaries and just the head of a dataframe. If you want all values to show up, please consider moving the print statement to a supplemental section after your references.
 - Try to avoid personal pronouns (e.g., "I" and "me" and "we") and use general third-person speech (e.g., "This report examines x, y and z")
+- When definining variable names in R, be sure to check that it is not a protected keyword or primitive function. For example, don't use `sum`, `mean` or `list` as variables.
 
 ## Things to remember
 
