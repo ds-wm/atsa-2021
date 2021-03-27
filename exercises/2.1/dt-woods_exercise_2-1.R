@@ -66,7 +66,7 @@ s2055 <- read.csv(s2055.url)
 #
 # The data files are presorted by the result time; therefore, it is just a
 # matter of checking for valid packets and checking its neighbors to see
-# if they are duplicates. Let's use batter voltage as our first criteria
+# if they are duplicates. Let's use battery voltage as our first criteria
 #
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ### Filter for valid measurements
