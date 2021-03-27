@@ -1,5 +1,5 @@
 # Applied Time Series Analysis
-# Exercise 2.2
+# Exercise 2.1
 # author: Tyler W. Davis, William & Mary
 # created: 2021-03-26
 # updated: 2021-03-26
