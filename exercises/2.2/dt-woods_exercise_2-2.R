@@ -15,7 +15,7 @@
 # calculations, and plots the two curves together. Be sure to include a title, 
 # legend and labels in your plot.
 #
-# The following is taken from the SPLASH code.
+# The following is taken from the v1.0 release of the SPLASH code.
 # References: 
 # - https://doi.org/10.5194/gmd-10-689-2017
 # - https://bitbucket.org/labprentice/splash/src/master/
