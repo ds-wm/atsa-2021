@@ -18,11 +18,11 @@
 # 4. Create three plots (one for ADC0, ADC1, ADC2) showing the original 
 #    time-aggregated data plotted against the duplicate free data. 
 #    Include the metrics in the plot.
-#
+
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## READ THE DATA
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#
+
 # Only looking at the first five CSVs
 s2003.url <- "https://raw.githubusercontent.com/ds-wm/ds-wm.github.io/master/course/atsa/data/MDA300BKUP_resultsConverted-2YR_2003.txt"
 s2015.url <- "https://raw.githubusercontent.com/ds-wm/ds-wm.github.io/master/course/atsa/data/MDA300BKUP_resultsConverted-2YR_2015.txt"
@@ -70,7 +70,10 @@ s2055 <- read.csv(s2055.url)
 #
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ### Filter for valid measurements
+###  * note that the battery level impacts all measurements and we
+###    will take care of individual measurements at time of averaging
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 s2003 <- s2003[s2003$voltage >= 2600, ]
 s2015 <- s2015[s2015$voltage >= 2600, ]
 s2025 <- s2025[s2025$voltage >= 2600, ]
@@ -80,6 +83,7 @@ s2055 <- s2055[s2055$voltage >= 2600, ]
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ### Add duplicate marker column (0: valid; 1: duplicate)
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 s2003$dup <- 0
 s2015$dup <- 0
 s2025$dup <- 0
@@ -90,6 +94,7 @@ s2055$dup <- 0
 ### Add time column (this method uses POSIXct for dates/times)
 ### and allows to check for time differences between rows in seconds
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 s2003$date <- as.POSIXct(s2003$result_time)
 s2015$date <- as.POSIXct(s2015$result_time)
 s2025$date <- as.POSIXct(s2025$result_time)
@@ -99,6 +104,8 @@ s2055$date <- as.POSIXct(s2055$result_time)
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ### Mark the duplicates
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Create function for reproducibility; this method needs run on each dataset
 
 # ************************************************************************
 # Name:     find_duplicates
@@ -153,16 +160,78 @@ s2055 <- find_duplicates(s2055) # Found 308 duplicates
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## CREATE DUPLICATE-FREE COPIES
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 s2003.df <- s2003[s2003$dup == 0, ]
 s2015.df <- s2015[s2015$dup == 0, ]
 s2025.df <- s2025[s2025$dup == 0, ]
 s2045.df <- s2045[s2045$dup == 0, ]
 s2055.df <- s2055[s2055$dup == 0, ]
 
-#
-# TODO: 
-# 1. combine individual duplicate free and original data.frames together
-# 2. sort by time
-# 3. define a timestep (e.g., 15 minutes)
-# 4. calculate the mean for a given time step
-#
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## CREATE SINGLE DATAFRAME WITH ALL OBSERVATIONS SORTED BY TIME
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Create a helper function for merging a list of dataframes
+
+# ************************************************************************
+# Name:     merge_all
+# Inputs:   list, list of data frames to aggregate by rows
+# Returns:  R data.frame
+# Features: Merges and sorts a list of data frames; rather than merge
+#           just two data frames at a time.
+# Ref:      https://www.r-bloggers.com/2011/01/merging-multiple-data-frames-in-r/
+# ************************************************************************
+merge_list <- function(listofdf){
+    Reduce(
+        function(x, y) merge(x, y, all=TRUE), listofdf)
+}
+
+# Merge all data.frames together
+orig.df <- merge_list(list(s2003, s2015, s2025, s2045, s2055))
+nodup.df <- merge_list(list(s2003.df, s2015.df, s2025.df, s2045.df, s2055.df))
+
+# Sort by time
+orig.df <- orig.df[order(orig.df$date), ]
+nodup.df <- nodup.df[order(nodup.df$date), ]
+
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## AGGREGATE BY TIME STEP
+## (work in progress)
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# TODO: turn this into a function
+
+# Define the time step for aggregation
+t.step <- 15*60  # 15-minutes in seconds
+
+# Grab the first instance of time and roll back to the earliest whole hour
+#  * note: I don't know a method to find the earliest whole 15-minute
+#    so this will have to do
+t1 <- trunc(orig.df$date[1], "hour")
+
+# Grab the last time
+tn <- tail(orig.df, 1)$date
+
+# Grab total number of rows
+n <- length(orig.df$result_time)
+
+# Initialize a new empty dataframe for storing ensemble means
+ensemble.df <- orig.df[1==2, ]
+ensemble.df <- subset(ensemble.df, select = -result_time)  # remove this column
+
+# Initial the current time with the first time
+curr.t <- t1
+
+# The following is just an outline; needs to be completed.
+
+while (curr.t < tn) {
+    next.t <- curr.t + t.step
+    tmp.df <- orig.df[orig.df$date >= curr.t & orig.df$date < next.t, ]
+
+    # Compute the average for valid sensor measurements based on this subset
+    # (see ranges for valid sensor measurements) and add values with time
+    # to the new dataframe
+    print(length(tmp.df$result_time))
+    
+    # Update time
+    curr.t <- curr.t + t.step
+}
