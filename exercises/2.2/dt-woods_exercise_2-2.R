@@ -15,7 +15,7 @@
 # calculations, and plots the two curves together. Be sure to include a title, 
 # legend and labels in your plot.
 #
-# The following is taken from the v1.0 release of the SPLASH code.
+# The following is taken from the v1 release of the SPLASH code.
 # References: 
 # - https://doi.org/10.5194/gmd-10-689-2017
 # - https://bitbucket.org/labprentice/splash/src/master/
@@ -329,12 +329,142 @@ julian_day <- function(y, m, i) {
 # ---------------------------------------------------------------------------
 #                            END SPLASH CODE
 # ---------------------------------------------------------------------------
-#
+
+
+# ---------------------------------------------------------------------------
+#                            BEGIN NEW CODE
+# ---------------------------------------------------------------------------
+
+
+# ************************************************************************
+# Name:     spencer_eot
+# Input:    - int, day of the year (n)
+#           - int, days in current year (N)
+# Output:   float, equation of time, hours
+# Features: Returns the equation of time
+# Depends:  - dcos
+#           - dsin
+# Ref:      Spencer, J.W. (1971), Fourier series representation of the
+#           position of the sun, Search, 2 (5), p. 172.
+# ************************************************************************
+spencer_eot <- function(n, N) {
+  B <- 2.0*pi*(n - 1.0)/N
+  my_eot <- (7.5e-6)
+  my_eot <- my_eot + (1.868e-3)*dcos(B)
+  my_eot <- my_eot - (3.2077e-2)*dsin(B)
+  my_eot <- my_eot - (1.4615e-2)*dcos(2.0*B)
+  my_eot <- my_eot - (4.0849e-2)*dsin(2.0*B)
+  my_eot <- my_eot * (12.0/pi)
+  return(my_eot)
+}
+
+
+# ************************************************************************
+# Name:     calc_daily_fluxes
+# Inputs:   - float, latitude, degrees N (lat)
+#           - float, longitude, degrees E (lon)
+#           - int, day of year (n)
+#           - float, elevation above mean sea level, m (elv)
+#           - int, current year (y)
+# Returns:  list object (solar)
+# Features: Calculates the half-hourly extraterrestrial solar radiation 
+#           flux based on the GePiSaT model.
+# Depends:  - calc_daily_solar
+#           - dcos
+#           - spencer_eot
+# Ref:      solar.py from the gepisat module of py_version
+#           https://bitbucket.org/labprentice/gepisat/src/master/
+# ************************************************************************
+calc_daily_fluxes <- function(lat, lon, n, elv, y){
+  # ~~~~~~~~~~~~~~~~~~~~~~~ FUNCTION VARIABLES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+  solar <- list()
+  
+  # Take advantage of our existing function
+  daily.solar <- calc_daily_solar(lat, n, elv, y)
+  dr <- daily.solar$dr
+  ru <- daily.solar$ru
+  rv <- daily.solar$rv
+  kN <- daily.solar$kN
+  
+  # What do we need?
+  # x io_hh (<-- the half-hourly Io values we want!)
+  #   x w_hh
+  #     x ts_hh
+  #       x local_hh
+  #       x eot (create spencer_eot function)
+  #       x lonc
+  #         x lon (added to input)
+  #         x tz_hour
+  
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # Create local time series, hours
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  local_hh <- seq(from = 0, to = 23.5, by = 0.5)
+  
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # Calculate time zone hour, hours
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  if (lon < 0) {
+    # Swap sign to "round down" negative numbers:
+    temp_lon <- -1.0*lon
+    temp_tzh = floor(temp_lon/15)  # floor makes integers
+    tz_hour = -1.0*temp_tzh        # out of floats
+  } else {
+    tz_hour = floor(lon/15)
+  }
+  solar$tz_hour <- tz_hour
+  
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # Calculate the equation of time, hours
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # Spencer (1971)
+  eot <- spencer_eot(n, kN)
+  solar$eot_hour <- eot
+  
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # Calculate the longitude correction, hours
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  lonc <- (15.0*tz_hour - lon)/15.0
+  solar$lc_hour <- lonc
+  
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # Calculate the solar time, hours
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ts_hh <- local_hh + eot - lonc
+  solar$ts_hh <- ts_hh
+  
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # Calculate the hour angle, degrees
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  w_hh <- (360./24.)*(ts_hh - 12.0)
+  solar$w_hh <- w_hh
+  
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # Calculate the half-hourly solar radiation flux, W/m^2
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  io_hh <- kGsc*dr*(ru + rv*dcos(w_hh))
+  io_hh[io_hh < 0] <- 0  # UPDATED FROM numpy.clip
+  solar$io_wm2 <- io_hh
+  
+  return(solar)
+}
+
+
+# ---------------------------------------------------------------------------
+#                            TESTING (US-Goo)
+# ---------------------------------------------------------------------------
+
+my.lat <- 34.2547
+my.lon <- -89.8735
+my.elv <- 87
+my.n <- 230
+my.y <- 2021
+my.solar <- calc_daily_fluxes(my.lat, my.lon, my.n, my.elv, my.y)
+
+
 # TODO:
-# 1. Create a calculate half-hourly solar radiation function
-# 2. Read WATCH data
-# 3. Read FLUXNET data
-# 4. Calculate gap-filling product
-# 5. Overlay FLUXNET data ontop of gap-filling product
-# 6. Plot
+# 1. Read WATCH data and FLUXNET data
+# 2. Calculate gap-filling product per day
+# 3. Overlay FLUXNET data ontop of gap-filling product
+# 4. Plot
 #
