@@ -2,7 +2,7 @@
 # Exercise 2.2
 # author: Tyler W. Davis, William & Mary
 # created: 2021-03-27
-# updated: 2021-03-27
+# updated: 2021-03-29
 #
 # PROBLEM STATEMENT: Calculate the half-hourly solar radiation values based 
 # on the gap-filling method provided. Update SPLASH's `solar.R` to provide 
