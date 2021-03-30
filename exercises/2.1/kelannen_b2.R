@@ -1,0 +1,305 @@
+# Block 2 - Exercise 2.1:
+# Name: Katherine Lannen
+# Class: DATA 330
+# Date: 2021-03-26
+
+#install.packages("Metrics")
+library("Metrics")
+source('kelannen_b2_utility.R')
+
+# Create a list that contains a dataframe for each node
+nodes <- c('2003', '2015', '2025', '2045', '2055', '2065', '2085', '2095', '2103', '2115', '2125', '2135')
+nodes.df <- list()
+
+# For each node define the URL, scrub the file name from the URL and download to /tmp
+for (i in 1:length(nodes)){
+  sensor.url <- paste("https://raw.githubusercontent.com/ds-wm/ds-wm.github.io/master/course/atsa/data/MDA300BKUP_resultsConverted-2YR_",
+                      nodes[i],".txt", sep="")
+  sensor.name <- tail(unlist(strsplit(sensor.url, "/")), n=1)
+  sensor.file <- paste("./", sensor.name, sep="")
+  download.file(sensor.url, sensor.file, method = 'auto')
+  
+  nodes.df[[i]] <- read.table(sensor.file, header = TRUE, row.names=NULL, sep = ",")
+}
+
+# Filter so only valid data packets remain, i.e. where:
+# Battery (voltage)	mV >= 2600
+# Water potential (ADC0)	1000 <= mV <= 500
+# Soil moisture (ADC1, ADC2)	1000 <= mV <= 250
+# Finally reset the row index
+for (i in 1:length(nodes)){
+  nodes.df[[i]] <- nodes.df[[i]][nodes.df[[i]]$voltage >= 2600,]
+  nodes.df[[i]] <- nodes.df[[i]][nodes.df[[i]]$"adc0" >= 500 & nodes.df[[i]]$"adc0" <= 1000,]
+  nodes.df[[i]] <- nodes.df[[i]][nodes.df[[i]]$"adc1" >= 250 & nodes.df[[i]]$"adc1" <= 1000,]
+  nodes.df[[i]] <- nodes.df[[i]][nodes.df[[i]]$"adc2" >= 250 & nodes.df[[i]]$"adc2"  <= 1000,]
+  rownames(nodes.df[[i]]) <- NULL
+}
+
+# See the shape of each of the different data frames for the nodes
+#for (i in 1:length(nodes)){
+#  cat(paste(dim(nodes.df[[i]])[1],", ",dim(nodes.df[[i]])[2],"\n",sep=""))
+#}
+
+# Combine the twelve individual sensors' measurements into an original time-sorted dataset
+original_df <- rbind(nodes.df[[1]], nodes.df[[2]], nodes.df[[3]], nodes.df[[4]], nodes.df[[5]], nodes.df[[6]], nodes.df[[7]],
+                     nodes.df[[8]], nodes.df[[9]], nodes.df[[10]], nodes.df[[11]], nodes.df[[12]])
+# Order by time
+original_df <- original_df[order(original_df$result_time),]
+# reset the index
+rownames(original_df) <- NULL
+
+# check if the original node data was time sorted already so that everything was increasing
+#for (i in 1:length(nodes)){
+#  print(all.equal(nodes.df[[i]][order(nodes.df[[i]]$result_time),],nodes.df[[i]]))
+#}
+
+# Find and remove any duplicate packets
+#A duplicate is the same data received by the same node number (nodeid) with the
+# same data and same or similar time stamp. Note that time stamps may be offset 
+# by +/- minutes (transmission lag); be sure that you are not looking at the 
+# next sample, which is triggered every 15 minutes.
+nodes_no_duplicates.df <- list()
+for (i in 1:12){
+  nodes_no_duplicates.df[[i]] <- data.frame(matrix(ncol = 13, nrow = 0))
+  x <- colnames(nodes.df[[i]])
+  colnames(nodes_no_duplicates.df[[i]]) <- x
+  
+  num_duplicates <- 0
+  
+  for(r in 1:nrow(nodes.df[[i]])){
+    difference <- as.double(difftime(nodes.df[[i]][r+1,]$result_time, nodes.df[[i]][r,]$result_time, units="mins"))
+    if (difference < 14 & r != nrow(nodes.df[[i]])){
+      num_duplicates <- num_duplicates + 1
+    }
+    else if(difference < 15 & r != nrow(nodes.df[[i]])){
+      if((nodes.df[[i]][r+1,]$voltage == nodes.df[[i]][r,]$voltage) & (nodes.df[[i]][r+1,]$humid == nodes.df[[i]][r,]$humid) & 
+         (nodes.df[[i]][r+1,]$humtemp == nodes.df[[i]][r,]$humtemp) & (nodes.df[[i]][r+1,]$adc0 == nodes.df[[i]][r,]$adc0) & 
+         (nodes.df[[i]][r+1,]$adc1 == nodes.df[[i]][r,]$adc1) & (nodes.df[[i]][r+1,]$adc2 == nodes.df[[i]][r,]$adc2) & 
+         (nodes.df[[i]][r+1,]$adc3 == nodes.df[[i]][r,]$adc3) & (nodes.df[[i]][r+1,]$adc4 == nodes.df[[i]][r,]$adc4) & 
+         (nodes.df[[i]][r+1,]$adc5 == nodes.df[[i]][r,]$adc5) & (nodes.df[[i]][r+1,]$adc6 == nodes.df[[i]][r,]$adc6)){
+        num_duplicates <- num_duplicates + 1
+      }
+      else{
+        nodes_no_duplicates.df[[i]][nrow(nodes_no_duplicates.df[[i]])+1, ] <- nodes.df[[i]][r,]
+      }
+    }
+    else {
+      nodes_no_duplicates.df[[i]][nrow(nodes_no_duplicates.df[[i]])+1, ] <- nodes.df[[i]][r,]
+    }
+  }
+  
+  cat(paste("Number of Duplicates removed: ",num_duplicates,"\n",sep=""))
+  rownames(nodes_no_duplicates.df[[i]]) <- NULL
+}
+
+# See the shape of each of the different data frames for the nodes and the nodes_no_duplicates
+#for (i in 1:12){
+#  cat(paste("Node ",i," with duplicates shape: ",dim(nodes.df[[i]])[1],", ",dim(nodes.df[[i]])[2],"\n",sep=""))
+#  cat(paste("Node ",i," no duplicates shape: ",dim(nodes_no_duplicates.df[[i]])[1],", ",dim(nodes_no_duplicates.df[[i]])[2],"\n\n",sep=""))
+#}
+
+# Combine the twelve individual sensors' measurements into a duplicate-free time-sorted data set
+# Combine the sensors without duplicates
+duplicate_free_df <- rbind(nodes_no_duplicates.df[[1]], nodes_no_duplicates.df[[2]], nodes_no_duplicates.df[[3]], nodes_no_duplicates.df[[4]], nodes_no_duplicates.df[[5]], nodes_no_duplicates.df[[6]], nodes_no_duplicates.df[[7]],
+                           nodes_no_duplicates.df[[8]], nodes_no_duplicates.df[[9]], nodes_no_duplicates.df[[10]], nodes_no_duplicates.df[[11]], nodes_no_duplicates.df[[12]])
+# Order by time
+duplicate_free_df <- duplicate_free_df[order(duplicate_free_df$result_time),]
+# reset the index
+rownames(duplicate_free_df) <- NULL
+
+# Add column to original and no duplicate data sets with the result_time
+# as date time objects
+original_df$time <- as.POSIXlt(original_df$result_time,format="%Y-%m-%d %H:%M:%S")
+duplicate_free_df$time <- as.POSIXlt(duplicate_free_df$result_time,format="%Y-%m-%d %H:%M:%S")
+
+# Create Columns for the different time cuts in original data set
+original_df$by15min <- cut(original_df$time, breaks="15 min")
+original_df$by60min <- cut(original_df$time, breaks="60 min")
+original_df$by12hr <- cut(original_df$time, breaks="12 hour")
+original_df$by24hr <- cut(original_df$time, breaks="24 hour")
+
+# Create Columns for the different time cuts in duplicate free data set
+duplicate_free_df$by15min <- cut(duplicate_free_df$time, breaks="15 min")
+duplicate_free_df$by60min <- cut(duplicate_free_df$time, breaks="60 min")
+duplicate_free_df$by12hr <- cut(duplicate_free_df$time, breaks="12 hour")
+duplicate_free_df$by24hr <- cut(duplicate_free_df$time, breaks="24 hour")
+
+# Aggregate the sensors we want to plot (ADC0, ADC1, ADC2) for each of the different time series in the original data set
+original_df.min15 <- aggregate(original_df[, c('adc0','adc1','adc2')], by= list(original_df$by15min),FUN = mean)
+original_df.min60 <- aggregate(original_df[, c('adc0','adc1','adc2')], by= list(original_df$by60min),FUN = mean)
+original_df.hr12 <- aggregate(original_df[, c('adc0','adc1','adc2')], by= list(original_df$by12hr),FUN = mean)
+original_df.hr24 <- aggregate(original_df[, c('adc0','adc1','adc2')], by= list(original_df$by24hr),FUN = mean)
+
+# Aggregate the sensors we want to plot (ADC0, ADC1, ADC2) for each of the different time series in the duplicate free data set
+duplicate_free_df.min15 <- aggregate(duplicate_free_df[, c('adc0','adc1','adc2')], by= list(duplicate_free_df$by15min),FUN = mean)
+duplicate_free_df.min60 <- aggregate(duplicate_free_df[, c('adc0','adc1','adc2')], by= list(duplicate_free_df$by60min),FUN = mean)
+duplicate_free_df.hr12 <- aggregate(duplicate_free_df[, c('adc0','adc1','adc2')], by= list(duplicate_free_df$by12hr),FUN = mean)
+duplicate_free_df.hr24 <- aggregate(duplicate_free_df[, c('adc0','adc1','adc2')], by= list(duplicate_free_df$by24hr),FUN = mean)
+
+# Turn 24 hour original data frame into a time series and Convert averaged raw values into their physical quantities
+#365
+original_ts.hr24.adc0 <- ts(lapply(original_df.hr24$adc0,calcSwp), frequency=288, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+original_ts.hr24.adc1 <- ts(lapply(original_df.hr24$adc1,calcVwc), frequency=288, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+original_ts.hr24.adc2 <- ts(lapply(original_df.hr24$adc2,calcVwc), frequency=288, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+
+# Turn 24 hour duplicate free data frame into a time series and Convert averaged raw values into their physical quantities
+#365
+duplicate_free_ts.hr24.adc0 <- ts(lapply(duplicate_free_df.hr24$adc0,calcSwp), frequency=288, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+duplicate_free_ts.hr24.adc1 <- ts(lapply(duplicate_free_df.hr24$adc1,calcVwc), frequency=288, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+duplicate_free_ts.hr24.adc2 <- ts(lapply(duplicate_free_df.hr24$adc2,calcVwc), frequency=288, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+
+# Turn 12 hour original data frame into a time series and Convert averaged raw values into their physical quantities
+#730
+original_ts.hr12.adc0 <- ts(lapply(original_df.hr12$adc0,calcSwp), frequency=576, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+original_ts.hr12.adc1 <- ts(lapply(original_df.hr12$adc1,calcVwc), frequency=576, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+original_ts.hr12.adc2 <- ts(lapply(original_df.hr12$adc2,calcVwc), frequency=576, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+
+# Turn 12 hour duplicate free data frame into a time series and Convert averaged raw values into their physical quantities
+#730
+duplicate_free_ts.hr12.adc0 <- ts(lapply(duplicate_free_df.hr12$adc0,calcSwp), frequency=576, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+duplicate_free_ts.hr12.adc1 <- ts(lapply(duplicate_free_df.hr12$adc1,calcVwc), frequency=576, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+duplicate_free_ts.hr12.adc2 <- ts(lapply(duplicate_free_df.hr12$adc2,calcVwc), frequency=576, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+
+# Turn 60 min original data frame into a time series and Convert averaged raw values into their physical quantities
+#8760
+original_ts.min60.adc0 <- ts(lapply(original_df.min60$adc0,calcSwp), frequency=6912, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+original_ts.min60.adc1 <- ts(lapply(original_df.min60$adc1,calcVwc), frequency=6912, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+original_ts.min60.adc2 <- ts(lapply(original_df.min60$adc2,calcVwc), frequency=6912, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+
+# Turn 60 min duplicate free data frame into a time series and Convert averaged raw values into their physical quantities
+#8760
+duplicate_free_ts.min60.adc0 <- ts(lapply(duplicate_free_df.min60$adc0,calcSwp), frequency=6912, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+duplicate_free_ts.min60.adc1 <- ts(lapply(duplicate_free_df.min60$adc1,calcVwc), frequency=6912, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+duplicate_free_ts.min60.adc2 <- ts(lapply(duplicate_free_df.min60$adc2,calcVwc), frequency=6912, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+
+# Turn 15 min original data frame into a time series and and Convert averaged raw values into their physical quantities
+#35040
+original_ts.min15.adc0 <- ts(lapply(original_df.min15$adc0,calcSwp), frequency=27648, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+original_ts.min15.adc1 <- ts(lapply(original_df.min15$adc1,calcVwc), frequency=27648, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+original_ts.min15.adc2 <- ts(lapply(original_df.min15$adc2,calcVwc), frequency=27648, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+
+# Turn 15 min duplicate free data frame into a time series and and Convert averaged raw values into their physical quantities
+#35040
+duplicate_free_ts.min15.adc0 <- ts(lapply(duplicate_free_df.min15$adc0,calcSwp), frequency=27648, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+duplicate_free_ts.min15.adc1 <- ts(lapply(duplicate_free_df.min15$adc1,calcVwc), frequency=27648, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+duplicate_free_ts.min15.adc2 <- ts(lapply(duplicate_free_df.min15$adc2,calcVwc), frequency=27648, start=c(2010, as.numeric(format(as.Date("2010-07-28"), "%j"))))
+
+# Calculate Correlation Coefficients (Pearson's R)
+r_m15_adc0 <- format(cor(unlist(duplicate_free_ts.min15.adc0), unlist(original_ts.min15.adc0), method = "pearson"), digits = 4)
+r_m15_adc1 <- format(cor(unlist(duplicate_free_ts.min15.adc1), unlist(original_ts.min15.adc1), method = "pearson"), digits = 4)
+r_m15_adc2 <- format(cor(unlist(duplicate_free_ts.min15.adc2), unlist(original_ts.min15.adc2), method = "pearson"), digits = 4)
+r_m60_adc0 <- format(cor(unlist(duplicate_free_ts.min60.adc0), unlist(original_ts.min60.adc0), method = "pearson"), digits = 4)
+r_m60_adc1 <- format(cor(unlist(duplicate_free_ts.min60.adc1), unlist(original_ts.min60.adc1), method = "pearson"), digits = 4)
+r_m60_adc2 <- format(cor(unlist(duplicate_free_ts.min60.adc2), unlist(original_ts.min60.adc2), method = "pearson"), digits = 4)
+r_h12_adc0 <- format(cor(unlist(duplicate_free_ts.hr12.adc0), unlist(original_ts.hr12.adc0), method = "pearson"), digits = 4)
+r_h12_adc1 <- format(cor(unlist(duplicate_free_ts.hr12.adc1), unlist(original_ts.hr12.adc1), method = "pearson"), digits = 4)
+r_h12_adc2 <- format(cor(unlist(duplicate_free_ts.hr12.adc2), unlist(original_ts.hr12.adc2), method = "pearson"), digits = 4)
+r_h24_adc0 <- format(cor(unlist(duplicate_free_ts.hr24.adc0), unlist(original_ts.hr24.adc0), method = "pearson"), digits = 4)
+r_h24_adc1 <- format(cor(unlist(duplicate_free_ts.hr24.adc1), unlist(original_ts.hr24.adc1), method = "pearson"), digits = 4)
+r_h24_adc2 <- format(cor(unlist(duplicate_free_ts.hr24.adc2), unlist(original_ts.hr24.adc2), method = "pearson"), digits = 4)
+
+# Calculate Coefficients of Determination (R2)
+r2_m15_adc0 <- format(summary(lm(unlist(original_ts.min15.adc0) ~ unlist(duplicate_free_ts.min15.adc0)))$r.squared, digits = 4)
+r2_m15_adc1 <- format(summary(lm(unlist(original_ts.min15.adc1) ~ unlist(duplicate_free_ts.min15.adc1)))$r.squared, digits = 4)
+r2_m15_adc2 <- format(summary(lm(unlist(original_ts.min15.adc2) ~ unlist(duplicate_free_ts.min15.adc2)))$r.squared, digits = 4)
+r2_m60_adc0 <- format(summary(lm(unlist(original_ts.min60.adc0) ~ unlist(duplicate_free_ts.min60.adc0)))$r.squared, digits = 4)
+r2_m60_adc1 <- format(summary(lm(unlist(original_ts.min60.adc1) ~ unlist(duplicate_free_ts.min60.adc1)))$r.squared, digits = 4)
+r2_m60_adc2 <- format(summary(lm(unlist(original_ts.min60.adc2) ~ unlist(duplicate_free_ts.min60.adc2)))$r.squared, digits = 4)
+r2_h12_adc0 <- format(summary(lm(unlist(original_ts.hr12.adc0) ~ unlist(duplicate_free_ts.hr12.adc0)))$r.squared, digits = 4)
+r2_h12_adc1 <- format(summary(lm(unlist(original_ts.hr12.adc1) ~ unlist(duplicate_free_ts.hr12.adc1)))$r.squared, digits = 4)
+r2_h12_adc2 <- format(summary(lm(unlist(original_ts.hr12.adc2) ~ unlist(duplicate_free_ts.hr12.adc2)))$r.squared, digits = 4)
+r2_h24_adc0 <- format(summary(lm(unlist(original_ts.hr24.adc0) ~ unlist(duplicate_free_ts.hr24.adc0)))$r.squared, digits = 4)
+r2_h24_adc1 <- format(summary(lm(unlist(original_ts.hr24.adc1) ~ unlist(duplicate_free_ts.hr24.adc1)))$r.squared, digits = 4)
+r2_h24_adc2 <- format(summary(lm(unlist(original_ts.hr24.adc2) ~ unlist(duplicate_free_ts.hr24.adc2)))$r.squared, digits = 4)
+
+# Calculate root-mean-squared error (RMSE)
+rmse_m15_adc0 <- format(rmse(unlist(original_ts.min15.adc0),unlist(duplicate_free_ts.min15.adc0)), digits = 4)
+rmse_m15_adc1 <- format(rmse(unlist(original_ts.min15.adc1),unlist(duplicate_free_ts.min15.adc1)), digits = 4)
+rmse_m15_adc2 <- format(rmse(unlist(original_ts.min15.adc2),unlist(duplicate_free_ts.min15.adc2)), digits = 4)
+rmse_m60_adc0 <- format(rmse(unlist(original_ts.min60.adc0),unlist(duplicate_free_ts.min60.adc0)), digits = 4)
+rmse_m60_adc1 <- format(rmse(unlist(original_ts.min60.adc1),unlist(duplicate_free_ts.min60.adc1)), digits = 4)
+rmse_m60_adc2 <- format(rmse(unlist(original_ts.min60.adc2),unlist(duplicate_free_ts.min60.adc2)), digits = 4)
+rmse_h12_adc0 <- format(rmse(unlist(original_ts.hr12.adc0),unlist(duplicate_free_ts.hr12.adc0)), digits = 4)
+rmse_h12_adc1 <- format(rmse(unlist(original_ts.hr12.adc1),unlist(duplicate_free_ts.hr12.adc1)), digits = 4)
+rmse_h12_adc2 <- format(rmse(unlist(original_ts.hr12.adc2),unlist(duplicate_free_ts.hr12.adc2)), digits = 4)
+rmse_h24_adc0 <- format(rmse(unlist(original_ts.hr24.adc0),unlist(duplicate_free_ts.hr24.adc0)), digits = 4)
+rmse_h24_adc1 <- format(rmse(unlist(original_ts.hr24.adc1),unlist(duplicate_free_ts.hr24.adc1)), digits = 4)
+rmse_h24_adc2 <- format(rmse(unlist(original_ts.hr24.adc2),unlist(duplicate_free_ts.hr24.adc2)), digits = 4)
+
+# Create a plots for sensor ADC0-showing the original time-aggregated data plotted against the duplicate free data. Include the metrics in the plot
+options(repr.plot.width=18, repr.plot.height=12, repr.plot.res = 125)
+par(mfrow = c(2,2),cex.main =  1.5, cex.lab = 1.25)
+
+plot(unlist(duplicate_free_ts.min15.adc0), unlist(original_ts.min15.adc0), type ='p',xlab = "Original soil water potential", ylab = "Duplicate-free soil water potential")
+mtext("15-minute", cex = 1.75, side=3)
+mtext(paste("N =",length(duplicate_free_ts.min15.adc0),"r =",r_m15_adc0," R2 =",r2_m15_adc0," rmse =",rmse_m15_adc0),
+      cex = 1.25,side = 1,line = 4.15)
+
+plot(unlist(duplicate_free_ts.min60.adc0), unlist(original_ts.min60.adc0), type ='p',xlab = "Original soil water potential", ylab = "Duplicate-free soil water potential")
+mtext("60-minute", cex = 1.75, side=3)
+mtext(paste("N =",length(duplicate_free_ts.min60.adc0),"r =",r_m60_adc0," R2 =",r2_m60_adc0," rmse =",rmse_m60_adc0),
+      cex = 1.25,side = 1,line = 4.15)
+
+plot(unlist(duplicate_free_ts.hr12.adc0), unlist(original_ts.hr12.adc0), type ='p',xlab = "Original soil water potential", ylab = "Duplicate-free soil water potential")
+mtext("12-hour", cex = 1.75, side=3)
+mtext(paste("N =",length(duplicate_free_ts.hr12.adc0),"r =",r_h12_adc0," R2 =",r2_h12_adc0," rmse =",rmse_h12_adc0),
+      cex = 1.25,side = 1,line = 4.15)
+
+plot(unlist(duplicate_free_ts.hr24.adc0), unlist(original_ts.hr24.adc0), type ='p',xlab = "Original soil water potential", ylab = "Duplicate-free soil water potential")
+mtext("24-hour", cex = 1.75, side=3)
+mtext(paste("N =",length(duplicate_free_ts.hr24.adc0),"r =",r_h24_adc0," R2 =",r2_h24_adc0," rmse =",rmse_h24_adc0),
+      cex = 1.25,side = 1,line = 4.15)
+
+mtext("ADC0", side = 3, line = -2, outer = TRUE, cex = 2)
+
+# Create a plots for sensor ADC1-showing the original time-aggregated data plotted against the duplicate free data. Include the metrics in the plot
+options(repr.plot.width=18, repr.plot.height=12, repr.plot.res = 125)
+par(mfrow = c(2,2),cex.main =  1.5, cex.lab = 1.25)
+
+plot(unlist(duplicate_free_ts.min15.adc1), unlist(original_ts.min15.adc1), type ='p', xlab = "Original soil moisture content", ylab = "Duplicate-free soil moisture content")
+mtext("15-minute", cex = 1.75, side=3)
+mtext(paste("N =",length(duplicate_free_ts.min15.adc1),"r =",r_m15_adc1," R2 =",r2_m15_adc1," rmse =",rmse_m15_adc1),
+      cex = 1.25,side = 1,line = 4.15)
+
+plot(unlist(duplicate_free_ts.min60.adc1), unlist(original_ts.min60.adc1), type ='p', xlab = "Original soil moisture content", ylab = "Duplicate-free soil moisture content")
+mtext("60-minute", cex = 1.75, side=3)
+mtext(paste("N =",length(duplicate_free_ts.min60.adc1),"r =",r_m60_adc1," R2 =",r2_m60_adc1," rmse =",rmse_m60_adc1),
+      cex = 1.25,side = 1,line = 4.15)
+
+plot(unlist(duplicate_free_ts.hr12.adc1), unlist(original_ts.hr12.adc1), type ='p', xlab = "Original soil moisture content", ylab = "Duplicate-free soil moisture content")
+mtext("12-hour", cex = 1.75, side=3)
+mtext(paste("N =",length(duplicate_free_ts.hr12.adc1),"r =",r_h12_adc1," R2 =",r2_h12_adc1," rmse =",rmse_h12_adc1),
+      cex = 1.25,side = 1,line = 4.15)
+
+plot(unlist(duplicate_free_ts.hr24.adc1), unlist(original_ts.hr24.adc1), type ='p', xlab = "Original soil moisture content", ylab = "Duplicate-free soil moisture content")
+mtext("24-hour", cex = 1.75, side=3)
+mtext(paste("N =",length(duplicate_free_ts.hr24.adc1),"r =",r_h24_adc1," R2 =",r2_h24_adc1," rmse =",rmse_h24_adc1),
+      cex = 1.25,side = 1,line = 4.15)
+
+mtext("ADC1", side = 3, line = -2, outer = TRUE, cex = 2)
+
+# Create a plots for sensor ADC2-showing the original time-aggregated data plotted against the duplicate free data. Include the metrics in the plot
+options(repr.plot.width=18, repr.plot.height=12, repr.plot.res = 125)
+par(mfrow = c(2,2),cex.main =  1.5, cex.lab = 1.25)
+
+plot(unlist(duplicate_free_ts.min15.adc2), unlist(original_ts.min15.adc2), type ='p', xlab = "Original soil moisture content", ylab = "Duplicate-free soil moisture content")
+mtext("15-minute", cex = 1.75, side=3)
+mtext(paste("N =",length(duplicate_free_ts.min15.adc2),"r =",r_m15_adc2," R2 =",r2_m15_adc2," rmse =",rmse_m15_adc2),
+      cex = 1.25,side = 1,line = 4.15)
+
+plot(unlist(duplicate_free_ts.min60.adc2), unlist(original_ts.min60.adc2), type ='p', xlab = "Original soil moisture content", ylab = "Duplicate-free soil moisture content")
+mtext("60-minute", cex = 1.75, side=3)
+mtext(paste("N =",length(duplicate_free_ts.min60.adc2),"r =",r_m60_adc2," R2 =",r2_m60_adc2," rmse =",rmse_m60_adc2),
+      cex = 1.25,side = 1,line = 4.15)
+
+plot(unlist(duplicate_free_ts.hr12.adc2), unlist(original_ts.hr12.adc2), type ='p', xlab = "Original soil moisture content", ylab = "Duplicate-free soil moisture content")
+mtext("12-hour", cex = 1.75, side=3)
+mtext(paste("N =",length(duplicate_free_ts.hr12.adc2),"r =",r_h12_adc2," R2 =",r2_h12_adc2," rmse =",rmse_h12_adc2),
+      cex = 1.25,side = 1,line = 4.15)
+
+plot(unlist(duplicate_free_ts.hr24.adc2), unlist(original_ts.hr24.adc2), type ='p', xlab = "Original soil moisture content", ylab = "Duplicate-free soil moisture content")
+mtext("24-hour", cex = 1.75, side=3)
+mtext(paste("N =",length(duplicate_free_ts.hr24.adc2),"r =",r_h24_adc2," R2 =",r2_h24_adc2," rmse =",rmse_h24_adc2),
+      cex = 1.25,side = 1,line = 4.15)
+
+mtext("ADC2", side = 3, line = -2, outer = TRUE, cex = 2)
