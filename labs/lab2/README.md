@@ -29,10 +29,18 @@ You may work in teams of two to four.
         ```
     - Repeat the process until all outliers are identified
 3. Results
-    - Create a scatter plot of SW<sub>in</sub> versus NEE that identifies the outliers from the original data with appropriate title, labels and legend.
+    - Create a scatter plot of SW<sub>in</sub> versus NEE that clearly identifies the outliers from the original data with appropriate title, labels and legend.
     - Explain what is being shown in the figure.
     - Answer the question: how many outliers were found in the dataset?
 4. Discussions and conclusions
     - Reflect on your methods and results, what worked and what didn't work, what were the challenges you faced, were the results as you expected, what inferences (if any) can you make.
 5. References
      - Include an alphabetized list of your references for all citations used.
+
+## Lab Groups
+
+1. Andrew, Asha, Kelton, Monica
+2. Joe, John, Matthew C., Alex
+3. Connor, Keagan, Matthew M., Conrad
+4. Katherine
+5. Rini, Jaci, Kimya, David
