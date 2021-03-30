@@ -407,10 +407,10 @@ calc_daily_fluxes <- function(lat, lon, n, elv, y){
   if (lon < 0) {
     # Swap sign to "round down" negative numbers:
     temp_lon <- -1.0*lon
-    temp_tzh = floor(temp_lon/15)  # floor makes integers
-    tz_hour = -1.0*temp_tzh        # out of floats
+    temp_tzh <- floor(temp_lon/15)  # floor makes integers
+    tz_hour <- -1.0*temp_tzh        # out of floats
   } else {
-    tz_hour = floor(lon/15)
+    tz_hour <- floor(lon/15)
   }
   solar$tz_hour <- tz_hour
   
