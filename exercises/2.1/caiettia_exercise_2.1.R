@@ -1,4 +1,4 @@
-# Name: Andrew Caietti
+# Name: Andrew Caietti and Asha Silva
 # Date: 4/1/2021
 # Exercise 2.1
 #########################
