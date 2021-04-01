@@ -1,0 +1,372 @@
+# Name: Andrew Caietti
+# Date: 4/1/2021
+# Exercise 2.1
+#########################
+
+
+source('caiettia_2.1_utility.R')
+
+# I originally used these before the code snippet but now I am using the 
+# code snippet provided by davis on the github.
+
+# main.data <- get.data()
+# nodupe.data <- no.dupes(main.data)
+
+# Only looking at the first five CSVs
+s2003.url <- "https://raw.githubusercontent.com/ds-wm/ds-wm.github.io/master/course/atsa/data/MDA300BKUP_resultsConverted-2YR_2003.txt"
+s2015.url <- "https://raw.githubusercontent.com/ds-wm/ds-wm.github.io/master/course/atsa/data/MDA300BKUP_resultsConverted-2YR_2015.txt"
+s2025.url <- "https://raw.githubusercontent.com/ds-wm/ds-wm.github.io/master/course/atsa/data/MDA300BKUP_resultsConverted-2YR_2025.txt"
+s2045.url <- "https://raw.githubusercontent.com/ds-wm/ds-wm.github.io/master/course/atsa/data/MDA300BKUP_resultsConverted-2YR_2045.txt"
+s2055.url <- "https://raw.githubusercontent.com/ds-wm/ds-wm.github.io/master/course/atsa/data/MDA300BKUP_resultsConverted-2YR_2055.txt"
+s2065.url <- 'https://raw.githubusercontent.com/ds-wm/ds-wm.github.io/master/course/atsa/data/MDA300BKUP_resultsConverted-2YR_2065.txt'
+s2085.url <- 'https://raw.githubusercontent.com/ds-wm/ds-wm.github.io/master/course/atsa/data/MDA300BKUP_resultsConverted-2YR_2085.txt'
+s2095.url <- 'https://raw.githubusercontent.com/ds-wm/ds-wm.github.io/master/course/atsa/data/MDA300BKUP_resultsConverted-2YR_2095.txt'
+s2103.url <- 'https://raw.githubusercontent.com/ds-wm/ds-wm.github.io/master/course/atsa/data/MDA300BKUP_resultsConverted-2YR_2103.txt'
+s2115.url <- 'https://raw.githubusercontent.com/ds-wm/ds-wm.github.io/master/course/atsa/data/MDA300BKUP_resultsConverted-2YR_2115.txt'
+s2125.url <- 'https://raw.githubusercontent.com/ds-wm/ds-wm.github.io/master/course/atsa/data/MDA300BKUP_resultsConverted-2YR_2125.txt'
+s2135.url <- 'https://raw.githubusercontent.com/ds-wm/ds-wm.github.io/master/course/atsa/data/MDA300BKUP_resultsConverted-2YR_2135.txt'
+
+s2003 <- read.csv(s2003.url)
+s2015 <- read.csv(s2015.url)
+s2025 <- read.csv(s2025.url)
+s2045 <- read.csv(s2045.url)
+s2055 <- read.csv(s2055.url)
+
+s2065 <- read.csv(s2065.url) 
+s2085 <- read.csv(s2085.url) 
+s2095 <- read.csv(s2095.url) 
+s2103 <- read.csv(s2103.url) 
+s2115 <- read.csv(s2115.url) 
+s2125 <- read.csv(s2125.url) 
+s2135 <- read.csv(s2135.url) 
+
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## IDENTIFY DUPLICATES
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Based on the reading, the psuedo code for identifying duplicates within a
+# sensor's data file is as follows (NOTE: there are other valid definitions):
+# Reference: https://doi.org/10.3390/jsan3040297
+#
+# Algorithm 1:	Identifies and Removes Duplicate Packets
+#   Input:	Packets from the same node ordered by time and marked as valid
+#   Output:	Packets marked either as valid or duplicate
+#   Begin
+#   While pkti = nextValidPacket() do
+#     While pkti is valid AND pktj = nextValidPacket() do
+#       If |pkti.time - pktj.time| < T - dT then
+#         If pkti.content == pktj.content then
+#           Mark pktj as a duplicate of pkti
+#         End
+#       Else
+#         Break loop on pktj
+#     End
+#   End
+#   pkti = nextValidPacket()
+#   End
+#   End
+#
+# The network has a sampling period, T, of 15 minutes.
+# The paper experiments with dt = 2 minutes.
+#
+# The data files are presorted by the result time; therefore, it is just a
+# matter of checking for valid packets and checking its neighbors to see
+# if they are duplicates. Let's use battery voltage as our first criteria
+#
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Filter for valid measurements
+###  * note that the battery level impacts all measurements and we
+###    will take care of individual measurements at time of averaging
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+s2003 <- s2003[s2003$voltage >= 2600, ]
+s2015 <- s2015[s2015$voltage >= 2600, ]
+s2025 <- s2025[s2025$voltage >= 2600, ]
+s2045 <- s2045[s2045$voltage >= 2600, ]
+s2055 <- s2055[s2055$voltage >= 2600, ]
+
+s2065 <- s2065[s2065$voltage >= 2600, ]
+s2085 <- s2085[s2085$voltage >= 2600, ]
+s2095 <- s2095[s2095$voltage >= 2600, ]
+s2103 <- s2103[s2103$voltage >= 2600, ]
+s2115 <- s2115[s2115$voltage >= 2600, ]
+s2125 <- s2125[s2125$voltage >= 2600, ]
+s2135 <- s2135[s2135$voltage >= 2600, ]
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Add duplicate marker column (0: valid; 1: duplicate)
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+s2003$dup <- 0
+s2015$dup <- 0
+s2025$dup <- 0
+s2045$dup <- 0
+s2055$dup <- 0
+
+s2065$dup <- 0
+s2085$dup <- 0
+s2095$dup <- 0
+s2103$dup <- 0
+s2115$dup <- 0
+s2125$dup <- 0
+s2135$dup <- 0
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Add time column (this method uses POSIXct for dates/times)
+### and allows to check for time differences between rows in seconds
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+s2003$date <- as.POSIXct(s2003$result_time)
+s2015$date <- as.POSIXct(s2015$result_time)
+s2025$date <- as.POSIXct(s2025$result_time)
+s2045$date <- as.POSIXct(s2045$result_time)
+s2055$date <- as.POSIXct(s2055$result_time)
+
+s2065$date <- as.POSIXct(s2065$result_time)
+s2085$date <- as.POSIXct(s2085$result_time)
+s2095$date <- as.POSIXct(s2095$result_time)
+s2103$date <- as.POSIXct(s2103$result_time)
+s2115$date <- as.POSIXct(s2115$result_time)
+s2125$date <- as.POSIXct(s2125$result_time)
+s2135$date <- as.POSIXct(s2135$result_time)
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Mark the duplicates
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Create function for reproducibility; this method needs run on each dataset
+
+# ************************************************************************
+# Name:     find_duplicates
+# Inputs:   R data.frame with columns
+#           * "nodeid", "parent", "voltage", "humid", "humtemp", "adc0"
+#           * "adc1",   "adc2",   "adc3",    "adc4",  "adc5",    "adc6"
+#           * "date" <- must be POSIXct object (others can be anything)
+#           * "dup"  <- must be integer (0: original; 1: duplicate)
+# Returns:  R data.frame (edited)
+# Features: Assigns 1 to rows that are found to be duplicates based on
+#           Algorithm 1 above.
+# Ref:      https://doi.org/10.3390/jsan3040297
+# ************************************************************************
+find_duplicates <- function(my.df) {
+  # Define the experimental delta, seconds
+  kbd <- (15 - 2)*60
+  
+  # Get length of time series
+  n <- length(my.df$result_time)
+  
+  # Define columns for checking duplicates (i.e., everything but time)
+  check.cols <- c("nodeid", "parent", "voltage", "humid", "humtemp", "adc0", 
+                  "adc1",   "adc2",   "adc3",    "adc4",  "adc5",    "adc6")
+  
+  for (i in 1:(n-1)) {
+    for (j in (i+1):(n-1)) {
+      # Check the time delta
+      dt <- difftime(my.df$date[j], my.df$date[i], units = "secs")
+      if (dt < kbd) {
+        # We are in the search region; check for matching content;
+        # the 'all' function is TRUE if all columns match
+        d.mat <- all(my.df[i, check.cols] == my.df[j, check.cols])
+        if (d.mat) {
+          # In the search region w/ matching data; mark at duplicate
+          my.df[j, "dup"] <- 1
+        }
+      } else {
+        # We are passed the search region
+        break
+      }
+    }
+  }
+  return(my.df)
+}
+
+s2003 <- find_duplicates(s2003) # Found 435 duplicates
+s2015 <- find_duplicates(s2015) # Found 285 duplicates
+s2025 <- find_duplicates(s2025) # Found 350 duplicates
+s2045 <- find_duplicates(s2045) # Found 422 duplicates
+s2055 <- find_duplicates(s2055) # Found 308 duplicates
+
+s2065 <- find_duplicates(s2065) # Found 308 duplicates
+s2085 <- find_duplicates(s2085) # Found 308 duplicates
+s2095 <- find_duplicates(s2095) # Found 308 duplicates
+s2103 <- find_duplicates(s2103) # Found 308 duplicates
+s2115 <- find_duplicates(s2115) # Found 308 duplicates
+s2125 <- find_duplicates(s2125) # Found 308 duplicates
+s2135 <- find_duplicates(s2135) # Found 308 duplicates
+
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## CREATE DUPLICATE-FREE COPIES
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+s2003.df <- s2003[s2003$dup == 0, ]
+s2015.df <- s2015[s2015$dup == 0, ]
+s2025.df <- s2025[s2025$dup == 0, ]
+s2045.df <- s2045[s2045$dup == 0, ]
+s2055.df <- s2055[s2055$dup == 0, ]
+
+s2065.df <- s2065[s2065$dup == 0, ]
+s2085.df <- s2085[s2085$dup == 0, ]
+s2095.df <- s2095[s2095$dup == 0, ]
+s2103.df <- s2103[s2103$dup == 0, ]
+s2115.df <- s2115[s2115$dup == 0, ]
+s2125.df <- s2125[s2125$dup == 0, ]
+s2135.df <- s2135[s2135$dup == 0, ]
+
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## CREATE SINGLE DATAFRAME WITH ALL OBSERVATIONS SORTED BY TIME
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Create a helper function for merging a list of dataframes
+
+# ************************************************************************
+# Name:     merge_all
+# Inputs:   list, list of data frames to aggregate by rows
+# Returns:  R data.frame
+# Features: Merges and sorts a list of data frames; rather than merge
+#           just two data frames at a time.
+# Ref:      https://www.r-bloggers.com/2011/01/merging-multiple-data-frames-in-r/
+# ************************************************************************
+merge_list <- function(listofdf){
+  Reduce(
+    function(x, y) merge(x, y, all=TRUE), listofdf)
+}
+
+# Merge all data.frames together
+orig.df <- merge_list(list(s2003, s2015, s2025, s2045, s2055, s2065, s2085, s2095, s2103, s2115, s2125, s2135))
+nodup.df <- merge_list(list(s2003.df, s2015.df, s2025.df, s2045.df, s2055.df, s2065.df, s2085.df, s2095.df, s2103.df, s2115.df, s2125.df, s2135.df))
+
+# Sort by time
+orig.df <- orig.df[order(orig.df$date), ]
+nodup.df <- nodup.df[order(nodup.df$date), ]
+
+
+
+## Now i begin to aggregate everything by time
+nodupe.data <- nodup.df
+main.data <- orig.df
+
+## This block is my fix for time-buckets that fit the data as desired. Originally, all of the buckets
+## were being made based on the first time stamp 
+## so, 15 minute buckets would be 07:08 to 07:23 and so on. 
+## so, I added a dummy row.
+
+dummy <- data.frame(result_time = '2010-05-29 00:00:00', nodeid = 0, parent = 0, 
+                    voltage = 0, humid = 0, humtemp = 0, adc0 = 0, adc1 = 0,
+                    adc2 = 0, adc3 = 0, adc4 = 0, adc5 = 0, adc6 = 0, 
+                    date = as.POSIXct('2010-05-29 00:00:00', format="%Y-%m-%d %H:%M:%S"), dup = 0)#, dupes = 1)
+
+nodupe.data <- rbind(nodupe.data, dummy)     
+nodupe.data <- nodupe.data[order(nodupe.data$result_time),]
+
+# dummy <- data.frame(result_time = '2010-05-29 00:00:00', nodeid = 0, parent = 0, 
+#                     voltage = 0, humid = 0, humtemp = 0, adc0 = 0, adc1 = 0,
+#                     adc2 = 0, adc3 = 0, adc4 = 0, adc5 = 0, adc6 = 0)
+main.data <- rbind(main.data, dummy)     
+main.data <- main.data[order(main.data$result_time),]
+
+no.dupe.bins <- time_slicer(nodupe.data, nodupe.data$result_time)
+main.data.bins <- time_slicer(main.data, main.data$result_time)
+no.dupe.bins <- no.dupe.bins[-1,] # need to remove the dummy column
+main.data.bins <- main.data.bins[-1,] # need to remove the dummy column
+
+
+# Aggregate everything into temporal buckets as desired
+test <- main.data.bins
+raw.day.data <- temporal_agg(test, 'day',test$twentyfour.hours)
+raw.halfday.data <- temporal_agg(test, 'halfday',test$twelve.hours)
+raw.hour.data <- temporal_agg(test, 'hour',test$hours)
+raw.minutes.data <- temporal_agg(test, 'minutes',test$quarters)
+
+test <- no.dupe.bins
+day.data <- temporal_agg(test, 'day',test$twentyfour.hours)
+halfday.data <- temporal_agg(test, 'halfday',test$twelve.hours)
+hour.data <- temporal_agg(test, 'hour',test$hours)
+minutes.data <- temporal_agg(test, 'minutes',test$quarters)
+
+
+## Prep the data for plotting
+## I am also calculating the various values needed (SWP/VWC)
+day.data <- calc.vals(day.data)
+raw.day.data <- calc.vals(raw.day.data)
+
+halfday.data <- calc.vals(halfday.data)
+raw.halfday.data <- calc.vals(raw.halfday.data)
+
+hour.data <- calc.vals(hour.data)
+raw.hour.data <- calc.vals(raw.hour.data)
+
+minutes.data <- calc.vals(minutes.data)
+raw.minutes.data <- calc.vals(raw.minutes.data)
+
+raw.minutes.data <- subset(raw.minutes.data, (raw.minutes.data$minutes %in% minutes.data$minutes))
+raw.hour.data <- subset(raw.hour.data, (raw.hour.data$hour %in% hour.data$hour))
+
+halfday.stats.vwc1 <- calc.stats(halfday.data, raw.halfday.data, vwc.1, PLOT = FALSE)
+halfday.stats.vwc2 <- calc.stats(halfday.data, raw.halfday.data, vwc.2, PLOT = FALSE)
+halfday.stats.swp <- calc.stats(halfday.data, raw.halfday.data, swp, PLOT = FALSE)
+
+minutes.stats.vwc1 <- calc.stats(minutes.data, raw.minutes.data, vwc.1, PLOT = FALSE)
+minutes.stats.vwc2 <- calc.stats(minutes.data, raw.minutes.data, vwc.2, PLOT = FALSE)
+minutes.stats.swp <- calc.stats(minutes.data, raw.minutes.data, swp, PLOT = FALSE)
+
+hour.stats.vwc1 <- calc.stats(hour.data, raw.hour.data, vwc.1, PLOT = FALSE)
+hour.stats.vwc2 <- calc.stats(hour.data, raw.hour.data, vwc.2, PLOT = FALSE)
+hour.stats.swp <- calc.stats(hour.data, raw.hour.data, swp, PLOT = FALSE)
+
+day.stats.vwc1 <- calc.stats(day.data, raw.day.data, vwc.1, PLOT = FALSE)
+day.stats.vwc2 <- calc.stats(day.data, raw.day.data, vwc.2, PLOT = FALSE)
+day.stats.swp <- calc.stats(day.data, raw.day.data, swp, PLOT = FALSE)
+
+## PLOT SWP
+
+#SWP PLOTS
+par(mfrow=c(2,2))
+
+plot(day.data$swp,raw.day.data$swp, xlab = 'Duplicate-free soil water potential (kPa)', ylab = 'Original soil water potential (kPa)', main = 'Day-Aggregate SWP')
+text(-150,-400,labels = 'N = 469\nR^2 = 89.19% \n pR^2 = 94.43% \n RMSE = 28.25 kPa',cex = 0.75)
+
+plot(halfday.data$swp,raw.halfday.data$swp, xlab = 'Duplicate-free soil water potential (kPa)', ylab = 'Original soil water potential (kPa)', main = 'Halfday-Aggregate SWP')
+text(-150,-400,labels = 'N = 849\nR^2 = 95.09% \n pR^2 = 97.52% \n RMSE = 19.03 kPa',cex = 0.75)
+
+plot(hour.data$swp,raw.hour.data$swp, xlab = 'Duplicate-free soil water potential (kPa)', ylab = 'Original soil water potential (kPa)', main = 'Hourly-Aggregate SWP')
+text(-150,-400,labels = 'N = 7507\nR^2 = 94.67% \n pR^2 = 94.67% \n RMSE = 28.90 kPa',cex = 0.75)
+
+plot(minutes.data$swp, raw.minutes.data$swp, xlab = 'Duplicate-free soil water potential (kPa)', ylab = 'Original soil water potential (kPa)', main = '15 Minute-Aggregate SWP')
+text(-150,-400,labels = 'N = 25100\nR^2 = 96.19% \n pR^2 = 98.08% \n RMSE = 18.80 kPa',cex = 0.75)
+
+
+# VWC.1 PLOT
+# VWC.1 PLOTS
+par(mfrow=c(2,2))
+
+plot(day.data$`vwc.1`,raw.day.data$`vwc.1`, xlab = 'Duplicate-free soil moisture content (m^3 * m^3)', ylab = 'Original soil moisture content (m^3 * m^3)', main = 'Day-Aggregate VWC 10cm')
+text(0.23,0.05,labels = 'N = 469 \n R^2 = 89.19% \n pR^2 = 94.44% \n RMSE = 28.25 m^3 * m^3',cex = 0.75)
+
+plot(halfday.data$`vwc.1`,raw.halfday.data$`vwc.1`, xlab = 'Duplicate-free soil moisture content (m^3 * m^3)', ylab = 'Original soil moisture content (m^3 * m^3)', main = 'Halfday-Aggregate VWC 10cm')
+text(0.23,0.05,labels = 'N = 849 \n R^2 = 95.09% \n pR^2 = 97.52% \n RMSE = 19.02 m^3 * m^3',cex = 0.75)
+
+plot(hour.data$`vwc.1`,raw.hour.data$`vwc.1`, xlab = 'Duplicate-free soil moisture content (m^3 * m^3)', ylab = 'Original soil moisture content (m^3 * m^3)', main = 'Hourly-Aggregate VWC 10cm')
+text(0.23,0.05,labels = 'N = 7507 \n R^2 = 89.62% \n pR^2 = 94.67% \n RMSE = 28.90 m^3 * m^3',cex = 0.75)
+
+plot(minutes.data$`vwc.1`, raw.minutes.data$`vwc.1`, xlab = 'Duplicate-free soil moisture content (m^3 * m^3)', ylab = 'Original soil moisture content (m^3 * m^3)', main = '15 Minute-Aggregate VWC 10cm')
+text(0.4,0.05,labels = 'N = 25100 \n R^2 = 96.19% \n pR^2 = 98.08% \n RMSE = 18.80 m^3 * m^3',cex = 0.75)
+
+
+# VWC.2 PLOT
+# VWC.2 PLOTS
+par(mfrow=c(2,2))
+
+plot(day.data$`vwc.2`,raw.day.data$`vwc.2`, xlab = 'Duplicate-free soil moisture content (m^3 * m^3)', ylab = 'Original soil moisture content (m^3 * m^3)', main = 'Day-Aggregate VWC 30cm')
+text(0.23,0.05,labels = 'N = 469 \n R^2 = 89.19% \n pR^2 = 94.44% \n RMSE = 28.25 m^3 * m^3',cex = 0.75)
+
+plot(halfday.data$`vwc.2`,raw.halfday.data$`vwc.2`, xlab = 'Duplicate-free soil moisture content (m^3 * m^3)', ylab = 'Original soil moisture content (m^3 * m^3)', main = 'Halfday-Aggregate VWC 30cm')
+text(0.24,0.05,labels = 'N = 849 \n R^2 = 95.09% \n pR^2 = 97.52% \n RMSE = 19.03 m^3 * m^3',cex = 0.75)
+
+plot(hour.data$`vwc.2`,raw.hour.data$`vwc.2`, xlab = 'Duplicate-free soil moisture content (m^3 * m^3)', ylab = 'Original soil moisture content (m^3 * m^3)', main = 'Hourly-Aggregate VWC 30cm')
+text(0.3,0.05,labels = 'N = 7507 \n R^2 = 89.62% \n pR^2 = 94.67% \n RMSE = 28.90 m^3 * m^3',cex = 0.75)
+
+plot(minutes.data$`vwc.2`, raw.minutes.data$`vwc.2`, xlab = 'Duplicate-free soil moisture content (m^3 * m^3)', ylab = 'Original soil moisture content (m^3 * m^3)', main = '15 Minutes-Aggregate VWC 30cm')
+text(0.4,0.05,labels = 'N = 25100 \n R^2 = 96.19% \n pR^2 = 98.08% \n RMSE = 18.80 m^3 * m^3',cex = 0.75)
+
+
+
+
