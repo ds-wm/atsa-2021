@@ -9,7 +9,7 @@ Provide the missing vocabulary terms from the course notebook and their definiti
 
 ## Block 2 instructions
 Take minutes during your breakout meetings; how is your breakout group approaching the solutions to the two case studies?
-Provide brief background information (i.e., do a web search) on the three main challenges addressed: data duplication, gap filling, and outliers.
+Provide brief background information (i.e., from lectures and on the web) on the three main challenges addressed: data duplication, gap filling, and outliers.
 Where else do you find these challenges?
 Provide links to any helpful web resources.
 
