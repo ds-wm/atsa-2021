@@ -1,3 +1,9 @@
+# Names: Andrew Caietti and Asha Silva
+# Date: 4/1/2021
+# Exercise 2.1 Utility
+######################################
+
+
 get.data <- function(){
  # '''
  # This function retrieves all of the data files from their sources and
