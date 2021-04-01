@@ -24,7 +24,7 @@ You may work in teams of two to four.
 
         ```R
         help(lm)
-        lin.mod <- lm(df$SW_IN_F ~ df$NEE_VUT_REF)
+        lin.mod <- lm(df$NEE_VUT_REF ~ df$SW_IN_F)
         lin.mod$residuals
         ```
     - Repeat the process until all outliers are identified
