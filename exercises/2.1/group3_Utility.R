@@ -15,32 +15,6 @@ mergeDF <- function(listofdf){
   return(comboDf)
 }
 
-###################################
-##Function to Data de-duplication##
-###################################
-removeDuplicates <- function(data, timeBoundary = 450){
-  
-  duplicateVector = c()
-  numRow <- length(data$result_time)
-  
-  duplicateVector = c(duplicateVector, TRUE)
-  startTime <- strptime(data$result_time[1], "%Y-%m-%d %H:%M:%S")
-  
-  for (i in 1:numRow - 1){
-    
-    nextTime <- strptime(data$result_time[i + 1], "%Y-%m-%d %H:%M:%S")
-    timeDifference <- as.numeric(difftime(nextTime, startTime, units = c("secs")))
-    
-    if (timeDifference > timeBoundary){
-      duplicateVector = c(duplicateVector, TRUE)
-      startTime <- strptime(data$result_time[i + 1], "%Y-%m-%d %H:%M:%S")
-    }
-    else{
-      duplicateVector = c(duplicateVector, FALSE)
-    }
-  }
-  return(data[duplicateVector,])
-}
 
 #############################
 # remove duplicate function##
