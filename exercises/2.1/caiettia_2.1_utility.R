@@ -3,6 +3,9 @@
 # Exercise 2.1 Utility
 ######################################
 
+# NOTE: This file installs "MLmetrics" as a package.
+install.packages("MLmetrics")
+library('MLmetrics')
 
 get.data <- function(){
  # '''
@@ -197,8 +200,6 @@ vwc_calc <- function(data){
   
 }
 
-install.packages("MLmetrics")
-library('MLmetrics')
 
 r.square <- function(x,y){
   return(cor(x,y)^2)
