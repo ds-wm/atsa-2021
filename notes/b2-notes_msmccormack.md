@@ -73,6 +73,7 @@ Data duplication is when there are multiple records present in a dataset that ho
 
 Helpful links/sources for the above background information:
 https://www.druva.com/blog/a-simple-definition-what-is-data-deduplication/
+
 https://www.kaggle.com/rtatman/data-cleaning-challenge-deduplication
 
 ## Background on Gap Filling
@@ -80,7 +81,9 @@ If time series data is missing datapoints, gaps can form in the overall dataset 
 
 Helpful links/sources for the above background information:
 https://ravendb.net/docs/article-page/5.1/csharp/document-extensions/timeseries/querying/gap-filling
+
 https://colab.research.google.com/drive/1AtH8dXyTebnm4fl9Amx0o4s9VZ6Wzsqk?usp=sharing#scrollTo=ytX6uLYP6TOQ
+
 https://ieeexplore.ieee.org/document/8229730
 
 ## Background on Outliers
@@ -97,5 +100,7 @@ Outliers affect many datasets, not just time series. Even in introductory statis
 
 Helpful links/sources for the above background information on outliers:
 https://www.itl.nist.gov/div898/handbook/prc/section1/prc16.htm#:~:text=Definition%20of%20outliers,what%20will%20be%20considered%20abnormal
+
 https://www.statisticshowto.com/pierces-criterion/
+
 https://mathworld.wolfram.com/Outlier.html
