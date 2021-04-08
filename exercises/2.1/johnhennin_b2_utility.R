@@ -76,22 +76,26 @@ aggregate.byts <- function(orig.df, minute) {
   # Grab total number of rows
   n <- length(orig.df$result_time)
   
-  # Initialize a new empty dataframe for storing ensemble means
-  ensemble.df <- orig.df[1==2, ]
-  ensemble.df <- subset(ensemble.df, select = -result_time)  # remove this column
-  
   # Initial the current time with the first time
   curr.t <- t1
-  # The following is just an outline; needs to be completed.
+  
+  # Initialize a new empty dataframe for storing ensemble means
+  #ensemble.df <- orig.df[FALSE, ]
+  #ensemble.df <- subset(ensemble.df, select = -result_time)# remove this column
+  #ensemble.df$time <- NA
+  #print(ensemble.df)
+  ensemble.df <- data.frame((matrix(nrow=0,ncol=4)))
+  names(ensemble.df) <- c("adc0", "adc1", "adc2", "time")
   
   while (curr.t < tn) {
     next.t <- curr.t + t.step
     tmp.df <- orig.df[orig.df$date >= curr.t & orig.df$date < next.t, ]
     
     # Filter out invalid sensor measurements
-    #tmp.df <- tmp.df[tmp.df$adc0 >= 500 & tmp.df$adc0 <= 1000]
-    #tmp.df <- tmp.df[tmp.df$adc1 >= 250 & tmp.df$adc1 <= 1000]
-    #tmp.df <- tmp.df[tmp.df$adc2 >= 250 & tmp.df$adc2 <= 1000]
+    tmp.df <- tmp.df[tmp.df$adc0 >= 500 & tmp.df$adc0 <= 1000, ]
+    tmp.df <- tmp.df[tmp.df$adc1 >= 250 & tmp.df$adc1 <= 1000, ]
+    tmp.df <- tmp.df[tmp.df$adc2 >= 250 & tmp.df$adc2 <= 1000, ]
+    
     if (is.nan(mean(tmp.df$adc0))) {
       adc0 <- 0
     }
@@ -110,8 +114,8 @@ aggregate.byts <- function(orig.df, minute) {
     else {
       adc2 <- mean(tmp.df$adc2)
     }
-    tmp <- data.frame(adc0, adc1, adc2)
-    names(tmp) <- c("adc0", "adc1", "adc2")
+    tmp <- data.frame(adc0, adc1, adc2, curr.t)
+    names(tmp) <- c("adc0", "adc1", "adc2", "time")
     ensemble.df <- rbind(ensemble.df, tmp)
     # Compute the average for valid sensor measurements based on this subset
     # (see ranges for valid sensor measurements) and add values with time
@@ -122,6 +126,7 @@ aggregate.byts <- function(orig.df, minute) {
     # Update time
     curr.t <- curr.t + t.step
   }
+  
   #print('done')
   return(ensemble.df)
 }
