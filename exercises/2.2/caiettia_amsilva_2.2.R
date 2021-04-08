@@ -1,5 +1,5 @@
-# Andrew Caietti
-# 3/30/2021
+# Andrew Caietti and Asha Silva
+# 4/5/2021
 # Exercise 2.2
 ################
 
