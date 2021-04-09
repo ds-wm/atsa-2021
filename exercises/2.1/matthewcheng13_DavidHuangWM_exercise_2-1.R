@@ -1,4 +1,4 @@
-# note: code was tested on Google CoLab
+# note: code was tested on Google CoLab: R version 4.0.5 "Shake and Throw"
 # unable to run code in a reasonable amount of time on RStudio.
 # RHistory should run all commands in this R script.
 # no utilities or other files should be necessary to execute
