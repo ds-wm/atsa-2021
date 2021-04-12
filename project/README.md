@@ -18,12 +18,15 @@ A successful independent research project is measured by:
 1. A logical and reproducible methodology (however complete). (Methods)
 1. An insightful reflection on your methods, challenges, and what you were able to accomplish. (Discussion/Conclusions)
 
-The project report should include at minimum:
+In addition to the requirements set forth above, the project report should also include:
 
 1. One or more R plots/figures (with appropriate titles, labels and legends)
 2. Table of summarized statistics (e.g., for an audio file, the number of samples, the sampling frequency, the Hertz range)
 3. Three or more reputable sources (with appropriate in-text citations), including appropriate attribution to the audio file's originator.
+4. Brief description on how you handled stereo sound. While most song files today are recorded in stereo (dual channel), it is recommended that you analyze it in mono (single channel). The most common form of doing that is to take only the left channel.
 
 ## Proposals
 Once you have formed your group (or are working independently) you should submit a <1 page proposal on your final project.
 You may choose to use any of the analysis tools or techniques discussed in class and any experimental or out-of-class tools and techniques (so long as they are reproducible).
+
+Proposals will be weighed based on their originality (i.e., another project is not doing the same thing) and feasibility.
