@@ -33,3 +33,11 @@ Upload your proposals to this repository folder.
 Give your file name a title (e.g., sound_scraper.md) and be sure to include everyone's names in the document.
 
 Proposals will be weighed based on their originality (i.e., another project is not doing the same thing) and feasibility.
+
+## Analysis
+You will likely find that music files consist of millions of samples, which can take quite a while to process.
+To improve processing time you may perform one of the following:
+
+1. Resample your data (i.e., downscale to a smaller frequency)
+2. Smooth your data (e.g., using a filter)
+3. Clip your data (e.g., isolate specific 10s to 30s sound bites)
