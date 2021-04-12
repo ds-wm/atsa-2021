@@ -41,3 +41,5 @@ To improve processing time you may perform one of the following:
 1. Resample your data (i.e., downscale to a smaller frequency)
 2. Smooth your data (e.g., using a filter)
 3. Clip your data (e.g., isolate specific 10s to 30s sound bites)
+
+A code snippet on Colab ([.ipynb](https://colab.research.google.com/drive/1IuULZkusjNlO-LMrPhNfiq3UGKWauDCi?usp=sharing)) is provided to help you get started.
