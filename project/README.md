@@ -29,4 +29,7 @@ In addition to the requirements set forth above, the project report should also 
 Once you have formed your group (or are working independently) you should submit a <1 page proposal on your final project.
 You may choose to use any of the analysis tools or techniques discussed in class and any experimental or out-of-class tools and techniques (so long as they are reproducible).
 
+Upload your proposals to this repository folder.
+Give your file name a title (e.g., sound_scraper.md) and be sure to include everyone's names in the document.
+
 Proposals will be weighed based on their originality (i.e., another project is not doing the same thing) and feasibility.
