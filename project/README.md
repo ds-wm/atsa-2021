@@ -7,7 +7,7 @@ Requests for extensions must be made one full day before the due date both in wr
 This semester, we will examine the application of time series analysis to audio files.
 
 * You may choose the scope of your analysis and the song/composition.
-* You may work in group of up to three.
+* You may work in group of up to four.
 
 The structure of the independent project follows the same structure and guidelines as a lab; therefore, it should be written up in a Jupyter Notebook, consist of specific sections, include references, and adhere to the Standards for Submitted Work.
 Additionally, you will create either a podcast (audio) or vlog (video) not to exceed 10 minutes in length that summarizes your project.
