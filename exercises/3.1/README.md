@@ -19,6 +19,6 @@ use the equation for autocorrelation for an MA(q) process to calculate by hand t
 
 &rho;<sub>0</sub>, &rho;<sub>1</sub>, &rho;<sub>2</sub>, and &rho;<sub>3</sub>.
 
-# Exercises 3.1.2
+# Exercises 3.1.3
 
 Calculate the autocorrelation at lags 0 through 10 for an AR(1) process with &phi;<sub>1</sub> = -0.7.
