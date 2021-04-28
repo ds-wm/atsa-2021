@@ -1,5 +1,5 @@
-#Final Project Proposal 
-##Conrad Ning, Matt McCormack, Keagan DeLong
+# Final Project Proposal
+## Conrad Ning, Matt McCormack, Keagan DeLong
 
 We plan to analyze the frequencies between a known song in the tech-house genre, “On My Mind” by Diplo & Sidepiece, and an original song by up-and-coming DJ Kaos, entitled “Where Did You Go.” When brainstorming ideas for the project, we thought it would be interesting to take a song that was not produced by an established Music label and compare it to something that has undergone professional sound editing. The goal is to identify frequencies in the two tracks that make them similar to determine if the homemade/independent song is within the known music genre. Additionally, we think it could be good to compare both of these to another sub-genre of house, such as tropical or bass house, to see any differentiating factors.
 
