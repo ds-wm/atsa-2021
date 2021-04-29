@@ -1,5 +1,5 @@
 # Overview
-You may again work in groups.
+As with the last lab, you may again work in groups.
 Be sure to indicate the names of everyone in your group.
 The basic requirements are outlined below.
 
