@@ -39,8 +39,20 @@ You may work in teams of two to four.
 
 ## Lab Groups
 
-1. Andrew, Asha, Kelton, Monica
-2. Joe, John, Matthew C., Alex
-3. Connor, Keagan, Matthew M., Conrad
-4. Katherine
-5. Rini, Jaci, Kimya, David
+| Group | Members | Feedback |
+| ----: | :------ | -------- |
+| 1 | Andrew, Asha, Kelton, Monica | [(.mp3)][grp1mp3] |
+| 2 | Joe, John, Matthew C., Alex | [(.mp3)][grp2mp3]
+| 3 | Connor, Keagan, Matthew M., Conrad | [(.mp3)][grp3mp3] |
+| 4 | Katherine | [(.mp3)][grpkelmp3] |
+| 5 | Rini, Jaci, Kimya, David | [(.mp3)][grp5mp3] |
+| 6 | Peter | [(.mp3)][pwoomp3] |
+| 7 | Ray | [(.mp3)][raymp3] |
+
+[grp1mp3]: https://www.dropbox.com/s/yth163c1g2ei0eq/lab2_group1.mp3?dl=0
+[grp2mp3]: https://www.dropbox.com/s/xe238fp49merwkx/lab2_group2.mp3?dl=0
+[grp3mp3]: https://www.dropbox.com/s/8k7qzf4zgq14ln3/lab2_group3.mp3?dl=0
+[grpkelmp3]: https://www.dropbox.com/s/fsyeqtvsun775j3/lab2_kelannen.mp3?dl=0
+[grp5mp3]: https://www.dropbox.com/s/7hk2xx6pftk4f2k/lab2_group5.mp3?dl=0
+[pwoomp3]: https://www.dropbox.com/s/5cjgprcsphjlq1g/lab2_peterwoo.mp3?dl=0
+[raymp3]: https://www.dropbox.com/s/dkrkfy91s98oadi/lab2_rays1024.mp3?dl=0
