@@ -224,14 +224,15 @@ curr.t <- t1
 # The following is just an outline; needs to be completed.
 
 while (curr.t < tn) {
-    next.t <- curr.t + t.step
+    next.t <- curr.t + t.step         # define stopping criteria
+    next.i <- nrow(ensemble.df) + 1   # save row index
     tmp.df <- orig.df[orig.df$date >= curr.t & orig.df$date < next.t, ]
 
     # Compute the average for valid sensor measurements based on this subset
     # (see ranges for valid sensor measurements) and add values with time
     # to the new dataframe
-    print(length(tmp.df$result_time))
-    
+    ensemble.df[next.i, ]$date <- curr.t
+
     # Update time
     curr.t <- curr.t + t.step
 }
