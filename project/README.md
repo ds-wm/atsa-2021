@@ -37,6 +37,7 @@ Proposals will be weighed based on their originality (i.e., another project is n
 | Topic | Group Members | Approved |
 | :---- | :------------ | :------- |
 | Music for Plants | Rini, Jaci and Kimya | Yes |
+| Audio Over Time | Monica, Kelton, Andrew and Asha | Yes |
 
 ## Analysis
 You will likely find that music files consist of millions of samples, which can take quite a while to process.
