@@ -34,6 +34,10 @@ Give your file name a title (e.g., sound_scraper.md) and be sure to include ever
 
 Proposals will be weighed based on their originality (i.e., another project is not doing the same thing) and feasibility.
 
+| Topic | Group Members | Approved |
+| :---- | :------------ | :------- |
+| Music for Plants | Rini, Jaci and Kimya | Yes |
+
 ## Analysis
 You will likely find that music files consist of millions of samples, which can take quite a while to process.
 To improve processing time you may perform one of the following:
