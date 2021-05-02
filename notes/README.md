@@ -14,7 +14,7 @@ Where else do you find these challenges?
 Provide links to any helpful web resources.
 
 ## Block 3 instructions
-TBA
+A combination of lecture notes (see missing vocabulary in course notebook), classroom discussion summaries, and example coding work.
 
 __Table 1.__ Note-Taking Schedule. First come first serve.
 
