@@ -38,7 +38,8 @@ Proposals will be weighed based on their originality (i.e., another project is n
 | :---- | :------------ | :------- |
 | Music for Plants | Rini, Jaci and Kimya | Yes |
 | Audio Over Time | Monica, Kelton, Andrew and Asha | Yes |
-| (Tech) House Music Study | Conrad, Matt and Keagan | Yes |
+| (Tech) House Music Study | Conrad, Matt M and Keagan | Yes |
+| Drums | Matthew C, David, and Peter | Yes |
 
 ## Analysis
 You will likely find that music files consist of millions of samples, which can take quite a while to process.
@@ -49,3 +50,8 @@ To improve processing time you may perform one of the following:
 3. Clip your data (e.g., isolate specific 10s to 30s sound bites)
 
 A code snippet on Colab ([.ipynb](https://colab.research.google.com/drive/1IuULZkusjNlO-LMrPhNfiq3UGKWauDCi?usp=sharing)) is provided to help you get started.
+
+**Updates**
+
+- The `tuneR` package has a `play` function that will send your audio file (or Wave object) to your default music player (doesn't seem to work on Colab).
+- `tuneR` also has a `writeWave` function that allows you to save audio to a wave (.wav) file format, which you can download and play w/ your preferred audio player.
