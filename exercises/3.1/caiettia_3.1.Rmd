@@ -1,0 +1,115 @@
+---
+title: "Exercise 3.1"
+author: "Andrew Caietti"
+date: "5/4/2021"
+output: html_document
+---
+
+
+# 3.1.1
+
+Recreating the original plot with the data from NOAA.
+
+```{r}
+library('tswge')
+url <- 'https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2/co2_mm_mlo.txt'
+data <- read.table(url, col.names = c('year','month','decidate','moco2','deseason','nodays','stdays', 'uncertainty'))
+
+
+## Plot from downloaded data
+options(repr.plot.width=8, repr.plot.height=6, repr.plot.res = 125)
+plot(data$decidate, data$moco2, type='l',
+     lwd = 2, col = 'red',
+     xlab = 'Year',
+     ylab='parts per million (ppm)',
+     main='Atmospheric CO2 at Mauna Loa Observatory')
+lines(data$decidate, data$deseason, lwd = 1.35)
+text(1975, 410, 'Scripps Institution of Oceanography \nNOAA Global Monitoring Laboratory', cex = 1.25)
+```
+
+First we can plot the data based on a yearly average technique and see what we get
+```{r}
+yearly.average <- aggregate(data$moco2, by = list(data$year), data = data, FUN = mean)
+plot(yearly.average, data$decidate, type = 'l')
+```
+I am able to run the above line of code to plot the averages by year for each observation
+as a sort of smoothing of the data over time.
+
+
+Now we can handle detrending seasionality from the data
+
+To tackle decomposing seasonality from the data set, we can utilize stl() to generate the
+detrended data set. Note, there is some indexing with the data that is needed because
+we remove the one observation from January 2021.
+
+Load data and plot
+```{r}
+dat <- ts(data$moco2[-c(64)], freq = 12, start = 1958) # we drop the one observation from Jan 2021
+co2.decomp <- stl(dat, 'periodic')
+
+options(repr.plot.width=8, repr.plot.height=6, repr.plot.res = 125)
+
+plot(data$decidate[-c(757)], as.numeric(co2.decomp$time.series[, 'trend']), type='l',
+     lwd = 2, col = 'black',
+     xlab = 'Year',
+     ylab='parts per million (ppm)',
+     main='Atmospheric CO2 at Mauna Loa Observatory')
+
+dates <- data$decidate[1:468]
+lines(data$decidate, data$moco2, type='l',
+        lwd = 1, col = 'red')
+text(1975, 400, 'Scripps Institution of Oceanography \nNOAA Global Monitoring Laboratory', cex = 1.05)
+```
+I can finally plot the co2 data with the seasonality removed and see that this
+data set is similar to the data$deseason column in the original data set. Thus, we
+know that the stl() function was used correctly.
+
+
+
+
+
+# 3.1.2
+
+$$a(t) = u + w_t$$
+$$a(t-1) = 0.2 * w_{t-1}$$
+$$a(t-2) = -0.48 * w_{t-2}$$
+
+
+$$P(h) = \frac{\theta_1 + \theta_1*\theta_2}{1 + \theta_1^2 + \theta_2^2}$$
+The above is the formula for calculating the autocorrelation when we have a
+MA(2) process. This formula can be better seen at this link: https://online.stat.psu.edu/stat510/lesson/2/2.1
+
+In terms of calculating these by hand, we can check our work as we go
+with the below code-block.
+
+```{r}
+ma.ts3 <- plotts.true.wge(100, phi=c(0), theta=c(-0.2, 0.48))
+ma.ts3$aut1
+```
+
+We know that $p_0 = 1$ because, with no lag element, we are essentially taking the variance and dividing it by its self.
+
+$$p_1 = \frac{0.2 + 0.2 \cdot -0.48}{1 + 0.2^2 + (-0.48)^2}=\frac{-0.104}{1.2704} = -0.0819$$
+
+$$p_2 = \frac{-0.48}{1 + 0.2^2 + (-0.48)^2}=\frac{-0.48}{1.2704} = -0.3778$$
+
+For $p_3$, we know that this must be 0 because the number of lags cannot exceed the order of the moving average. So in this instance, we have 2 theta values and thus can only calculate significant autocorrelation values up to lag = 2. At lag = 3, this significance is lost and thus we are left with $p_3 = 0$
+
+
+
+
+
+# 3.1.3
+
+```{r}
+ar.ts3 <- plotts.true.wge(
+ n=200,
+ phi=c(-0.7),
+ theta=c(0),
+ lag.max = 10)
+ar.ts3$aut1
+```
+The last line of the above code block will give us the desired autocorrelations up to a lag of 10.
+
+## References
+“2.1 Moving Average Models (MA Models): STAT 510.” PennState: Statistics Online Courses, The Pennsylvania State University, 2021, online.stat.psu.edu/stat510/lesson/2/2.1.
