@@ -1,0 +1,165 @@
+---
+title: "Exercise 3"
+author: "Peter Woo"
+date: "5/3/2021"
+output: html_document
+---
+
+# 3.1.1
+PROBLEM STATEMENT:
+Reproduce the figure above of atmospheric CO2 concentrations (both seasonal 
+and deseasonalized). Can you create the deseasonalized time series using R
+modeling tools? Write down your thoughts on the methodology (i.e., prepare a 
+pseudo code version) and begin implementing code that creates the 
+deseasonalized CO2 trend line.
+
+## Part 0 - Getting the data
+
+```{r}
+data <- read.table('https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2/co2_mm_mlo.txt')
+names(data) <- c("year", "month", "decidate","moco2", "deseason", "nodays", "stdays", "uncertainty" )
+
+```
+
+## Part 1 - Plot reproduction
+
+```{r}
+options(repr.plot.width=12, repr.plot.height=4, repr.plot.res = 125)
+plot(data$decidate, 
+     data$moco2,
+     type = 'l',
+     col = 'red',
+     lwd = 2,
+     main = "Atmospheric CO2 at Mauna Loa Observatory",
+     xlab = "Year",
+     ylab = "Parts Per Million (ppm)"
+     )
+lines(data$decidate, data$deseason)
+```
+
+## Part 2 - Deseasonalize the monthly time series 
+
+```{r}
+co2.decomp <- stl(co2, 'periodic')
+trend <- co2.decomp$time.series[, 'trend']
+
+options(repr.plot.width=12, repr.plot.height=10, repr.plot.res = 125)
+
+plot(data$decidate, 
+     data$moco2,
+     type = 'l',
+     col = 'red',
+     lwd = 2,
+     main = "Atmospheric CO2 at Mauna Loa Observatory",
+     xlab = "Year",
+     ylab = "Parts Per Million (ppm)"
+)
+lines(trend)
+
+# shorten the length of moco2 to fit the trend line
+
+shortened <- data$moco2[1:(length(trend))]
+
+plot(data$decidate[1:(length(trend))], 
+     shortened,
+     type = 'l',
+     col = 'red',
+     lwd = 2,
+     main = "Atmospheric CO2 at Mauna Loa Observatory",
+     xlab = "Year",
+     ylab = "Parts Per Million (ppm)"
+)
+lines(trend)
+
+# subtract trend from moco2 for deseasonalized plot
+
+deseasonalized <- data$moco2[1:(length(trend))] - trend
+
+plot(deseasonalized,
+     main = "Deseasonalized Atmospheric CO2 at Mauna Loa Observatory",
+     xlab = 'Year',
+     ylab = 'Distance from Trend')
+```
+
+# 3.1.2
+
+PROBLEM STATEMENT: 
+For the MA(2) process represented by the following equation:
+
+X(t) = a(t) + 0.2 a(t-1) - 0.48 a(t-2)
+
+use the equation for autocorrelation for an MA(q) process to calculate by hand 
+the following values:
+ρ0, ρ1, ρ2, and ρ3.
+
+## ρ0
+
+We know that ρ0 of any autocorrelation function is 1.
+ρ0 = 1
+
+## ρ1
+	
+$$\frac{0.2 + (-0.2)(0.48)}{1 + (-0.2)^2+(0.48)^2}$$
+$$\frac{1.04}{1.2704}$$
+
+ρ1 = 0.819
+
+We can check this answer by calculating it with R
+
+```{r}
+library('tswge')
+
+ts <- plotts.true.wge(100, phi=c(0), theta=c(-0.2, 0.48))
+autocorrelations <- ts$aut1
+autocorrelations[2]
+
+```
+
+## ρ2
+
+$$\frac{-0.48}{1 + (-0.2)^2+(0.48)^2}$$
+$$\frac{-0.48}{1.2704}$$
+
+ρ2 = -0.378
+
+Check our answer again:
+
+```{r}
+autocorrelations[3]
+```
+
+
+## ρ3
+
+We know that if k > q, ρk = 0. Here, k = 3 and q = 2, therefore ρ3 = 0. 
+
+# 3.1.3
+PROBLEM STATEMENT:
+Calculate the autocorrelation at lags 0 through 10 for an AR(1) process with
+φ1 = -0.7.
+
+```{r}
+ar.ts1 <- plotts.true.wge(100, phi=c(-0.7), theta=c(0), lag.max = 10)
+ar.ts1$aut1
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
