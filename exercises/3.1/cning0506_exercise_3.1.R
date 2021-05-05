@@ -108,15 +108,15 @@ plot(deseason,main = "Deseasonlized Atmospheric CO2 at Observatory",
 # use the equation for autocorrelation for an MA(q) process to calculate by hand the following values:
   #??0, ??1, ??2, and ??3.
 
-#??1 = -0.2
-#??2 = 0.48
+#Theta1 = -0.2
+#Theta2 = 0.48
 
 
-# ??0
-## By definition, we know that the autocorrelation function of ??0 equals to 1. Hence, ??0 = 1.
+# p0
+## By definition, we know that the autocorrelation function of p0 equals to 1. Hence, p0 = 1.
 
-# ??1
-# ??1 <- [-(-0.2)+(-0.2)(0.48)]/1+[(-0.2^2)+(0.48^2)] = 0.104/1.2704 = 0.08186398
+# p1
+# p1 <- [-(-0.2)+(-0.2)(0.48)]/1+[(-0.2^2)+(0.48^2)] = 0.104/1.2704 = 0.08186398
 
 
 
@@ -127,11 +127,11 @@ autocor[2]
 ## p1 = 0.08186398
 
 # p2
-# ??2 = [-(0.48)]/1+[(0.2^2)+(0.48^2)] = 0.48/1.2704 = -0.3778338
+# p2 = [-(0.48)]/1+[(0.2^2)+(0.48^2)] = 0.48/1.2704 = -0.3778338
 
 ## Verify with R
 autocor[3]
-## ??2 = -0.3778338
+## p2 = -0.3778338
 
 # p3
 # p3 = 0 (since we only have two thetas, so by definition if k>q, pk=0. Hence, p3 = 0) 
@@ -139,7 +139,7 @@ autocor[3]
 
 # 3.1.3 - Autocorrelation Calculation for AR(1) Process
 # Problem Statement: Calculate the autocorrelation at 
-# lags 0 through 10 for an AR(1) process with ??1 = -0.7.
+# lags 0 through 10 for an AR(1) process with p1 = -0.7.
 
 
 ar.ts <- plotts.true.wge(100, phi=c(-0.7), theta=c(0), lag.max = 10)
