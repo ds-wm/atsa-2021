@@ -115,7 +115,6 @@ ma3 <- function(x) {
 ```
 
 ### Autoregressive 
-#### 3.1.3 Autoregressive
 The autoregressive (AR) process of order *p*, or more succinctly AR(*p*), may be expreesed as a discrete time series, ![gif-5](https://user-images.githubusercontent.com/73894812/117101140-87576d80-ad43-11eb-861b-efee9d928dd6.gif)
  with mean ![gif-6](https://user-images.githubusercontent.com/73894812/117101152-8cb4b800-ad43-11eb-99cf-cf124710b52c.gif)
 , by the following equation.
@@ -165,7 +164,7 @@ and the autocorrelation is given by:
 
 ## Estimating Model Parameters
 
-### 3.2 Estimating Model Parameters
+### Estimating Model Parameters
 Suppose a realization ![gif-31](https://user-images.githubusercontent.com/73894812/117101656-b4f0e680-ad44-11eb-8083-c23afa645267.gif)
  is observed.
 The problem of fitting an ARMA(p,q) model to the data is the problem of estimating:
@@ -189,8 +188,55 @@ There are two basic types of estimators (assuming that the order of the model is
 2. Maximum Likelihood Estimators
   * iterative and (generally) computationally expensive
 
+### MA(q) Estimators
+In general, MA(q) parameter estimation is more difficult that AR(p) parameter estimation.
 
+The following are estimator methods for determining parameters for the MA(q) models.
+The first two methods are preliminary estimators.
 
+1. Method of Moments
+  * Parameters (![gif-33](https://user-images.githubusercontent.com/73894812/117102342-20878380-ad46-11eb-9fdb-c13d1d9ab7b0.gif)
+) are solved based on a series on non-linear equations that relate the MA(q) model to the autocorrelation function.
+  * Real solutions may not exist.
+  * This method (in general) is not recommended.
+2. Innovations Algorithm
+  * Based on recursive fitting of MA models of increasing order until estimates of ![gif-33](https://user-images.githubusercontent.com/73894812/117102382-39903480-ad46-11eb-98de-eb9192ab8402.gif)
+ stabilize.
+3. Maximum Likelihood
+  * See below
+
+### AR(p) Estimators
+For AR(p) models, there are two basic preliminary methods:
+
+1. Yule-Walker Estimators (a method of moments estimation)
+    * Based on the Yule-Walker equations; most importantly is the difference equation that relates the coefficients in the AR(p) model to the autocorrelation function:
+    ![gif-35](https://user-images.githubusercontent.com/73894812/117102459-68a6a600-ad46-11eb-9f61-2aa535be490e.gif)
+
+    * Substituting estimates of autocorrelations, ![gif-36](https://user-images.githubusercontent.com/73894812/117102491-73f9d180-ad46-11eb-98f4-014195fe1fdb.gif)
+, produces a set of linear equations that may be solved for ![gif-37](https://user-images.githubusercontent.com/73894812/117102514-8116c080-ad46-11eb-9392-e0179e30c3f5.gif)
+.
+    * Requires inverting 
+    * Estimates produce a stationary process.
+2. Ordinary-Least Squares Estimators (the Burg method)
+    * Based on minimizing the cost function, ![gif-38](https://user-images.githubusercontent.com/73894812/117102722-eb2f6580-ad46-11eb-8a07-5fd234a6a01a.gif)
+ 
+      ![gif-39](https://user-images.githubusercontent.com/73894812/117102656-c4712f00-ad46-11eb-84ee-adea1bc8f777.gif)
+    * Non-traditional OLS method (![gif-5](https://user-images.githubusercontent.com/73894812/117102766-ff736280-ad46-11eb-9b11-51de2afba6e0.gif)
+ and ![gif-6](https://user-images.githubusercontent.com/73894812/117102773-04381680-ad47-11eb-8c62-f11dec40a56a.gif)
+ are simultaneously playing the role of dependent and independent variables and predictors are correlated); thus, cannot be solved using a standard OLS package.
+    * Ignores data ![gif-42](https://user-images.githubusercontent.com/73894812/117103120-bd96ec00-ad47-11eb-83c9-f5436ee3e1a9.gif)
+ (because ![gif-43](https://user-images.githubusercontent.com/73894812/117103147-c982ae00-ad47-11eb-9bee-58f3f91067ac.gif)
+ is undefined).
+    * Improved upon by Ulrych & Clayton (1976), who argued no preference in the direction of time (i.e., the driving process forward is the same process driving backward)---created the Forward-Backward Least Squares (FBLS) method:
+  
+      ![gif-40](https://user-images.githubusercontent.com/73894812/117102816-17e37d00-ad47-11eb-818d-3100ab6945bf.gif)
+   
+      where ![gif-41](https://user-images.githubusercontent.com/73894812/117102990-76a8f680-ad47-11eb-8194-64ba3acee49b.gif)
+ are white noise with zero mean and variance, ![gif-44](https://user-images.githubusercontent.com/73894812/117103261-fe8f0080-ad47-11eb-98ed-cbaeaa125056.gif)
+.
+    * Burg (1975) decided to use the Durbin-Levinson algorithm to minimimze this cost function and thus guarantee a resulting process that is stationary.
+3. Maximum Likelihood
+    * See below.
 
 
 
