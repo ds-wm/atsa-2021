@@ -517,7 +517,7 @@ df.sw <- watch.df[, c("DayOfMonth", "SWdown_2003.12")]
 names(df.sw) <-c("Day", "SWd")
 
 # Standardize day count to day of year
-df.sw$Day <- df.sw$Day + 
+df.sw$Day <- df.sw$Day + 334
 
 # Unit conversion (Watts to Joules) and integration to daily quantity
 df.sw$SWd <- df.sw$SWd*86400
