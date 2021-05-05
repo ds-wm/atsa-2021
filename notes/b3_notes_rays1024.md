@@ -259,9 +259,37 @@ A technique called backcasting (i.e., first estimating those values of ![gif-5](
  in the past) may be used to provide an approximation to ![gif-46](https://user-images.githubusercontent.com/73894812/117103867-25016b80-ad49-11eb-8e81-1a154b69ff62.gif)
 .
 
+### Applications in R
+For AR models, the `est.ar.wge` function from R package, `tswge`, provides the Yule-Walker, Burg (based on FBLS), and Maximum Likelihood estimators.
+For ARMA models, the `est.arma.wge` function calculates the Maximum Likelihood estimators using a Kalman-filter based algorithm.
 
+For stationary models (AR, MA, and ARMA), it is best to use Maximum-Likelihood (ML) estimators when possible.
 
+For near nonstationary models, Yule-Walker estimators are especially poor; therefore, again it is best to use ML estimators.
 
+For AR models in particular, if you want a stationary model solution, use Burg or Yule-Walker, as some ML estimation techniques do not assure a stationary result.
+
+### Order Identification
+One of the challenges with estimating model parameters is knowing the order identification.
+
+ Akaike's Information Criterion (AIC) is a general criterion for statistical model identification with a wide range of applications, including model selection in multivariate regression and, in our case, identifying p and q in an ARMA(p,q) model (Akaike, 1973).
+
+A problem with the use of AIC is that as the realization length increases, AIC tends to overestimate the model orders (i.e., select models with too many parameters).
+
+Several authors have considered modifications to AIC to adjust for this problem. Two of the popular alternatives are AICC (Hurvich and Tsai, 1989) and BIC (sometimes called the Schwarz Information Criterion) (Schwarz, 1978).
+
+In R, the `aic.wge` function is an automated means of finding the ARMA(p, q) model order identification (within specified ranges of p and q) and returns the best fit model orders (i.e., p and q) along with the model parameter estimates: ![gif-48](https://user-images.githubusercontent.com/73894812/117104194-b83aa100-ad49-11eb-9471-1985a71d60da.gif)
+, ![gif-49](https://user-images.githubusercontent.com/73894812/117104229-c4266300-ad49-11eb-8357-1e4aa3bb9bf4.gif)
+, and ![gif-50](https://user-images.githubusercontent.com/73894812/117104254-d1435200-ad49-11eb-8a18-d6c0a39e213f.gif)
+ (based on MLE).
+
+# References
+- Akaike, H. 1973. Information theory and an extension of the maximum likelihood
+principle. In _2nd International Symposium on Information Theory_, Petrov, B.N. and Csaki, F. (eds.), Akademiai Kiado: Budapest, 267-281.
+- Burg, J.P. 1975. Maximum entropy spectral analysis, PhD dissertation, Department of Geophysics, Stanford University: Stanford, CA.
+- Hurvich, C.M. and Tsai, C.-L. 1989. Regression and time series model selection in small samples, _Biometrika_ 76, 297-307.
+- Schwarz, G. 1978. Estimating the dimension of a model, _The Annals of Statistics_ 6, 461-64.
+- Ulrych, T.J. and Clayton, R.W. 1976. Time series modelling and maximum entropy, _Physics of the Earth and Planetary Interiors_ 12, 180-200.
 
 
 
