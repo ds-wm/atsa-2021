@@ -11,4 +11,4 @@ data(hadley)
 options(repr.plot.width=14, repr.plot.height=6, repr.plot.res = 125)
 plot(hadley[50:length(hadley)], ylab="air temp")
 ```
-![alt text](https://https://github.com/ds-wm/atsa-2021/blob/main/notes/img/download.png)
+![download](https://user-images.githubusercontent.com/73894812/117097921-fb414800-ad3a-11eb-82cc-38bdb572d5ff.png)
