@@ -50,21 +50,6 @@ where ![gif-1](https://user-images.githubusercontent.com/73894812/117098698-3a70
  are coefficients (including the intercept) and ![gif-2](https://user-images.githubusercontent.com/73894812/117098907-b66ae080-ad3d-11eb-9b9f-30d7a5d255ed.gif)
  is a white noise process.
 
-**Example 3.1**
-
-
-![co2_data_mlo](https://user-images.githubusercontent.com/73894812/117099380-0007fb00-ad3f-11eb-94de-3e8143307b7e.png)
-
-One of the famous trend datasets is the atmospheric carbon dioxide (CO<sub>2</sub>) measurements made at the [Mauna Loa](https://www.esrl.noaa.gov/gmd/obop/mlo/) Baseline Observatory in Hawaii.
-
-A copy of the latest data is provided by the [Global Monitoring Laboratory](https://www.esrl.noaa.gov/gmd/ccgg/trends/) and is availble at the following address and includes both the monthly average CO<sub>2</sub> measurements as well as the deseasonalized trend.
-
-- https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2/co2_mm_mlo.txt
-
-It is sometimes helpful to perform a seasonal decomposition of a time series into its seasonal, trend and irregular components.
-In R, this is accomplished using the `stl` function, which the seasonal decomposition of time series using LOESS (a locally weighted polynomial regression; for more information, see [here](https://www.itl.nist.gov/div898/handbook/pmd/section1/pmd144.htm)).
-One catch to using the `stl` function is that the input must first be converted to a `ts` object.
-
 ### Moving Average
 
 A moving average (MA) process of order *q*, or more succinctly MA(*q*), may be expressed as a discrete time series, ![gif-5](https://user-images.githubusercontent.com/73894812/117099977-8cff8400-ad40-11eb-8baa-2ec2bc10d58d.gif)
@@ -103,4 +88,51 @@ Notice that as ![gif-12](https://user-images.githubusercontent.com/73894812/1171
 The autocorrelation function simplifies to:
 
 ![gif-13](https://user-images.githubusercontent.com/73894812/117100279-54ac7580-ad41-11eb-933a-21eb98744020.gif)
+
+**The MA(2) Model**
+
+Let ![gif-15](https://user-images.githubusercontent.com/73894812/117100726-78bc8680-ad42-11eb-9857-b96e9c46159e.gif)
+ in our definition above such that we get:
+
+![gif-16](https://user-images.githubusercontent.com/73894812/117100740-84a84880-ad42-11eb-8c2b-00f794f0ea52.gif)
+
+**Three-Point MA**
+
+The simplest way of seeing a pattern in a time series is to plot the moving average and one useful summary statistic to have on hand is the three-point moving average:
+
+![gif-17](https://user-images.githubusercontent.com/73894812/117100893-f385a180-ad42-11eb-9025-87a6fa4ef50b.gif)
+
+In R, this can be expressed as:
+
+```R
+ma3 <- function(x) {
+  y <- numeric(length(x) - 2)
+  for (i in 2:(length(x)-1)) {
+    y[i]<-(x[i-1] + x[i] + x[i+1])/3
+  }
+  y
+}
+```
+
+### Autoregressive 
+#### 3.1.3 Autoregressive
+The autoregressive (AR) process of order *p*, or more succinctly AR(*p*), may be expreesed as a discrete time series, ![gif-5](https://user-images.githubusercontent.com/73894812/117101140-87576d80-ad43-11eb-861b-efee9d928dd6.gif)
+ with mean ![gif-6](https://user-images.githubusercontent.com/73894812/117101152-8cb4b800-ad43-11eb-99cf-cf124710b52c.gif)
+, by the following equation.
+
+![gif-18](https://user-images.githubusercontent.com/73894812/117101177-9807e380-ad43-11eb-84b3-69251e5532c3.gif)
+
+where ![gif-2](https://user-images.githubusercontent.com/73894812/117101185-9f2ef180-ad43-11eb-98d5-94a071d41771.gif)
+ be a white noise process with zero mean and unit variance and ![gif-19](https://user-images.githubusercontent.com/73894812/117101206-aeae3a80-ad43-11eb-96a2-f92086b0c5d1.gif)
+ are real constants.
+
+Oftentimes, we assume the time series has ![gif-20](https://user-images.githubusercontent.com/73894812/117101240-bec61a00-ad43-11eb-863f-b87f5a737c0d.gif)
+, which simplifies the expression to:
+
+![gif-21](https://user-images.githubusercontent.com/73894812/117101262-ca194580-ad43-11eb-80d3-4f9ff1fc0c66.gif)
+
+The above equation has an uncountable number of solutions; however, if we impose our stationarity requirement, we can derive a solution.
+
+
+
 
