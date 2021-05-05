@@ -238,7 +238,26 @@ For AR(p) models, there are two basic preliminary methods:
 3. Maximum Likelihood
     * See below.
 
+### Maximum Likelihood Estimator
+Much work has been done recently by statisticians on the problem of obtaining maximum likelihood (ML) estimates of the parameters due to their well-known optimality properties. 
+ML estimation of the ARMA(p,q) parameters involves iterative procedures that require starting values.
 
+The log-likelihood function is given by:
+
+![gif-45](https://user-images.githubusercontent.com/73894812/117103663-c3d99800-ad48-11eb-906d-3f130ae40c15.gif)
+
+where ![gif-46](https://user-images.githubusercontent.com/73894812/117103692-d05df080-ad48-11eb-83cd-8e674d3947be.gif)
+ is the unconditional sum of squares.
+The solution of ![gif-19](https://user-images.githubusercontent.com/73894812/117104042-71e54200-ad49-11eb-8b7e-4ce573cb1cf9.gif)
+, ![gif-33](https://user-images.githubusercontent.com/73894812/117103768-ecfa2880-ad48-11eb-9cd3-b7d796cb6685.gif)
+, and ![gif-44](https://user-images.githubusercontent.com/73894812/117103776-f2577300-ad48-11eb-8560-c51419b5e41f.gif)
+ that maximizes the above equations is the called the unconditional or exact ML estimates.
+
+In practice, the derivatives of ![gif-47](https://user-images.githubusercontent.com/73894812/117103798-fedbcb80-ad48-11eb-875e-dd4dae37bd64.gif)
+ are complicated, so approximations or conditional estimators are used instead.
+A technique called backcasting (i.e., first estimating those values of ![gif-5](https://user-images.githubusercontent.com/73894812/117103858-203cb780-ad49-11eb-87bc-732645957427.gif)
+ in the past) may be used to provide an approximation to ![gif-46](https://user-images.githubusercontent.com/73894812/117103867-25016b80-ad49-11eb-8e81-1a154b69ff62.gif)
+.
 
 
 
