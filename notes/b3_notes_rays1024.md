@@ -133,6 +133,73 @@ Oftentimes, we assume the time series has ![gif-20](https://user-images.githubus
 
 The above equation has an uncountable number of solutions; however, if we impose our stationarity requirement, we can derive a solution.
 
+**The AR(1) Model**
+
+Let ![gif-22](https://user-images.githubusercontent.com/73894812/117101354-0d73b400-ad44-11eb-8da4-36deefe019a4.gif)
+ in the equation above, such that:
+
+![gif-23](https://user-images.githubusercontent.com/73894812/117101365-16fd1c00-ad44-11eb-8e60-985ab6571d6f.gif)
+
+where ![gif-24](https://user-images.githubusercontent.com/73894812/117101393-23817480-ad44-11eb-9def-056ea661b74a.gif)
+ (a requirement for stationarity).
+The stationary conditions for the AR(1) process are such that:
+
+![gif-25](https://user-images.githubusercontent.com/73894812/117101427-37c57180-ad44-11eb-8cbd-003bc5652b76.gif)
+
+which gives way to the characteristic equation:
+
+![gif-26](https://user-images.githubusercontent.com/73894812/117101462-4c096e80-ad44-11eb-97e2-ceeaa737232c.gif)
+
+that has a single root:
+
+![gif-27](https://user-images.githubusercontent.com/73894812/117101487-575c9a00-ad44-11eb-86c3-a7c794dcd023.gif)
+
+The autocovariance is given generally by:
+
+![gif-28](https://user-images.githubusercontent.com/73894812/117101522-617e9880-ad44-11eb-8563-be82efa16a2e.gif)
+
+where ![gif-29](https://user-images.githubusercontent.com/73894812/117101541-6ba09700-ad44-11eb-8817-40b2093fffe2.gif)
+and the autocorrelation is given by:
+
+![gif-30](https://user-images.githubusercontent.com/73894812/117101568-7eb36700-ad44-11eb-96da-7fab7808d48d.gif)
+
+## Estimating Model Parameters
+
+### 3.2 Estimating Model Parameters
+Suppose a realization ![gif-31](https://user-images.githubusercontent.com/73894812/117101656-b4f0e680-ad44-11eb-8083-c23afa645267.gif)
+ is observed.
+The problem of fitting an ARMA(p,q) model to the data is the problem of estimating:
+
+- ![gif-32](https://user-images.githubusercontent.com/73894812/117101692-c6d28980-ad44-11eb-92d1-a32e8a9cfbb3.gif)
+- ![gif-19](https://user-images.githubusercontent.com/73894812/117101754-eb2e6600-ad44-11eb-8a46-6c6c53b4ed24.gif)
+- ![gif-33](https://user-images.githubusercontent.com/73894812/117101833-1022d900-ad45-11eb-8803-3b9b1de58ce8.gif)
+- ![gif-34](https://user-images.githubusercontent.com/73894812/117101898-35174c00-ad45-11eb-8a9a-7af041bfd7eb.gif)
+
+The estimation of ![gif-32](https://user-images.githubusercontent.com/73894812/117101950-46605880-ad45-11eb-9a88-971ac25076dd.gif)
+ is called order identification.
+An analysis of a time series using an ARMA model (i.e., a process that is the combination of AR(p) and MA(q) models) will typically first involve order identification followed by parameter estimation.
+The dichotomy between the order identification and parameter estimation steps is not clear-cut since the order identification techniques usually involve some parameter estimation as a means of selecting the appropriate model orders.
+
+In practice, parameter estimation is almost always accomplished using a time series package.
+
+There are two basic types of estimators (assuming that the order of the model is already known):
+
+1. Preliminary Estimators 
+  * relatively easy and fast to compute
+2. Maximum Likelihood Estimators
+  * iterative and (generally) computationally expensive
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
