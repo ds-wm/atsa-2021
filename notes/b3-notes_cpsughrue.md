@@ -8,7 +8,9 @@ Detrending is the act of removing a trend from time-series data to analyze subtr
 
 In general, to detrend a times seres you begin with a curve fitting technique such as linear regression, polinomial regression, or logistic regression and subtract the linear approzimation from the time series. The residuals are the detrended time series.
 
-![Detrended Time Series](http://scipy-lectures.org/_images/sphx_glr_plot_detrend_001.png)
+<p align = "center">
+<img src="http://scipy-lectures.org/_images/sphx_glr_plot_detrend_001.png">
+</p>
 
 #### 3.0.2 Linear Filters
 In time series analysis a linear filter is a tool that can remove certain types of frequency behavior from a time series realization.
@@ -23,7 +25,9 @@ Common Linear Filters:
 * <u>Band Pass</u>: a filter that passes frequencies within a certain range and reduces frequencies outside that range
 * <u>Band Stop</u>: a filter that passes frequencies outside a certain range and reduces frequencies inside that range
 
-![Linear Filters](https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/Bandform_template.svg/400px-Bandform_template.svg.png)
+<p align = "center">
+<img width="497" height="370" src="https://www.allaboutcircuits.com/uploads/articles/6.13_Band-Pass_and_Band-Reject_Active_Filters1_.jpg">
+</p>
 
 Butterworth Filter:
 * A filter desinged to have a frequency response as flat as possible in the passband
