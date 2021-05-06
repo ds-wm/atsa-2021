@@ -1,0 +1,30 @@
+#Applied Time Series Analysis
+#Excercises 3.2
+#Name: Justin Callahan
+#Due Date: 5/7/2021
+
+install.packages("tswge")
+library("tswge")
+
+data("dowjones2014")
+aic.wge(dowjones2014, p = 0:12, q = 0:4, type = 'aicc')
+options(repr.plot.width=12, repr.plot.height=10, repr.plot.res = 125)
+
+plot(dowjones2014, type = 'l', main = 'Average Daily Dow Jones Price', xlab = 'Time', ylab = 'Daily Average Price')
+
+acf(dowjones2014, lag.max = 25, main = 'Autocorrelation')
+
+data.period <- period.wge(dowjones2014)
+data.parzen <- parzen.wge(dowjones2014)
+
+yw <- est.ar.wge(dowjones2014, p=1, factor = FALSE, type='yw')
+burg <- est.ar.wge(dowjones2014, p=1, factor = FALSE, type='burg')
+ml <- est.ar.wge(dowjones2014, p=1, factor = FALSE, type='mle')
+
+data.df <- data.frame(
+  type=c("True", "YW", "Burg", "MLE"),
+  phi1 = c(0.9815898, yw$phi[1], burg$phi[1], ml$phi[1]),
+  siga = c(12897.94, yw$avar, burg$avar, ml$avar)
+)
+data.df
+  
