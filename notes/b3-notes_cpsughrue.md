@@ -19,6 +19,10 @@ Common Terminology:
 * <u>Passband</u>: range of frequencies that can pass through a filter
 * <u>Stopband</u>: range of frequencies that can not pass through a filter
 
+<p align = "center">
+<img width="440" height="280" src="https://infosys.beckhoff.com/content/1033/tf3680_tc3_filter/Images/png/5844943371__Web.png">
+</p>
+
 Common Linear Filters:
 * <u>Low Pass</u>: a filter that passes signals with a frequency lower than a selected cutoff frequency and reduces signals with frequencies higher than the cutoff frequency
 * <u>High Pass</u>: a filter that passes signals with a frequency higher than a certain cutoff frequency and reduces signals with frequencies lower than the cutoff frequency
