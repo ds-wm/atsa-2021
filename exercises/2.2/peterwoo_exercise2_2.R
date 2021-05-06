@@ -544,7 +544,7 @@ legend(
   col=c("red","blue"), 
   lty=c(2,1), 
   lwd=c(1,1), 
-  legend = c(GF, Obs),
+  legend = c('Gaps Filled', 'Original Observations'),
   bg="white",
   box.col="white",
   horiz=TRUE
