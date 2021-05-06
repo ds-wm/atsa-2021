@@ -18,10 +18,12 @@ Common Terminology:
 * <u>Stopband</u>: range of frequencies that can not pass through a filter
 
 Common Linear Filters:
-* <u>Low Pass</u>: a filter that passes signals with a frequency lower than a selected cutoff frequency and reduces signals with frequencies higher than the cutoff frequency.
-* <u>High Pass</u>: a filter that passes signals with a frequency higher than a certain cutoff frequency and reduces signals with frequencies lower than the cutoff frequency.
-* <u>Band Pass</u>: a filter that passes frequencies within a certain range and reduces frequencies outside that range.
+* <u>Low Pass</u>: a filter that passes signals with a frequency lower than a selected cutoff frequency and reduces signals with frequencies higher than the cutoff frequency
+* <u>High Pass</u>: a filter that passes signals with a frequency higher than a certain cutoff frequency and reduces signals with frequencies lower than the cutoff frequency
+* <u>Band Pass</u>: a filter that passes frequencies within a certain range and reduces frequencies outside that range
 * <u>Band Stop</u>: a filter that passes frequencies outside a certain range and reduces frequencies inside that range
+
+![Linear Filters](https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/Bandform_template.svg/400px-Bandform_template.svg.png)
 
 Butterworth Filter:
 * A filter desinged to have a frequency response as flat as possible in the passband
