@@ -347,22 +347,20 @@ In R, the `aic.wge` function is an automated means of finding the ARMA(p
 
 ### Citations
 
-Akaike, H. 1973. Information theory and an extension of the maximum likelihood         principle. In *2nd International* *Symposium on Information Theory*, Petrov, B.N. and         Csaki, F. (eds.), Akademiai Kiado: Budapest, 267-281.
+Akaike, H. 1973. Information theory and an extension of the maximum likelihood principle. In *2nd International* *Symposium on Information Theory*, Petrov, B.N. and         Csaki, F. (eds.), Akademiai Kiado: Budapest, 267-281.
 
-Burg, J.P. 1975. Maximum entropy spectral analysis, PhD dissertation, Department of         Geophysics, Stanford University: Stanford, CA.
+Burg, J.P. 1975. Maximum entropy spectral analysis, PhD dissertation, Department of Geophysics, Stanford University: Stanford, CA.
 
-Hurvich, C.M. and Tsai, C.-L. 1989. Regression and time series model selection in small         samples, *Biometrika* 76, 297-307.
+Hurvich, C.M. and Tsai, C.-L. 1989. Regression and time series model selection in small samples, *Biometrika* 76, 297-307.
 
-Kenton, W. (2021, January 29). Detrend.         https://www.investopedia.com/terms/d/detrend.asp. 
+Kenton, W. (2021, January 29). Detrend. https://www.investopedia.com/terms/d/detrend.asp. 
 
-Kenton, W. (2020, November 30). Seasonality. Investopedia.         https://www.investopedia.com/terms/s/seasonality.asp#:~:text=Seasonality%20is            %20a%20characteristic%20of,is%20said%20to%20be%20seasonal. 
+Kenton, W. (2020, November 30). Seasonality. Investopedia. https://www.investopedia.com/terms/s/seasonality.asp#:~:text=Seasonality%20is%20a%20characteristic%20of,is%20said%20to%20be%20seasonal. 
 
-Press, W. H.; Flannery, B. P.; Teukolsky, S. A.; and Vetterling, W. T. "Digital Filtering in the         Time Domain." §13.5 in Numerical Recipes in FORTRAN: The Art of Scientific         Computing, 2nd ed. Cambridge, England: Cambridge University Press, pp. 551-556,         1992.
+Press, W. H.; Flannery, B. P.; Teukolsky, S. A.; and Vetterling, W. T. "Digital Filtering in the Time Domain." §13.5 in Numerical Recipes in FORTRAN: The Art of Scientific Computing, 2nd ed. Cambridge, England: Cambridge University Press, pp. 551-556, 1992.
 
 Schwarz, G. 1978. Estimating the dimension of a model, _The Annals of Statistics_ 6, 461-64.
 
 Ulrych, T.J. and Clayton, R.W. 1976. Time series modelling and maximum entropy, *Physics of the Earth and Planetary Interiors* 12, 180-200.
 
-Ulrych, T.J. and Clayton, R.W. 1976. Time series modelling and maximum entropy, _Physics of the Earth and Planetary Interiors_ 12, 180-200.
-
-Weisstein, Eric W. "Filter." From MathWorld--A Wolfram Web Resource.         https://mathworld.wolfram.com/Filter.html
+Weisstein, Eric W. "Filter." From MathWorld--A Wolfram Web Resource. https://mathworld.wolfram.com/Filter.html
