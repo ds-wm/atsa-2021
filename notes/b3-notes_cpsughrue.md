@@ -8,6 +8,8 @@ Detrending is the act of removing a trend from time-series data to analyze subtr
 
 In general, to detrend a times seres you begin with a curve fitting technique such as linear regression, polinomial regression, or logistic regression and subtract the linear approzimation from the time series. The residuals are the detrended time series.
 
+![Detrended Time Series](http://scipy-lectures.org/_images/sphx_glr_plot_detrend_001.png)
+
 #### 3.0.2 Linear Filters
 In time series analysis a linear filter is a tool that can remove certain types of frequency behavior from a time series realization.
 
