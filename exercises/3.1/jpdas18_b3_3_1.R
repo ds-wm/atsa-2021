@@ -12,7 +12,7 @@ library(forecast)
 library(ggplot2)
 
 
-# Exercise 3.1.1 * #
+# Exercise 3.1.1
 
 # Reproduction of Mauna Loa Plot
 
