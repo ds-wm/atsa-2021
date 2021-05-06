@@ -51,7 +51,7 @@ y<sub>t</sub> = &beta;<sub>0</sub> + &beta;<sub>1</sub> &#183; sin(2&pi;t)
 Moving averages are a smoothing technique used in time series analysis. To calculate a moving average, create a new series comprised of averages taken from subsets of the original data. A moving average is a low pass filter. As the size of the subset used to calculate the mean increases the amplitude of the series decreases.
 
 <p align = "center">
-<img width="497" height="420" src="https://a.c-dn.net/b/3Ziogk/moving-average_body_EURUSDMA.png.full.png">
+<img width="373" height="315" src="https://a.c-dn.net/b/3Ziogk/moving-average_body_EURUSDMA.png.full.png">
 </p>
 
 A moving average (MA) process of order *q*, or more succinctly as a discrete time seres, *X*(*t*) with a mean &mu;, by the following equation where the &theta; values are real numbers and a<sub>t</sub> is a white noise process with zero mean and unit variance.
