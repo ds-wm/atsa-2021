@@ -1,0 +1,73 @@
+---
+title: "Exercise 3.2"
+author: "Joe Barry"
+date: "May 6, 2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library('tswge')
+data("dowjones2014")
+```
+
+Now that the data is loaded, we can use the Akaike Information Criterion (AIC) to produce our best model fit.
+
+```{r}
+aic.wge(dowjones2014, p=0:12, q=0:4, type="aicc")
+aic.wge(dowjones2014, p=0:12, q=0:4, type="aic")
+aic.wge(dowjones2014, p=0:12, q=0:4, type="bic")
+```
+
+For each model identifier criterion, the value of p chosen was $p=1$.
+
+```{r}
+plot.ts(ts(dowjones2014),
+        main = 'Daily Dow Jones Industrial Average, 2014',
+        ylab = 'Stock Price', 
+        xlab = 'Day')
+period.wge(dowjones2014)
+acf(dowjones2014, lag.max = 100)
+```
+
+Based on the periodogram and ACF, this data is most similar to a random walk realization, in that the value at any given point in time is some normally distributed distance from the previous value. This is reflected in the lack of a dominant frequency beyond the first measured in the periodogram, and an autocorrelation which slowly falls to zero.
+
+
+
+```{r}
+yule <- est.ar.wge(dowjones2014, p=1, factor = FALSE, type='yw')
+burg <- est.ar.wge(dowjones2014, p=1, factor = FALSE, type='burg')
+mle <- est.ar.wge(dowjones2014, p=1, factor = FALSE, type='mle')
+
+```
+
+```{r}
+paste('YW phi_1:', yule$phi)
+paste('Burg phi_1:', burg$phi)
+paste('MLE phi_1:', mle$phi)
+
+paste('YW variance:', yule$avar)
+paste('Burg variance:',burg$avar)
+paste('MLE variance:',mle$avar)
+```
+
+So our results are as follows:
+
+|  | $\phi_1$ | $\sigma^2$ | 
+| ----------: | ----------: | ---------------: | 
+| Yule-Walker | .970835 | 12955 |
+| Burg | .97853 | 12907 |
+| Maximum Likelihood| .98159 | 12898 |
+
+
+From this data, we can assume that the Maximum Likelihood Estimator is our best model, as it has the lowest residual variance.
+
+
+
+
+
+
+
