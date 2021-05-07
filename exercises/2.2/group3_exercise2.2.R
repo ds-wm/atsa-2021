@@ -1,4 +1,4 @@
-# Group names: Monica ALicea, Keagan DeLong, Matt McCormack, Kimya Shirazi, Connor Sughrue 
+# Group names: Monica ALicea, Keagan DeLong, Matt McCormack, Kimya Shirazi, Connor Sughrue, Conrad Ning
 
 # Applied Time Series Analysis
 # Exercise 2.2
