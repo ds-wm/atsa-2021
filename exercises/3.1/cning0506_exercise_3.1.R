@@ -36,7 +36,7 @@ plot(data$decidate, data$moco2, type='l', col='red', lwd=2,ylim = c(305,420),
      xlab='Year',ylab = 'parts per milion (ppm)',
      main='Atmospheric CO2 at Mauna Loa Observatory')
 lines(data$decidate,data$deseason)
-plt + 
+plot + 
   scale_x_continuous(n.breaks = 5)
 
 
