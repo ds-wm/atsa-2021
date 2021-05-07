@@ -47,7 +47,7 @@ data(co2)
 
 co2.decomp <- stl(co2, 'periodic')
 
-co2.decomp$time.series[, 'trend']
+plot(co2.decomp$time.series[, 'trend'], ylab='co2')
 
 # Exercise 3.1.2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -60,7 +60,7 @@ co2.decomp$time.series[, 'trend']
 
 lags <-c(0:10)
 
-autocorrelation <- -.07**lags
+autocorrelation <- (-.07)**lags
 
-autocorrelation
+print(autocorrelation)
 
