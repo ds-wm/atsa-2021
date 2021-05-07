@@ -4,7 +4,7 @@ John Hennin
 Applied Time Series Analysis 
 
 ### Packages Used
--  tswge
+-  tswge (Woodward, 2016) 
 
 ```{r}
 library('tswge')
@@ -185,7 +185,7 @@ To fit an ARMA(p,q) model to the data you must estimate
 
 - $\mu$, ${\sigma_a}^2$
 
-For $p$ and $q$ you must do something called order identification.
+For $p$ and $q$ you must do something called order identification (**Vocab Word**).
 
 "There are two basic types of estimators (assuming that the order of the model is already known):
 
@@ -273,9 +273,9 @@ where $S_u$ is the unconditional sum of squares.
 
 The solution of $\phi_1$, ..., $\phi_p$, $\theta_1$, ..., $\theta_q$, and $\sigma_a^2$ that maximizes the above equations is the called the unconditional or exact ML estimates.
 
-In practice, the derivatives of $\ln |M_p|$ are complicated, so approximations or conditional estimators are used instead.
+In practice, the derivatives of $\ln |M_p|$ are complicated, so approximations or conditional estimators (**Vocab Word**) are used instead.
 
-A technique called backcasting (i.e., first estimating those values of $X_t$ in the past) may be used to provide an approximation to $S_u$." (Davis, 2021)
+A technique called backcasting (**Vocab Word**) (i.e., first estimating those values of $X_t$ in the past) may be used to provide an approximation to $S_u$." (Davis, 2021)
 
 #### Applications in R 3.2.4
 
@@ -301,6 +301,7 @@ Alternatives AICC and BIC have aimed to fix this issue
 
 ### References
 
+1. Wayne Woodward (2016). tswge: Applied Time Series Analysis. R package version 1.0.0. https://CRAN.R-project.org/package=tswge
 1. Crawley, M. (2007). The R book. Wiley.
 1. Davis, T. (2021, April 27). Applied Time Series Analysis: Course Notebook—Student Copy. https://colab.research.google.com/drive/1qIdpd_8WFct9zBZ5uwO_Bcg-F3svu0KJ?authuser=1#scrollTo=3vDtty1FTkMU
 
