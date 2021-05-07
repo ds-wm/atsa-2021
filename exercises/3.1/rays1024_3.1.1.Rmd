@@ -1,0 +1,58 @@
+---
+title: "Ex 3"
+author: "Rui Shen"
+date: "5/5/2021"
+output: html_document
+---
+
+```{r}
+library(tswge)
+library(forecast)
+library(ggplot2)
+```
+
+Thoughts on Methodology 
+1. NOAA plot includes more data than R co2 dataset, we download the dataset from the website instead
+2. Convert data into time series
+3. Use 
+
+```{r}
+#download data
+url <- 'https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2/co2_mm_mlo.txt'
+data <- read.table(url, col.names = c('year','month','date(decimal)','co2_mon','deseasonalized','days','days_std', 'uncertainty'))
+```
+
+
+```{r}
+#Create ts object
+co2 <- ts(data$co2_mon, freq = 12, start = 1958) 
+```
+
+Reproduce figure:
+```{r}
+deseasonalized<-ts(data$deseasonalized, freq = 12, start = 1958)
+plot(co2,lwd = 2,col="red",xlab = 'Year', ylim=c(310,420),ylab='parts per million (ppm)',
+     main='Atmospheric CO_2 at Mauna Loa Observatory')
+lines(deseasonalized,lwd = 2,type="l",col="black")
+legend(1960, 420, legend=c("Seasonal", "Deseasonalized"),col=c("red", "black"), lty=1:1,lwd = 2:2,cex=0.8)
+```
+
+Recreate deseasonalized ts using stl
+Methodology: 1. generate decomposition using stl() 2. get trend (time.series[,2]) 3. plot using trend as black line
+
+```{r}
+co2.decomp <- stl(co2,'periodic')
+```
+
+```{r}
+#recreate deseasonalized time series
+trend_stl <- co2.decomp$time.series[,2]
+#reproduce the plot using trend from stl
+plot(co2,lwd = 2,col="red",xlab = 'Year', ylim=c(310,420),ylab='parts per million (ppm)',
+     main='Atmospheric CO_2 at Mauna Loa Observatory')
+lines(trend_stl,lwd = 2,type="l",col="black")
+legend(1960, 420, legend=c("Seasonal", "Deseasonalized"),col=c("red", "black"), lty=1:1,lwd = 2:2,cex=0.8)
+```
+
+
+
