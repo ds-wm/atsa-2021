@@ -494,8 +494,8 @@ sw2003 <- watch.df[, c("DayOfMonth", "SWdown_2003.12")]
 
 form <- c()
 for (i in seq(1:32)){
-  n <- julian_day(2003, 12, day) - julian_day(2003, 1, 1)+1
-  sw <- sw2003[day, "SWdown_2003.12"]
+  n <- julian_day(2003, 12, i) - julian_day(2003, 1, 1)+1
+  sw <- sw2003[i, "SWdown_2003.12"] * kSecInDay
   h0 <- calc_daily_solar(my.lat, n, my.elv, y=2003)$ra_j.m2
   i0 <- calc_daily_fluxes(my.lat, my.lon, n, my.elv, y=2003)$io_wm2
   calc <- 2.04 * (sw/h0) * i0
