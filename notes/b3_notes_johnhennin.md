@@ -41,7 +41,8 @@ Seasonality is when data demonstrates predictable and semi-cyclic changes over t
 The equation for the seasonal cycle is: $ y_t = \beta_0 + \beta_1 \sin (2 \pi \, t) + \beta_2 \cos (2 \pi \, t) + \alpha_t$ (Crawley, 2007)
 
 $\beta$ = coefficients
-$\alpha_t$ = a white noise process
+
+$\alpha$ = a white noise process
 
 #### Vocab Words
 
