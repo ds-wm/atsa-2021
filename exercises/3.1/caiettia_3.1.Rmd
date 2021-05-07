@@ -89,7 +89,7 @@ ma.ts3$aut1
 
 We know that $p_0 = 1$ because, with no lag element, we are essentially taking the variance and dividing it by its self.
 
-$$p_1 = \frac{0.2 + 0.2 \cdot -0.48}{1 + 0.2^2 + (-0.48)^2}=\frac{-0.104}{1.2704} = 0.0819$$
+$$p_1 = \frac{0.2 + 0.2 \cdot -0.48}{1 + 0.2^2 + (-0.48)^2}=\frac{0.104}{1.2704} = 0.0819$$
 
 $$p_2 = \frac{-0.48}{1 + 0.2^2 + (-0.48)^2}=\frac{-0.48}{1.2704} = -0.3778$$
 
