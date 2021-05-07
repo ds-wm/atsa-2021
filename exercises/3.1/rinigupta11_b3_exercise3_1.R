@@ -44,7 +44,7 @@ legend("top", legend=c("Original Data", "Deseasonalized Data"),
 ## * Exercise 3.1.3 * ##
 ## ****************** ##
 
-ar.ts1 <- plotts.true.wge(100, phi=c(0.7), theta=c(0), lag.max = 10)
+ar.ts1 <- plotts.true.wge(100, phi=c(-0.7), theta=c(0), lag.max = 10)
 ar.ts1$aut1
 
 ## References
