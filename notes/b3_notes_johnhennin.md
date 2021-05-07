@@ -15,7 +15,7 @@ library('tswge')
 
 Sometimes time series data demonstrates trends such as the one demonstrated below from the Hadley dataset, which linearly trends upwards.
 
-```{r}
+```
 data(hadley)
 plot(hadley, ylab='air temp')
 title(main='Hadley Data')
@@ -299,6 +299,20 @@ With a lot of data, AIC can become overestimate the order of the model
 Alternatives AICC and BIC have aimed to fix this issue
 
 "In R, the `aic.wge` function is an automated means of finding the ARMA(p, q) model order identification (within specified ranges of p and q) and returns the best fit model orders (i.e., p and q) along with the model parameter estimates: $\hat\theta_q$, $\hat\phi_p$, and $\hat\sigma_a^2$ (based on MLE)." (Davis, 2021)
+
+```
+data(ss08)
+options(repr.plot.width=12, repr.plot.height=6, repr.plot.res = 125)
+plot(
+  ts(ss08, start=c(1749), freq = 1),
+  ylab = "Ave. Sunspot Number"
+  )
+# How many samples? If a lot, use AICC or BIC.
+length(ss08)
+aic.wge(ss08, p=0:12, q=0:4, type="aic")
+aic.wge(ss08, p=0:12, q=0:4, type="aicc")
+aic.wge(ss08, p=0:12, q=0:4, type="bic")
+```
 
 ### References
 
