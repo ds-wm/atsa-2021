@@ -48,7 +48,7 @@ cor(deseasonalized, data$deseasonalized)
 
 # 3.1.2
 # I uploaded a picture of my handwritten work
-# file is named cpsughrue_b3_3_1_2.R
+# file is named cpsughrue_b3.jpg
 
 
 # 3.1.3 Calculate the autocorrelation at lags 0 through 10 for an AR(1) process with phi = -0.7
