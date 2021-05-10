@@ -15,7 +15,7 @@ dow.aic <- aic.wge(dowjones2014, p = 0:12, q = 0, type = "aic")
 cat('value:', dow.aic$value, '\n')
 cat('p =', dow.aic$p)
 # value: 9.480696
-# p= 1
+# p = 1
 
 # plot the realization
 plot(dowjones2014, type = 'l',
