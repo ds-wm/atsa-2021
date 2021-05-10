@@ -41,6 +41,7 @@ Proposals will be weighed based on their originality (i.e., another project is n
 | (Tech) House Music Study | Conrad, Matt M and Keagan | Yes |
 | Drums | Matthew C, David, and Peter | Yes |
 | Africa: Two renditions | John | Yes |
+| Key Change | Joe | Yes |
 
 ## Analysis
 You will likely find that music files consist of millions of samples, which can take quite a while to process.
