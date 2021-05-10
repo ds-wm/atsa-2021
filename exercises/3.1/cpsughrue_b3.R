@@ -8,7 +8,7 @@ data <- read.table(file = 'https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2
                    col.names = col.names)
 
 # 3.1.1
-# Part 1: Reproduce figure
+# Part 1: Reproduce figure 
 
 title = expression('Atmospheric CO'[2] * ' at Mauna Loa Observatory')
 plot(data$decimal.date, data$monthly.avg, type = 'l', 
