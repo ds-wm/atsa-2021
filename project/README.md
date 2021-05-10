@@ -42,6 +42,7 @@ Proposals will be weighed based on their originality (i.e., another project is n
 | Drums | Matthew C, David, and Peter | Yes |
 | Africa: Two renditions | John | Yes |
 | Key Change | Joe | Yes |
+| Good vs. Bad | Alex | Yes |
 
 ## Analysis
 You will likely find that music files consist of millions of samples, which can take quite a while to process.
