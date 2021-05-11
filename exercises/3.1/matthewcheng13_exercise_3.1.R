@@ -33,9 +33,10 @@ text(1987, 415, 'Scripps Institution of Oceanography \nNOAA Global Monitoring La
 
 data(co2)
 
-co2.decomp <- stl(co2, 'periodic')
+co2.ts <- ts(co2,deltat = 1/12,start = 1959,end=1997)
+
+co2.decomp <- stl(co2.ts, 'periodic')
 co2.trend <- co2.decomp$time.series[, 'trend']
-short <- data$moco2[1:(length(trend))]
 
 #seasonal
 options(repr.plot.width=12, repr.plot.height=4, repr.plot.res = 125)
@@ -48,7 +49,7 @@ plot(data$decidate[1:(length(co2.trend))],
      xlab = "Year",
      ylab = "parts per million (ppm)"
 )
-lines(co2.trend)
+lines(co2.trend,lwd=2)
 text(1975, 362, 'Scripps Institution of Oceanography \nNOAA Global Monitoring Laboratory', cex = 1)
 
 co2.deseason <- data$moco2[1:length(co2.trend)] - co2.trend
