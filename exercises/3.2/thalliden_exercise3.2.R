@@ -32,16 +32,21 @@ dowjones2014.df <- data.frame(
 dowjones2014.df
 
 #Extract best fit realization
-realization <- gen.arma.wge(length(dowjones2014), phi = dowjones2014.mle$phi, theta = 0, vara = dowjones2014.mle$avar, plot = TRUE)
+realization <- gen.arma.wge(length(dowjones2014), phi = dowjones2014.mle$phi, theta = 0, vara = dowjones2014.mle$avar, plot = FALSE, sn = 1)
 
-#Plot best fit realization
-options(repr.plot.width=12, repr.plot.height=10, repr.plot.res = 125)
-plot(realization, type="l", main="Dow Jones Index Best Fit Realization", ylab="Price", xlab="Time")
+#Get trend
+index <- 1:length(dowjones2014)
+model <- lm(dowjones2014~index)
+
+#Add trend to realization
+new_realization <- realization + predict(model)
+
+plot(new_realization, type="l", main="Dow Jones Index Best Fit Realization", ylab="Price", xlab="Time")
 
 #ACF Plot
-acf(realization)
+acf(new_realization)
 
 #Periodogram
-period.wge(realization)
+period.wge(new_realization)
 
 
