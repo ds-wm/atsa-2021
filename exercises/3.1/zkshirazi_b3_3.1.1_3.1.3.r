@@ -37,13 +37,16 @@ plot(co2, col = 'red', lwd = 2.5, xlab = 'Year', ylab = 'Average CO2 Measurement
 lines(ap_sa, lwd = 2)
 legend("top", legend=c("Original Data", "Deseasonalized Data"),
        col=c("red", "black"), lty=1:1, cex = .7, horiz=TRUE, box.lty=0)
-
+# The R libraries used are the forecast library and tswge. By taking the log of co2, we obtained better results as suggested by the Stack Overflow post cited below.  
+# The forecast library assisted in deseasonalizing because the seasadj function is described in documentation as "[returning] seasonally 
+# adjusted data constructed by removing the seasonal component." This methodology ultimately created a final plot which resembled that of the original plot we were 
+# tasked with recreating. 
 
 ## ****************** ##
 ## * Exercise 3.1.3 * ##
 ## ****************** ##
 
-ar.ts1 <- plotts.true.wge(100, phi=c(0.7), theta=c(0), lag.max = 10)
+ar.ts1 <- plotts.true.wge(100, phi=c(-0.7), theta=c(0), lag.max = 10)
 ar.ts1$aut1
 
 ## References
