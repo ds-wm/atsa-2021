@@ -32,9 +32,9 @@ stock.burg <- est.ar.wge(data, p=1, factor = FALSE, type='burg')
 stock.mle <- est.ar.wge(data, p=1, factor = FALSE, type='mle')
 
 stock.df <- data.frame(
-  type=c("True", "YW", "Burg", "MLE"),
-  phi1 = c(0.972072, stock.yw$phi[1], stock.burg$phi[1], stock.mle$phi[1]),
-  siga = c(12591.8956, stock.yw$avar, stock.burg$avar, stock.mle$avar)
+  type=c("YW", "Burg", "MLE"),
+  phi1 = c(stock.yw$phi[1], stock.burg$phi[1], stock.mle$phi[1]),
+  siga = c(stock.yw$avar, stock.burg$avar, stock.mle$avar)
 )
 stock.df
 
