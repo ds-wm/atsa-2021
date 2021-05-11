@@ -39,7 +39,7 @@ dj.mle <- est.ar.wge(dowjones2014, p =1, factor=FALSE, type = 'mle')
 # Compare the parameter estimates from these three methods 
 phi<- c(0.9720718,dj.yw$phi[1], dj.burg$phi[1], dj.mle$phi[1])
 sigma <- c(12591.9,dj.yw$avar,dj.burg$avar, dj.mle$avar) 
-dj.compare <- data.frame(phi,sigma, row.names = c( 'Original','Yule-Walker','Burg', 'Maximum-Likelihood'))
+dj.compare <- data.frame(phi,sigma, row.names = c( 'AIC Estimation','Yule-Walker','Burg', 'Maximum-Likelihood'))
 dj.compare
 
 
