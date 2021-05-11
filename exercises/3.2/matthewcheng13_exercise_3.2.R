@@ -51,26 +51,24 @@ dj.mle <- est.ar.wge(dowjones2014, p=1, factor = FALSE, type='mle')
 
 # Extract the parameter estimates for theta's and white noise variance
 dj.df <- data.frame(
-  type = c("True", "YW", "Burg", "MLE"),
-  phi = c(dj.aic$phi, dj.yw$phi[1], dj.burg$phi[1], dj.mle$phi[1]),
-  sigma = c(dj.aic$vara, dj.yw$avar, dj.burg$avar, dj.mle$avar)
+  type = c("YW", "Burg", "MLE"),
+  phi = c(dj.yw$phi[1], dj.burg$phi[1], dj.mle$phi[1]),
+  sigma = c(dj.yw$avar, dj.burg$avar, dj.mle$avar)
 )
 dj.df
 
 # compare the results methods. 
 
 #   type       phi    sigma
-# 1 True 0.9815898 12897.94
-# 2   YW 0.9708351 12954.69
-# 3 Burg 0.9785300 12906.99
-# 4  MLE 0.9815898 12897.94
+# 1   YW 0.9708351 12954.69
+# 2 Burg 0.9785300 12906.99
+# 3  MLE 0.9815898 12897.94
 
-# As we can see, the MLE is by far the best at estimating both phi
-# and sigma, as it achieved the exact values for both. Additionally, 
-# the Burg outperformed Yule-Walker, as it was about four times closer
-# to the true values. In terms of accuracy, Yule-Walker, which was the
-# worst performing, was off by a little more than 1% for the phi value
-# and less than half of a percentage point for sigma. We can see a similar
-# trend in terms of better accuracy for sigma.
+# As we can see, the each of the estimates produces slightly different
+# results, however, all of the values are relatively close. In this case,
+# MLE has the highest phi value and the lowest sigma value, while the
+# Yule-Walker has the lowest phi value and the highest sigma value.
+# Burg seems to estimate more middle-ground values, however its values are
+# closer to that of MLE.
 
 
