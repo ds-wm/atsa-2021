@@ -26,9 +26,9 @@ parzen.wge(data)
 
 # Build dataframe for actuals and estimates
 df.dow <- data.frame(
-  type = c("Actual", "Yule-Walker", "Burg", "MLE"),
+  type = c("AIC Estimate Based on MLE", "Yule-Walker", "Burg", "MLE"),
   phi = c(aic.dow$phi, yw.dow$phi, burg.dow$phi, mle.dow$phi),
   vara = c(aic.dow$vara, yw.dow$avar, burg.dow$avar, mle.dow$avar)
 )
 # It seems that the Yule-Walker estimator had a better estimation of the phi 
-# value, but MLE's variance estimation was the most accurate.
+# value, but MLE's variance estimation was the most accurate compared to the AIC estimate.
