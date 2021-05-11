@@ -9,7 +9,7 @@ options(repr.plot.width=12, repr.plot.height=10, repr.plot.res = 125)
 plot(dowjones2014, type="l", main="Dow Jones Index (2014)", ylab="Price", xlab="Time")
 
 #Find best fit parameters
-aic.wge(dowjones2014, p = 0:12, q = 0:4, type = 'aicc', plot = TRUE)
+aic.wge(dowjones2014, p = 0:12, q = 0:4, type = 'aicc')
 
 #Based on the above results we will use an AR(1) model
 
