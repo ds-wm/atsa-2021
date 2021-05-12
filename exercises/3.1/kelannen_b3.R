@@ -2,7 +2,7 @@
 # Name: Katherine Lannen
 # Class: DATA 330
 # Created: 2021-04-08
-# Updated: 2021-05-05
+# Updated: 2021-05-12
 
 #install.packages("tswge")
 library(tswge)
@@ -41,8 +41,7 @@ text(1980, 410, 'Scripps Institution of Oceanography \nNOAA Global Monitoring La
 data(co2)
 
 decomp_co2 <- stl(co2, 'periodic')
-trend <- decomp_co2$time.series[, 'trend']
-deseasoned <- data$moco2[1:length(trend)] - trend
+deseasoned <- decomp_co2$time.series[, 'trend']
 
 plot(data$deci_date, data$moco2, 
      type = "l", lwd = 2, col = 'red', xlab = "Year",
@@ -51,7 +50,7 @@ plot(data$deci_date, data$moco2,
 lines(deseasoned, type = "l", col = 'black', lwd = 2)
 
 plot(deseasoned, main="Deseasonalized Atmospheric CO2 \n at Mauna Loa Observatory",
-     xlab = 'Year', ylab = 'Difference with Trend')
+     xlab = 'Year', ylab = "parts per million (ppm)")
 
 # 3.1.2:
 #For the MA(2) process represented by the following equation:
@@ -108,17 +107,17 @@ ma2$aut1[4]
 #phi1 = -0.7
 #p = 1
 
-#p0 = -0.7^0 = 1
-#p1 = -0.7^1 = -0.7
-#p2 = -0.7^2 = -0.49000000 
-#p3 = -0.7^3 = -0.34300000 
-#p4 = -0.7^4 = -0.24010000 
-#p5 = -0.7^5 = -0.16807000
-#p6 = -0.7^6 = -0.11764900 
-#p7 = -0.7^7 = -0.08235430 
-#p8 = -0.7^8 = -0.05764801 
-#p9 = -0.7^9 = -0.04035361 
-#p10 = -0.7^10 = -0.02824752
+#p0 = (-0.7)^0 = 1
+#p1 = (-0.7)^1 = -0.7
+#p2 = (-0.7)^2 = 0.49000000 
+#p3 = (-0.7)^3 = -0.34300000 
+#p4 = (-0.7)^4 = 0.24010000 
+#p5 = (-0.7)^5 = -0.16807000
+#p6 = (-0.7)^6 = 0.11764900 
+#p7 = (-0.7)^7 = -0.08235430 
+#p8 = (-0.7)^8 = 0.05764801 
+#p9 = (-0.7)^9 = -0.04035361 
+#p10 = (-0.7)^10 = 0.02824752
 
 #To check if these autocorrelation at lags 0 through 10 are correct
 # the twsge package will be used
