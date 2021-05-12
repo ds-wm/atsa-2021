@@ -2,7 +2,7 @@
 # Name: Katherine Lannen
 # Class: DATA 330
 # Created: 2021-05-05
-# Updated: 2021-05-05
+# Updated: 2021-05-12
 
 #install.packages('tswge')
 library(tswge)
@@ -40,7 +40,7 @@ dow.mle <- est.ar.wge(dowjones2014, p=1, factor = FALSE, type='mle')
 
 # Extract the parameter estimates for theta's and white noise variance
 dow.df <- data.frame(
-  type=c("True", "YW", "Burg", "MLE"),
+  type=c("MLE estimation from the AIC method", "YW", "Burg", "MLE"),
   phi1 = c(0.9815898, dow.yw$phi[1], dow.burg$phi[1], dow.mle$phi[1]),
   siga = c(12897.94, dow.yw$avar, dow.burg$avar, dow.mle$avar)
 )
@@ -53,19 +53,20 @@ dow.df
 # and sigma. These three methods were Yule-Walker, Burg and 
 # Maximum-Likelihood. The above code created the table you see down 
 # below which contains the parameter estimates for the models along
-# with the true values which was calculated as a part of aicc. Based off
-# this table the Maximum-Likelihood method acheives the true value of phi
-# while the next closest phi estimate was found by the Burg method,
-# followed by Yule-Walker. Similarly, Maximum-Likelihood does best for
-# estimating the parameter siga however, this time the Yule-Walker method
-# is the next best method and not the Burg method. In this case 
-# Maximum-Likelihood is the best overall method for estimating the 
-# parameters and Yule-Walker and Burg are about the same though each is
-# slightly better than the other depending on which parameter you focus on.
+# with the MLE estimation from the AIC method values which was calculated
+# as a part of aicc. Based off this table the Maximum-Likelihood method 
+# achieves the MLE estimation from the AIC method value of phi while the 
+# next closest phi estimate was found by the Burg method, followed by 
+# Yule-Walker. Similarly, Maximum-Likelihood does best for estimating the 
+# parameter siga however, this time the Yule-Walker method is the next
+# best method and not the Burg method. In this case Maximum-Likelihood is
+# the best overall method for estimating the parameters and Yule-Walker 
+# and Burg are about the same though each is slightly better than the 
+# other depending on which parameter you focus on.
 
-#type      phi1     siga
-#1 True 0.9815898 12897.94
-#2   YW 0.9708351 12954.69
-#3 Burg 0.9785300 12906.99
-#4  MLE 0.9815898 12897.94
+#type                                      phi1     siga
+#1 MLE estimation from the AIC method 0.9815898 12897.94
+#2   YW                               0.9708351 12954.69
+#3 Burg                               0.9785300 12906.99
+#4  MLE                               0.9815898 12897.94
 
