@@ -106,7 +106,7 @@ plot(deseason,main = "Deseasonlized Atmospheric CO2 at Observatory",
 # For the MA(2) process represented by the following equation:
 # X(t) = a(t) + 0.2 a(t-1) - 0.48 a(t-2)
 # use the equation for autocorrelation for an MA(q) process to calculate by hand the following values:
-  #??0, ??1, ??2, and ??3.
+  #p0, p1, p2, and p3.
 
 #Theta1 = -0.2
 #Theta2 = 0.48
