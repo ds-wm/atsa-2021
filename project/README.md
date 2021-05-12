@@ -45,6 +45,7 @@ Proposals will be weighed based on their originality (i.e., another project is n
 | Good vs. Bad | Alex | Yes |
 | Similarities Between Songs | Ray | Yes |
 | Untitled | Julian | Yes |
+| Right vs. Left | Katherine | Yes |
 
 ## Analysis
 You will likely find that music files consist of millions of samples, which can take quite a while to process.
