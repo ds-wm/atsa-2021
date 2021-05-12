@@ -67,16 +67,15 @@ ggplot() +
 #summary(lm(data$moco2~data$decidate))
 
 ## Class Notes
-#detrended <- data$moco2 - predict(lm(data$moco2~data$decidate))
+# model <- lm(log(data$moco2) ~ data$decidate, data = data)
+detrended <- data$moco2 - predict(lm(data$moco2~data$decidate))
+
 #plot(detrended, type='l')
-#summary(lm(detrended ~ sin(data$decidate*2*pi) + cos(data$decidate*2*pi)))
 
-data(co2)
+season <- (lm(detrended ~ sin(data$decidate*2*pi) + cos(data$decidate*2*pi)))
 
-co2.decomp <- stl(co2, 'periodic')
-
-# Get the trend 
-trend <- co2.decomp$time.series[,'trend']
+# Deseasonalize
+deseason <- data$moco2 - predict(season)
 
 # Plot the trend  
 #options(repr.plot.width=12, repr.plot.height=10, repr.plot.res = 125)
@@ -91,10 +90,6 @@ plot(data$decidate,
      ylab = "Parts Per Million (ppm)"
 )
 
-lines(trend, lty=2, lwd=2) # We can observe that the length of moco2 is shorter than the trend
-
-# Generate the deseasonalized plot with the subtraction of trend
-deseason <- data$moco2[1:(length(trend))]-trend
 
 plot(deseason,main = "Deseasonlized Atmospheric CO2 at Observatory",
      xlab = "Year",
