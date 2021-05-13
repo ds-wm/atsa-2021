@@ -38,6 +38,5 @@ stock.df <- data.frame(
 )
 stock.df
 
-# We see that YW gets closest to the phi value identified in the aic.wge()
-# method. We see however that the closest siga is achieved by the
+# We can finally see that the smallest siga is achieved by the
 # Maximum Likelihood Estimators method. 
