@@ -1,0 +1,88 @@
+# Exercise 3.1
+# David Huang
+
+install.packages("tswge")
+library(tswge)
+
+### 3.1.1
+
+# Part 0 - getting the data
+data <- read.table(
+  "https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2/co2_mm_mlo.txt",
+  col.names = c(
+    "year", "month", "decidate", "moco2", "deseason", "nodays", "stdays", 
+    "uncertainty")
+)
+
+# Part 1 - plot reproduction
+plot(data$decidate, data$moco2, type='l', col='red', lwd=2,
+  xlab = "Year",
+  ylab = "parts per million (ppm)",
+  main = "Atmospheric CO2 at Mauna Loa Observatory"
+)
+lines(data$decidate, data$deseason)
+# logo not needed
+
+# Part 2 - recreating the deseasonalized time series
+
+## Take a look at the summary stats of a linear model
+#summary(lm(data$moco2 ~ data$decidate))
+
+## Subtract the trend
+#detrended <- data$moco2 - predict(lm(data$moco2 ~ data$decidate))
+#plot(detrended, type='l')
+
+## Model seasonality
+#summary(lm(detrended ~ sin(data$decidate * 2 * pi) + cos(data$decidate * 2 * pi)))
+
+### notes don't work from class ###
+
+# thoughts...
+# after some exploring with the co2 data, 
+# I can first decompose and find the trend through its time series
+# this way I can get the detrended line... as shown:
+
+data(co2)
+
+decomp <- stl(co2, 'periodic')
+trend <- decomp$time.series[, 'trend']
+
+plot(data$decidate, data$moco2, type='l', col='red', lwd=2,
+  xlab = "Year",
+  ylab = "parts per million (ppm)",
+  main = "Atmospheric CO2 at Mauna Loa Observatory"
+)
+lines(trend, lwd=2)
+
+### 3.1.1
+
+# $p_k = \frac{-\theta_k+\sum_{j=1}^{q-k}\theta_j\theta_{j+k}}{1+\sum_{j=1}^q\theta_j^2}$
+# from this and the given MA(2) process from the instructions, we infer: \theta_1=-0.2 and \theta_2=0.48
+# this will be useful in our calculations for p_1 and p_2, as follows.
+
+# so to calculate p_0 then k=0, p_1 means that k=1, etc...
+# p_0 of any autocorrelation will always be 1
+# p_1 = (.2 + (-.2)(.48)) / (1 + (-.2)^2 + (.48)^2) = .0819
+# p_2 = (-.48 + 0) / (1 + (-.2)^2 + (.48)^2) = -.378
+# p_3 of an MA(2) tells us that k is greater than 2, therefore will always be 0
+
+### 3.1.2
+
+# $p_k = phi_1^k$
+phi_1 = -0.7
+for (k in 1:10) {
+  p_k = phi_1^k # (this is the equation)
+  print(p_k)
+}
+
+# -0.7 (for lag 1)
+# 0.49 (for lag 2)
+# -0.343 (...)
+# 0.2401
+# -0.16807
+# 0.117649
+# -0.0823543
+# 0.05764801
+# -0.04035361
+# 0.02824752 (lag 10)
+
