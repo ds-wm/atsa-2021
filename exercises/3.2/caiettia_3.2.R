@@ -38,5 +38,6 @@ stock.df <- data.frame(
 )
 stock.df
 
-# We can finally see that the smallest siga is achieved by the
-# Maximum Likelihood Estimators method. 
+# We can finally see that the smallest variance is achieved by the
+# Maximum Likelihood Estimators method which makes MLE the best estimation
+# method for this data set. 
