@@ -44,7 +44,7 @@ Proposals will be weighed based on their originality (i.e., another project is n
 | Key Change | Joe | Yes |
 | Good vs. Bad | Alex | Yes |
 | Similarities Between Songs | Ray | Yes |
-| Untitled | Julian | Yes |
+| Feeling Heard | Julian | Yes |
 | Right vs. Left | Katherine | Yes |
 
 ## Analysis
