@@ -32,43 +32,19 @@ lines(q1$decidate, q1$deseason, type = 'l', col = 'black', lwd = 1)
 #(i.e., prepare a pseudo code version) and implement a coding strategy that creates
 #the deseasonalized CO2 trend line.
 
-#import the co2 dataset trend datasets which is the atmospheric carbon dioxide
-#(CO2) measurements fromMauna Loa Baseline Observatory in Hawaii.
-data("co2")
 
-#decomposing the co2 dataset into its seasonal, trend and residuals
-co2.decomp <- stl(co2, 'periodic')
+#Create a time series object of the q1 data by using the ts function
+q2 <- ts(q1$moco2, freq = 12, start = 1958) 
+#run the time series object into the stl function to remove the seasonality component of the data
+deseasoned <- stl(q2, 'periodic')
 
-
-co2.trend <- co2.decomp$time.series[, 'trend']
-
-
-#plot the original plot with the addition of the trend lines
-#the trend line is noticably shorter so the need to deseasonize the data here seems valid
-plot(q1$decidate, 
-     q1$moco2,
-     type = 'l',
-     col = 'black',
-     lwd = 1,
-     main = "Atmospheric CO2 at Mauna Loa Observatory",
-     xlab = "Year",
-     ylab = "Parts Per Million (ppm)"
-)
-lines(co2.trend)
-
-#deseasonize the data by taking moco2 to the values of the length of the trend line
-#and then subtract those values by the corresponding trend values
-co2.deseasoned <- q1$moco2[1:length(co2.trend)] - co2.trend
-
-#plot the deseasoned data!
-plot(co2.deseasoned,
-     type = 'l',
-     col = 'black',
-     lwd = 2,
-     main = "Deseasonlized Atmospheric CO2 \n at Mauna Loa Observatory",
-     xlab = "Year",
-     ylab = "Differences w/ the trend" )
-
+#plot the now de-seasoned data
+plot(q1$decidate, deseasoned$time.series[, 'trend'], type='l',
+     lwd = 2, col = 'black',
+     xlab = 'Year',
+     ylab='Parts per million (ppm)',
+     main='Atmospheric CO2 at Mauna Loa Observatory')
+lines(q1$decidate, q1$moco2, type = 'l', col = 'red', lwd = 1)
 
 #Question 2
 #PROBLEM STATEMENT:For the MA(2) process represented by the following equation:
@@ -121,10 +97,6 @@ q3 <- plotts.true.wge(200, phi=c(-0.7),theta=c(0),lag.max = 10)
 
 #We can then pull out the autocorrelations from lags 0 through 10
 q3$aut1
-
-
-
-
 
 
 
