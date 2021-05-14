@@ -4,6 +4,7 @@ author: "Monica Alicea and Asha Silva"
 date: "4/23/2021"
 output: html_document
 ---
+
 ```{r}
 # Exercise 3.1.1
 # part one - replicate the figure 
@@ -50,7 +51,7 @@ summary(lm(detrended ~ sin(data$decidate * 2 * pi) + cos(data$decidate * 2 * pi)
 # Exercise 3.1.2
 ```
 $$
-X(t) = a(t) + 0.2 a(t-1) - 0.48 a(t-2)
+X(t) = a(t) 0 0.2 a(t-1) + 0.48 a(t-2)
 $$
 
 $$
@@ -62,19 +63,19 @@ $$
 
 $$
 \begin{align}
-\rho_0 &= \frac{-\theta_0 + \sum_{j=1}^{2-0} \theta_j \theta_{j+0}}{1 + \sum_{j=1}^{2} \theta^2_j} = \frac{-1 + 0.2704}{1 + 0.2704} = -0.5743
+\rho_0 & = 1
 \end{align}
 $$
 
 $$
 \begin{align}
-\rho_1 &= \frac{-\theta_1 + \sum_{j=1}^{2-1} \theta_j \theta_{j+1}}{1 + \sum_{j=1}^{2} \theta^2_j} = \frac{-0.2 + 0.096}{1 + 0.2704} = -0.0819
+\rho_1 &= \frac{-\theta_1 + \sum_{j=1}^{2-1} \theta_j \theta_{j+1}}{1 + \sum_{j=1}^{2} \theta^2_j} = \frac{0.2 + 0.2 \cdot -0.48}{1 + 0.2^2 + (-0.48)^2}=\frac{0.104}{1.2704} = 0.0819
 \end{align}
 $$
 
 $$
 \begin{align}
-\rho_2 &= \frac{-\theta_2 + \sum_{j=1}^{2-2} \theta_j \theta_{j+1}}{1 + \sum_{j=1}^{2} \theta^2_j} = \frac{0.48 + 0}{1 + 0.2704} = 0.3778  
+\rho_2 &= \frac{-\theta_2 + \sum_{j=1}^{2-2} \theta_j \theta_{j+1}}{1 + \sum_{j=1}^{2} \theta^2_j} = \frac{-0.48}{1 + 0.2^2 + (-0.48)^2}=\frac{-0.48}{1.2704} = -0.3778
 \end{align}
 $$
 
