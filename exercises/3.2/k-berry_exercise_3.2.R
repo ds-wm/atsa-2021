@@ -39,7 +39,7 @@ dow_mle <- est.ar.wge(dow, p=1, factor = FALSE, type='mle')
 
 #Extract the results into a dataframe
 dow_df <- data.frame(
-  type=c("True", "YW", "Burg", "MLE"),
+  type=c("AIC", "YW", "Burg", "MLE"),
   phi = c(0.972072, dow_yw$phi[1], dow_burg$phi[1], dow_mle$phi[1]),
   siga = c(12897.94, dow_yw$avar, dow_burg$avar, dow_mle$avar)
 )
