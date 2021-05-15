@@ -42,7 +42,12 @@ lines(data$decidate, data$deseason)
 # I can first decompose and find the trend through its time series
 # this way I can get the detrended line... as shown:
 
-data(co2)
+# don't mix two datasets (oops)
+#data(co2)
+
+# get time series object of data$moco2
+# get what we need, freq = 12, start = approx. 1958
+co2 <- ts(data$moco2, freq = 12, start = 1958)
 
 decomp <- stl(co2, 'periodic')
 trend <- decomp$time.series[, 'trend']
