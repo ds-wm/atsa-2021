@@ -37,14 +37,14 @@ plot(data$decidate,
 lines(data$decidate, data$deseason)
 ```
 
-## Part 2 - Deseasonalize the monthly time series 
+## Part 2 - Deseasonalized monthly time series 
 
 ```{r}
 co2.decomp <- stl(co2, 'periodic')
+data.ts <- ts(data$moco2, freq = 12, start = 1958.203)
+co2.decomp <- stl(data.ts, 'periodic')
 trend <- co2.decomp$time.series[, 'trend']
-
 options(repr.plot.width=12, repr.plot.height=10, repr.plot.res = 125)
-
 plot(data$decidate, 
      data$moco2,
      type = 'l',
@@ -55,30 +55,6 @@ plot(data$decidate,
      ylab = "Parts Per Million (ppm)"
 )
 lines(trend)
-
-# shorten the length of moco2 to fit the trend line
-
-shortened <- data$moco2[1:(length(trend))]
-
-plot(data$decidate[1:(length(trend))], 
-     shortened,
-     type = 'l',
-     col = 'red',
-     lwd = 2,
-     main = "Atmospheric CO2 at Mauna Loa Observatory",
-     xlab = "Year",
-     ylab = "Parts Per Million (ppm)"
-)
-lines(trend)
-
-# subtract trend from moco2 for deseasonalized plot
-
-deseasonalized <- data$moco2[1:(length(trend))] - trend
-
-plot(deseasonalized,
-     main = "Deseasonalized Atmospheric CO2 at Mauna Loa Observatory",
-     xlab = 'Year',
-     ylab = 'Distance from Trend')
 ```
 
 # 3.1.2
@@ -100,9 +76,9 @@ We know that ρ0 of any autocorrelation function is 1.
 ## ρ1
 	
 $$\frac{0.2 + (-0.2)(0.48)}{1 + (-0.2)^2+(0.48)^2}$$
-$$\frac{1.04}{1.2704}$$
+$$\frac{0.104}{1.2704}$$
 
-ρ1 = 0.819
+ρ1 = 0.082
 
 We can check this answer by calculating it with R
 
