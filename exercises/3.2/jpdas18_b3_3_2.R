@@ -18,9 +18,9 @@ ex324.burg <- est.ar.wge(dowjones2014, p=1, factor = FALSE, type='burg')
 ex324.mle <- est.ar.wge(dowjones2014, p=1, factor = FALSE, type='mle')
 # Extract the parameter estimates for theta's and white noise variance
 ex324.df <- data.frame(
-  type=c("True", "YW", "Burg", "MLE"),
+  type=c("MLE Estimate from AIC Method", "YW", "Burg", "MLE"),
   phi1 = c(0.9816 , ex324.yw$phi[1], ex324.burg$phi[1], ex324.mle$phi[1]),
-  siga = c('something', ex324.yw$avar, ex324.burg$avar, ex324.mle$avar)
+  siga = c(ex324.yw$avar, ex324.burg$avar, ex324.mle$avar)
 )
 ex324.df
 
