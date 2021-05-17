@@ -25,6 +25,8 @@ plot(ml.df$V3, ml.df$V4, type = 'l', col = 'red', main = 'Atmospheric CO2 at Mau
 lines(ml.df$V3, ml.df$V5)
 
 # Recreation of Mauna Loa Plot
+# Methodology: I used the stl function which is able to decompose a time series into seasonal components. We discussed this function in class and I found examples of its use online.
+# I took the log of the time series to decompose it and then later exponentiated, following a specific example my group found online (Stack Overflow, 2016).
 
 data(co2)
 de_c <- stl(log(co2), s.window="periodic")
@@ -39,7 +41,7 @@ legend("top", legend=c("Original Data", "Deseasonalized Data"),
 
 # Exercise 3.1.3 
 
-ar.ts1 <- plotts.true.wge(100, phi=c(0.7), theta=c(0), lag.max = 10)
+ar.ts1 <- plotts.true.wge(100, phi=c(-0.7), theta=c(0), lag.max = 10)
 ar.ts1$aut1
 
 ## References
