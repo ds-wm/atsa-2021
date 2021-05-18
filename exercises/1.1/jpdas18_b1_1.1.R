@@ -49,17 +49,17 @@ plot(
 lines(t,yt2, type="l", col="blue", lty=2)
 
 legend(
-  "top", # location of legend
-  inset=.01, # buffer around the legend
+  "top", 
+  inset=0.01, 
   col=c("red","blue"), 
-  lty = c(1,2),
-  lwd = c(1,1),
+  lty=c(1,2), 
+  lwd=c(1,1), 
   legend = c(
     expression(sin(t)),
-    expression(sin(t+(pi/2))),
-    bg = "white",
-    box.col = "white",
-    horiz = TRUE)
-plot.new()
+    expression(sin(t+pi/2))), 
+  bg="white",
+  box.col="white",
+  horiz=TRUE
+)
 #Bibliography
 #Davis, T. (2021, February 9). Exercise 1.1 Lecture Notes.
